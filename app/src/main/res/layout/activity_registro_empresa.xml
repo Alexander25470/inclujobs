@@ -54,7 +54,8 @@
                 android:id="@+id/lblApellidoEmpresa"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="TextView" />
+                android:layout_marginTop="20dp"
+                android:text="Apellido" />
 
             <EditText
                 android:id="@+id/txtApellidoEmpresa"
@@ -67,6 +68,7 @@
                 android:id="@+id/lblEmailEmpresa"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
                 android:text="Email" />
 
             <EditText
@@ -80,6 +82,7 @@
                 android:id="@+id/lblContraEmpresa"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
                 android:text="Contraseña" />
 
             <EditText
@@ -93,6 +96,7 @@
                 android:id="@+id/lblRepetirContraEmpresa"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
                 android:text="Repetir contraseña" />
 
             <EditText
@@ -106,6 +110,7 @@
                 android:id="@+id/lblTelefonoEmpresa"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
                 android:text="Teléfono" />
 
             <EditText
@@ -119,6 +124,7 @@
                 android:id="@+id/lblNombreComercial"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
                 android:text="Nombre comercial" />
 
             <EditText
@@ -132,6 +138,7 @@
                 android:id="@+id/lblRazonSocial"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
                 android:text="Razón social" />
 
             <EditText
@@ -145,6 +152,7 @@
                 android:id="@+id/lblCuit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
                 android:text="CUIT" />
 
             <EditText
@@ -158,6 +166,7 @@
                 android:id="@+id/lblProvincia"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
                 android:text="Provincia" />
 
             <Spinner
@@ -169,6 +178,7 @@
                 android:id="@+id/lblCiudad"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
                 android:text="Ciudad" />
 
             <Spinner
@@ -180,6 +190,7 @@
                 android:id="@+id/lblDireccion"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
                 android:text="Dirección" />
 
             <EditText
@@ -193,6 +204,7 @@
                 android:id="@+id/lblSector"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
                 android:text="Sector" />
 
             <Spinner
@@ -204,6 +216,7 @@
                 android:id="@+id/lblDescripcion"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
                 android:text="Descripción" />
 
             <EditText

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RegistroEmpresa">
+    tools:context=".registro_usuario">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -47,6 +47,7 @@
                 android:id="@+id/lblApellido"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
                 android:text="Apellido" />
 
             <EditText
@@ -60,6 +61,7 @@
                 android:id="@+id/lblEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
                 android:text="Email" />
 
             <EditText
@@ -73,6 +75,7 @@
                 android:id="@+id/lblContra"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
                 android:text="Contraseña" />
 
             <EditText
@@ -86,6 +89,7 @@
                 android:id="@+id/lblRepetirContra"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
                 android:text="Repetir contraseña" />
 
             <EditText
@@ -99,6 +103,7 @@
                 android:id="@+id/lblTelefono"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
                 android:text="Teléfono" />
 
             <EditText
@@ -112,6 +117,7 @@
                 android:id="@+id/lblTipoDiscapacidad"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
                 android:text="Tipo de discapacidad" />
 
             <Spinner
