@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".registro_empresa">
+
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/lblRegistroEmpresa"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:paddingBottom="30dp"
+                android:text="REGISTRO EMPRESA"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/lblNombreEmpresa"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Nombre" />
+
+            <EditText
+                android:id="@+id/txtNombreEmpresa"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName" />
+
+            <TextView
+                android:id="@+id/lblApellidoEmpresa"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="TextView" />
+
+            <EditText
+                android:id="@+id/txtApellidoEmpresa"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName" />
+
+            <TextView
+                android:id="@+id/lblEmailEmpresa"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Email" />
+
+            <EditText
+                android:id="@+id/txtEmailEmpresa"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textEmailAddress" />
+
+            <TextView
+                android:id="@+id/lblContraEmpresa"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Contraseña" />
+
+            <EditText
+                android:id="@+id/txtContraEmpresa"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPassword" />
+
+            <TextView
+                android:id="@+id/lblRepetirContraEmpresa"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Repetir contraseña" />
+
+            <EditText
+                android:id="@+id/txtRepetirContraEmpresa"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPassword" />
+
+            <TextView
+                android:id="@+id/lblTelefonoEmpresa"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Teléfono" />
+
+            <EditText
+                android:id="@+id/txtTelefonoEmpresa"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="phone" />
+
+            <TextView
+                android:id="@+id/lblNombreComercial"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Nombre comercial" />
+
+            <EditText
+                android:id="@+id/txtNombreComercial"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName" />
+
+            <TextView
+                android:id="@+id/lblRazonSocial"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Razón social" />
+
+            <EditText
+                android:id="@+id/txtRazonSocial"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName" />
+
+            <TextView
+                android:id="@+id/lblCuit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="CUIT" />
+
+            <EditText
+                android:id="@+id/txtCuit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName" />
+
+            <TextView
+                android:id="@+id/lblProvincia"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Provincia" />
+
+            <Spinner
+                android:id="@+id/spProvincia"
+                android:layout_width="match_parent"
+                android:layout_height="38dp"/>
+
+            <TextView
+                android:id="@+id/lblCiudad"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Ciudad" />
+
+            <Spinner
+                android:id="@+id/spinner2"
+                android:layout_width="match_parent"
+                android:layout_height="38dp" />
+
+            <TextView
+                android:id="@+id/lblDireccion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Dirección" />
+
+            <EditText
+                android:id="@+id/txtDireccion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName" />
+
+            <TextView
+                android:id="@+id/lblSector"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Sector" />
+
+            <Spinner
+                android:id="@+id/spSector"
+                android:layout_width="match_parent"
+                android:layout_height="38dp" />
+
+            <TextView
+                android:id="@+id/lblDescripcion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Descripción" />
+
+            <EditText
+                android:id="@+id/txtDescripcion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName" />
+
+        </LinearLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>
