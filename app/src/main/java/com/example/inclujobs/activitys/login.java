@@ -1,4 +1,4 @@
-package com.example.inclujobs;
+package com.example.inclujobs.activitys;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+
+import com.example.inclujobs.R;
 
 public class login extends AppCompatActivity {
     private Button btnRegistroEmpresa;

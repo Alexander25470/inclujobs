@@ -1,8 +1,10 @@
-package com.example.inclujobs;
+package com.example.inclujobs.activitys;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.example.inclujobs.R;
 
 public class registro_empresa extends AppCompatActivity {
 

@@ -7,6 +7,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.inclujobs.activitys.RegistroUsuario;
+import com.example.inclujobs.activitys.login;
+import com.example.inclujobs.activitys.registro_empresa;
+
 public class MainActivity extends AppCompatActivity {
     private Button btnRegistroEmpresa;
     private Button btnRegistroUsuario;

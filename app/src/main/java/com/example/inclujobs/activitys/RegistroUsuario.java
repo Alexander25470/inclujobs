@@ -1,4 +1,4 @@
-package com.example.inclujobs;
+package com.example.inclujobs.activitys;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -11,6 +11,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.inclujobs.R;
 import com.example.inclujobs.conexion.DataInsertUsuario;
 import com.example.inclujobs.databinding.ActivityRegistroUsuarioBinding;
 import com.example.inclujobs.entidades.Usuarios;
