@@ -15,15 +15,18 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:paddingLeft="20dp"
-            android:paddingRight="20dp">
+            android:paddingTop="10dp"
+            android:paddingRight="20dp"
+            android:paddingBottom="10dp">
 
             <TextView
                 android:id="@+id/lblRegistroUsuario"
-                android:layout_width="wrap_content"
+                android:layout_width="370dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
                 android:paddingBottom="30dp"
                 android:text="REGISTRO USUARIO"
+                android:textAlignment="center"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
@@ -126,6 +129,7 @@
                     android:id="@+id/btnCancelarRegistrarseUsuario"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_margin="2dp"
                     android:layout_weight="1"
                     android:text="Cancelar" />
 
@@ -133,6 +137,7 @@
                     android:id="@+id/btnRegistrarseUsuario"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_margin="2dp"
                     android:layout_weight="1"
                     android:text="Registrarse" />
             </LinearLayout>
