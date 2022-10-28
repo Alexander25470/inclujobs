@@ -7,7 +7,7 @@ public class Usuarios {
     String Email;
     String Contra;
     String Telefono;
-    TipoDiscapacidades TipoDiscapacidad;
+    com.example.inclujobs.entidades.TipoDiscapacidad TipoDiscapacidad;
 
     public int getIdUsuario() {
         return IdUsuario;
