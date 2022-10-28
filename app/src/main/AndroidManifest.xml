@@ -22,7 +22,7 @@
             android:name=".registro_empresa"
             android:exported="false" />
         <activity
-            android:name=".registro_usuario"
+            android:name=".RegistroUsuario"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

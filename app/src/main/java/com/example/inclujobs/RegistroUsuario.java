@@ -12,29 +12,33 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.inclujobs.conexion.DataInsertUsuario;
+import com.example.inclujobs.databinding.ActivityRegistroUsuarioBinding;
 import com.example.inclujobs.entidades.Usuarios;
 
-public class registro_usuario extends AppCompatActivity {
+public class RegistroUsuario extends AppCompatActivity {
     private Button btnRegistrarseUsuario;
     private TextView txtNombre, txtApellido, txtEmail, txtContra, txtRepetirContra, txtTelefono;
     private Spinner spTipoDiscapacidad;
-
+    private ActivityRegistroUsuarioBinding binding;
     @Override
-    protected void onCreate(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_registro_usuario);
+        //setContentView(R.layout.activity_registro_usuario);
 
-        View v = inflater.inflate(R.layout.activity_registro_usuario, container, false);
+       //View v = inflater.inflate(R.layout.activity_registro_usuario, container, false);
 
-        txtNombre = v.findViewById(R.id.txtNombre);
-        txtApellido = v.findViewById(R.id.txtApellido);
-        txtEmail = v.findViewById(R.id.txtEmail);
-        txtContra = v.findViewById(R.id.txtContra);
-        txtRepetirContra = v.findViewById(R.id.txtRepetirContra);
-        txtTelefono = v.findViewById(R.id.txtTelefono);
-        spTipoDiscapacidad = v.findViewById(R.id.spTipoDiscapacidad);
+        binding = ActivityRegistroUsuarioBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
-        btnRegistrarseUsuario = v.findViewById(R.id.btnRegistrarseUsuario);
+        txtNombre = findViewById(R.id.txtNombre);
+        txtApellido = findViewById(R.id.txtApellido);
+        txtEmail = findViewById(R.id.txtEmail);
+        txtContra = findViewById(R.id.txtContra);
+        txtRepetirContra = findViewById(R.id.txtRepetirContra);
+        txtTelefono = findViewById(R.id.txtTelefono);
+        spTipoDiscapacidad = findViewById(R.id.spTipoDiscapacidad);
+
+        btnRegistrarseUsuario = findViewById(R.id.btnRegistrarseUsuario);
         btnRegistrarseUsuario.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

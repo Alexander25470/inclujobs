@@ -1,6 +1,7 @@
 package com.example.inclujobs.conexion;
 
 import android.content.Context;
+import android.os.AsyncTask;
 import android.widget.Toast;
 
 import com.example.inclujobs.entidades.Usuarios;
@@ -9,7 +10,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
 
-public class DataInsertUsuario {
+public class DataInsertUsuario extends AsyncTask<String, Void, String> {
     private Usuarios usuario;
     private Context context;
 

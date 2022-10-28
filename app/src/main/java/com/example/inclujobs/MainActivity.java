@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void openRegistroUsuario(){
-        Intent intent = new Intent(this, registro_usuario.class);
+        Intent intent = new Intent(this, RegistroUsuario.class);
         startActivity(intent);
     }
 
