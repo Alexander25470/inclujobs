@@ -2,10 +2,12 @@ package com.example.inclujobs.activitys;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -13,8 +15,13 @@ import android.widget.Toast;
 
 import com.example.inclujobs.R;
 import com.example.inclujobs.conexion.DataInsertUsuario;
+import com.example.inclujobs.conexion.DataObtenerTiposDiscapacidades;
 import com.example.inclujobs.databinding.ActivityRegistroUsuarioBinding;
+import com.example.inclujobs.entidades.TipoDiscapacidad;
 import com.example.inclujobs.entidades.Usuarios;
+import com.example.inclujobs.helpers.ICallBack;
+
+import java.util.ArrayList;
 
 public class RegistroUsuario extends AppCompatActivity {
     private Button btnRegistrarseUsuario;
@@ -38,6 +45,18 @@ public class RegistroUsuario extends AppCompatActivity {
         txtRepetirContra = findViewById(R.id.txtRepetirContra);
         txtTelefono = findViewById(R.id.txtTelefono);
         spTipoDiscapacidad = findViewById(R.id.spTipoDiscapacidad);
+
+        Context ctx = this;
+        DataObtenerTiposDiscapacidades task = new DataObtenerTiposDiscapacidades(new ICallBack() {
+            @Override
+            public void function(Object obj) {
+                ArrayList<TipoDiscapacidad> listaTiposDiscapacidades = (ArrayList<TipoDiscapacidad>)obj;
+                ArrayAdapter<TipoDiscapacidad> adapterCategorias = new ArrayAdapter<TipoDiscapacidad>(ctx, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, listaTiposDiscapacidades);
+                spTipoDiscapacidad.setAdapter(adapterCategorias);
+            }
+        });
+
+        task.execute();
 
         btnRegistrarseUsuario = findViewById(R.id.btnRegistrarseUsuario);
         btnRegistrarseUsuario.setOnClickListener(new View.OnClickListener() {

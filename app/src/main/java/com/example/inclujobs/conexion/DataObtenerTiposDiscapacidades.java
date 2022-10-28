@@ -14,16 +14,12 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-public class DataTipoDiscapacidad  extends AsyncTask<String, Void, String> {
-    private Context context;
-
-    private int result;
-    private static String result2;
+public class DataObtenerTiposDiscapacidades extends AsyncTask<String, Void, String> {
     private static ArrayList<TipoDiscapacidad> listaTiposDiscapacidades = new ArrayList<TipoDiscapacidad>();
     private ICallBack callBack;
 
-    public DataTipoDiscapacidad(Context ctx, ICallBack callBack){
-        context = ctx;
+    public DataObtenerTiposDiscapacidades(ICallBack callBack){
+        this.callBack = callBack;
     }
 
     protected String doInBackground(String... urls) {
@@ -52,7 +48,7 @@ public class DataTipoDiscapacidad  extends AsyncTask<String, Void, String> {
         }
         catch(Exception e) {
             e.printStackTrace();
-            result2 = "Conexion no exitosa";
+            response = "Conexion no exitosa";
         }
         return response;
     }
