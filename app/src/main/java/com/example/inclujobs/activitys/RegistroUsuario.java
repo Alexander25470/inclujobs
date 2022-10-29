@@ -17,6 +17,7 @@ import com.example.inclujobs.R;
 import com.example.inclujobs.conexion.DataInsertUsuario;
 import com.example.inclujobs.conexion.DataObtenerTiposDiscapacidades;
 import com.example.inclujobs.databinding.ActivityRegistroUsuarioBinding;
+import com.example.inclujobs.entidades.Ciudades;
 import com.example.inclujobs.entidades.TipoDiscapacidad;
 import com.example.inclujobs.entidades.Usuarios;
 import com.example.inclujobs.helpers.ICallBack;
@@ -69,6 +70,7 @@ public class RegistroUsuario extends AppCompatActivity {
 
     public void agregarUsuario(){
         Usuarios usr = new Usuarios();
+        TipoDiscapacidad tipoDiscapacidad = new TipoDiscapacidad();
 
         if( txtNombre.getText().toString() == null || txtNombre.getText().toString().isEmpty()){
             Toast toast = Toast.makeText(getApplicationContext(),"Debe ingresar un Nombre", Toast.LENGTH_SHORT);
@@ -92,12 +94,18 @@ public class RegistroUsuario extends AppCompatActivity {
             Toast toast = Toast.makeText(getApplicationContext(),"Debe ingresar una Contraseña", Toast.LENGTH_SHORT);
             toast.show();
             return;
-        }
-
-        if( txtRepetirContra.getText().toString() == null || txtRepetirContra.getText().toString().isEmpty()){
-            Toast toast = Toast.makeText(getApplicationContext(),"Debe repetir la Contraseña", Toast.LENGTH_SHORT);
-            toast.show();
-            return;
+        }else{
+            if( txtRepetirContra.getText().toString() == null || txtRepetirContra.getText().toString().isEmpty()){
+                Toast toast = Toast.makeText(getApplicationContext(),"Debe repetir la Contraseña", Toast.LENGTH_SHORT);
+                toast.show();
+                return;
+            }else{
+                if( txtContra.getText().toString() != txtRepetirContra.getText().toString()){
+                    Toast toast = Toast.makeText(getApplicationContext(),"Las contraseñas no coinciden", Toast.LENGTH_SHORT);
+                    toast.show();
+                    return;
+                }
+            }
         }
 
         if( txtTelefono.getText().toString() == null || txtTelefono.getText().toString().isEmpty()){
@@ -106,11 +114,13 @@ public class RegistroUsuario extends AppCompatActivity {
             return;
         }
 
+        tipoDiscapacidad.setId(((TipoDiscapacidad) spTipoDiscapacidad.getSelectedItem()).getId());
         usr.setNombre(txtNombre.getText().toString());
         usr.setApellido(txtApellido.getText().toString());
         usr.setEmail(txtEmail.getText().toString());
         usr.setContra(txtContra.getText().toString());
         usr.setTelefono(txtTelefono.getText().toString());
+        usr.setTipoDiscapacidad(tipoDiscapacidad);
 
         DataInsertUsuario task = new DataInsertUsuario(usr, getApplicationContext());
         task.execute();

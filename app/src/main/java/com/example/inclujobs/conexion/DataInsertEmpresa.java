@@ -1,0 +1,71 @@
+package com.example.inclujobs.conexion;
+
+import android.content.Context;
+import android.os.AsyncTask;
+import android.widget.Toast;
+
+import com.example.inclujobs.entidades.Empresas;
+import com.example.inclujobs.entidades.TipoDiscapacidad;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+
+public class DataInsertEmpresa extends AsyncTask<String, Void, String> {
+    private Empresas empresa;
+    private Context context;
+
+    private int result;
+    private static String result2;
+
+    public DataInsertEmpresa(Empresas emp, Context ctx){
+        empresa = emp;
+        context = ctx;
+    }
+
+    protected String doInBackground(String... urls) {
+        String response = "";
+        int idUsuario = 0;
+
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con = DriverManager.getConnection(DataDB.urlMySQL, DataDB.user, DataDB.pass);
+            Statement st = con.createStatement();
+            String query = "INSERT INTO `Usuarios`(`Nombre`, `Apellido`, `Email`, `Contrasenia`, `Telefono`) VALUES ('%s','%s','%s','%s', '%s');" +
+                    "SELECT last_insert_id();";
+            query = String.format(query, empresa.getUsuarioDuenio().getNombre(), empresa.getUsuarioDuenio().getApellido(), empresa.getUsuarioDuenio().getEmail(), empresa.getUsuarioDuenio().getContra(),
+                    empresa.getUsuarioDuenio().getTelefono());
+            ResultSet rs = st.executeQuery(query);
+
+            while(rs.next()) {
+                idUsuario= rs.getInt("id");
+            }
+
+            query = "";
+            query = "INSERT INTO `Empresas`(`IdUsuarioDuenio`, `NombreComercial`, `RazonSocial`, `CUIT`, `IdSector`, `Direccion`, `Descripcion`, `IdCiudad`) VALUES (%s,'%s','%s','%s', %s, '%s', '%s', %s)";
+            query = String.format(query, idUsuario, empresa.getNombreComercial(), empresa.getRazonSocial(), empresa.getCuit(),
+                    empresa.getSector(), empresa.getDireccion(), empresa.getDescripcion(), empresa.getCiudad().getIdCiudad());
+            result = st.executeUpdate(query);
+
+            response = "Conexion exitosa";
+        }
+        catch(Exception e) {
+            e.printStackTrace();
+            result2 = "Conexion no exitosa";
+        }
+        return response;
+    }
+
+    @Override
+    protected void onPostExecute(String response) {
+        String mensaje = "";
+        if(result == 1){
+            mensaje = "Empresa registrada";
+        } else {
+            mensaje = "Error al registrar Empresa";
+        }
+        Toast toast = Toast.makeText(context,mensaje, Toast.LENGTH_SHORT);
+        toast.show();
+    }
+}

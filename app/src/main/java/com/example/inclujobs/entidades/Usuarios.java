@@ -7,6 +7,15 @@ public class Usuarios {
     String Email;
     String Contra;
     String Telefono;
+
+    public com.example.inclujobs.entidades.TipoDiscapacidad getTipoDiscapacidad() {
+        return TipoDiscapacidad;
+    }
+
+    public void setTipoDiscapacidad(com.example.inclujobs.entidades.TipoDiscapacidad tipoDiscapacidad) {
+        TipoDiscapacidad = tipoDiscapacidad;
+    }
+
     com.example.inclujobs.entidades.TipoDiscapacidad TipoDiscapacidad;
 
     public int getIdUsuario() {

@@ -29,9 +29,9 @@ public class DataInsertUsuario extends AsyncTask<String, Void, String> {
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection(DataDB.urlMySQL, DataDB.user, DataDB.pass);
             Statement st = con.createStatement();
-            String query = "INSERT INTO `Usuarios`(`Nombre`, `Apellido`, `Email`, `Contrasenia`, `Telefono`) VALUES ('%s','%s','%s','%s', '%s')";
+            String query = "INSERT INTO `Usuarios`(`Nombre`, `Apellido`, `Email`, `Contrasenia`, `Telefono`, `IdTipoDiscapacidad`) VALUES ('%s','%s','%s','%s', '%s', %s)";
             query = String.format(query, usuario.getNombre(), usuario.getApellido(), usuario.getEmail(), usuario.getContra(),
-            usuario.getTelefono());
+            usuario.getTelefono(), usuario.getTipoDiscapacidad().getId());
             result = st.executeUpdate(query);
 
             response = "Conexion exitosa";
