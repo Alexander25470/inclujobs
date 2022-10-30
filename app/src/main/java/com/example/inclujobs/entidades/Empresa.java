@@ -1,6 +1,6 @@
 package com.example.inclujobs.entidades;
 
-public class Empresas {
+public class Empresa {
     public int getIdEmpresa() {
         return IdEmpresa;
     }
@@ -9,11 +9,11 @@ public class Empresas {
         IdEmpresa = idEmpresa;
     }
 
-    public Usuarios getUsuarioDuenio() {
+    public Usuario getUsuarioDuenio() {
         return UsuarioDuenio;
     }
 
-    public void setUsuarioDuenio(Usuarios usuarioDuenio) {
+    public void setUsuarioDuenio(Usuario usuarioDuenio) {
         UsuarioDuenio = usuarioDuenio;
     }
 
@@ -41,11 +41,11 @@ public class Empresas {
         Cuit = cuit;
     }
 
-    public Sectores getSector() {
+    public com.example.inclujobs.entidades.Sector getSector() {
         return Sector;
     }
 
-    public void setSector(Sectores sector) {
+    public void setSector(com.example.inclujobs.entidades.Sector sector) {
         Sector = sector;
     }
 
@@ -65,21 +65,21 @@ public class Empresas {
         Descripcion = descripcion;
     }
 
-    public Ciudades getCiudad() {
+    public com.example.inclujobs.entidades.Ciudad getCiudad() {
         return Ciudad;
     }
 
-    public void setCiudad(Ciudades ciudad) {
+    public void setCiudad(com.example.inclujobs.entidades.Ciudad ciudad) {
         Ciudad = ciudad;
     }
 
     int IdEmpresa;
-    Usuarios UsuarioDuenio;
+    Usuario UsuarioDuenio;
     String NombreComercial;
     String RazonSocial;
     String Cuit;
-    Sectores Sector;
+    com.example.inclujobs.entidades.Sector Sector;
     String Direccion;
     String Descripcion;
-    Ciudades Ciudad;
+    com.example.inclujobs.entidades.Ciudad Ciudad;
 }

@@ -1,11 +1,8 @@
 package com.example.inclujobs.conexion;
 
-import android.content.Context;
 import android.os.AsyncTask;
-import android.widget.Toast;
 
 import com.example.inclujobs.entidades.TipoDiscapacidad;
-import com.example.inclujobs.entidades.Usuarios;
 import com.example.inclujobs.helpers.ICallBack;
 
 import java.sql.Connection;

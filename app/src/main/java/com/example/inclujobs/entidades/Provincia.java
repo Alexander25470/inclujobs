@@ -1,15 +1,15 @@
 package com.example.inclujobs.entidades;
 
-public class Sectores {
-    int IdSector;
+public class Provincia {
+    int IdProvincia;
     String Nombre;
 
-    public int getIdSector() {
-        return IdSector;
+    public int getIdProvincia() {
+        return IdProvincia;
     }
 
-    public void setIdSector(int idSector) {
-        IdSector = idSector;
+    public void setIdProvincia(int idProvincia) {
+        IdProvincia = idProvincia;
     }
 
     public String getNombre() {

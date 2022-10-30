@@ -4,9 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
@@ -17,9 +15,8 @@ import com.example.inclujobs.R;
 import com.example.inclujobs.conexion.DataInsertUsuario;
 import com.example.inclujobs.conexion.DataObtenerTiposDiscapacidades;
 import com.example.inclujobs.databinding.ActivityRegistroUsuarioBinding;
-import com.example.inclujobs.entidades.Ciudades;
 import com.example.inclujobs.entidades.TipoDiscapacidad;
-import com.example.inclujobs.entidades.Usuarios;
+import com.example.inclujobs.entidades.Usuario;
 import com.example.inclujobs.helpers.ICallBack;
 
 import java.util.ArrayList;
@@ -69,7 +66,7 @@ public class RegistroUsuario extends AppCompatActivity {
     }
 
     public void agregarUsuario(){
-        Usuarios usr = new Usuarios();
+        Usuario usr = new Usuario();
         TipoDiscapacidad tipoDiscapacidad = new TipoDiscapacidad();
 
         if( txtNombre.getText().toString() == null || txtNombre.getText().toString().isEmpty()){

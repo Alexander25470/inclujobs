@@ -4,8 +4,7 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.widget.Toast;
 
-import com.example.inclujobs.entidades.Empresas;
-import com.example.inclujobs.entidades.TipoDiscapacidad;
+import com.example.inclujobs.entidades.Empresa;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -13,13 +12,13 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 
 public class DataInsertEmpresa extends AsyncTask<String, Void, String> {
-    private Empresas empresa;
+    private Empresa empresa;
     private Context context;
 
     private int result;
     private static String result2;
 
-    public DataInsertEmpresa(Empresas emp, Context ctx){
+    public DataInsertEmpresa(Empresa emp, Context ctx){
         empresa = emp;
         context = ctx;
     }

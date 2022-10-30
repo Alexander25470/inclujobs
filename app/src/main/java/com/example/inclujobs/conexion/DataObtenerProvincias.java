@@ -2,8 +2,7 @@ package com.example.inclujobs.conexion;
 
 import android.os.AsyncTask;
 
-import com.example.inclujobs.entidades.Provincias;
-import com.example.inclujobs.entidades.TipoDiscapacidad;
+import com.example.inclujobs.entidades.Provincia;
 import com.example.inclujobs.helpers.ICallBack;
 
 import java.sql.Connection;
@@ -13,7 +12,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 public class DataObtenerProvincias extends AsyncTask<String, Void, String> {
-    private static ArrayList<Provincias> listaProvincias = new ArrayList<Provincias>();
+    private static ArrayList<Provincia> listaProvincias = new ArrayList<Provincia>();
     private ICallBack callBack;
 
     public DataObtenerProvincias(ICallBack callBack){
@@ -36,12 +35,12 @@ public class DataObtenerProvincias extends AsyncTask<String, Void, String> {
             ResultSet rs = st.executeQuery(query);
 
             while(rs.next()) {
-                Provincias provincias = new Provincias();
+                Provincia provincia = new Provincia();
 
-                provincias.setIdProvincia(rs.getInt("id"));
-                provincias.setNombre(rs.getString("nombre"));
+                provincia.setIdProvincia(rs.getInt("id"));
+                provincia.setNombre(rs.getString("nombre"));
 
-                listaProvincias.add(provincias);
+                listaProvincias.add(provincia);
             }
 
             response = "Conexion exitosa";

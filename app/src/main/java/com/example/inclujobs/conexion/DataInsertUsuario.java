@@ -4,20 +4,20 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.widget.Toast;
 
-import com.example.inclujobs.entidades.Usuarios;
+import com.example.inclujobs.entidades.Usuario;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
 
 public class DataInsertUsuario extends AsyncTask<String, Void, String> {
-    private Usuarios usuario;
+    private Usuario usuario;
     private Context context;
 
     private int result;
     private static String result2;
 
-    public DataInsertUsuario(Usuarios usr, Context ctx){
+    public DataInsertUsuario(Usuario usr, Context ctx){
         usuario = usr;
         context = ctx;
     }

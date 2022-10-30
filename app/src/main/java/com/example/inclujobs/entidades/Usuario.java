@@ -1,6 +1,6 @@
 package com.example.inclujobs.entidades;
 
-public class Usuarios {
+public class Usuario {
     int IdUsuario;
     String Nombre;
     String Apellido;

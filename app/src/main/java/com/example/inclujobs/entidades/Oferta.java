@@ -1,8 +1,8 @@
 package com.example.inclujobs.entidades;
 
-public class Ofertas {
+public class Oferta {
     int IdOferta;
-    Empresas Empresa;
+    com.example.inclujobs.entidades.Empresa Empresa;
     String Titulo;
     Float Salario;
     String Descripcion;

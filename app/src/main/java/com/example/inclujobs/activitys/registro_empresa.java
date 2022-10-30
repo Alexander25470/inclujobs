@@ -13,18 +13,14 @@ import android.widget.Toast;
 
 import com.example.inclujobs.R;
 import com.example.inclujobs.conexion.DataInsertEmpresa;
-import com.example.inclujobs.conexion.DataInsertUsuario;
 import com.example.inclujobs.conexion.DataObtenerProvincias;
 import com.example.inclujobs.conexion.DataObtenerSectores;
-import com.example.inclujobs.conexion.DataObtenerTiposDiscapacidades;
 import com.example.inclujobs.databinding.ActivityRegistroEmpresaBinding;
-import com.example.inclujobs.databinding.ActivityRegistroUsuarioBinding;
-import com.example.inclujobs.entidades.Ciudades;
-import com.example.inclujobs.entidades.Empresas;
-import com.example.inclujobs.entidades.Provincias;
-import com.example.inclujobs.entidades.Sectores;
-import com.example.inclujobs.entidades.TipoDiscapacidad;
-import com.example.inclujobs.entidades.Usuarios;
+import com.example.inclujobs.entidades.Ciudad;
+import com.example.inclujobs.entidades.Empresa;
+import com.example.inclujobs.entidades.Provincia;
+import com.example.inclujobs.entidades.Sector;
+import com.example.inclujobs.entidades.Usuario;
 import com.example.inclujobs.helpers.ICallBack;
 
 import java.util.ArrayList;
@@ -63,8 +59,8 @@ public class registro_empresa extends AppCompatActivity {
         DataObtenerProvincias task = new DataObtenerProvincias(new ICallBack() {
             @Override
             public void function(Object obj) {
-                ArrayList<Provincias> listaProvincias = (ArrayList<Provincias>)obj;
-                ArrayAdapter<Provincias> adapterProvincias = new ArrayAdapter<Provincias>(ctx, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, listaProvincias);
+                ArrayList<Provincia> listaProvincias = (ArrayList<Provincia>)obj;
+                ArrayAdapter<Provincia> adapterProvincias = new ArrayAdapter<Provincia>(ctx, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, listaProvincias);
                 spProvincia.setAdapter(adapterProvincias);
             }
         });
@@ -74,8 +70,8 @@ public class registro_empresa extends AppCompatActivity {
         DataObtenerSectores task2 = new DataObtenerSectores(new ICallBack() {
             @Override
             public void function(Object obj) {
-                ArrayList<Sectores> listaSectores = (ArrayList<Sectores>)obj;
-                ArrayAdapter<Sectores> adapterSectores = new ArrayAdapter<Sectores>(ctx, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, listaSectores);
+                ArrayList<Sector> listaSectores = (ArrayList<Sector>)obj;
+                ArrayAdapter<Sector> adapterSectores = new ArrayAdapter<Sector>(ctx, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, listaSectores);
                 spSector.setAdapter(adapterSectores);
             }
         });
@@ -92,9 +88,9 @@ public class registro_empresa extends AppCompatActivity {
     }
 
     public void agregarEmpresa(){
-        Empresas emp = new Empresas();
-        Usuarios usr = new Usuarios();
-        Ciudades ciu = new Ciudades();
+        Empresa emp = new Empresa();
+        Usuario usr = new Usuario();
+        Ciudad ciu = new Ciudad();
 
         if( txtNombreEmpresa.getText().toString() == null || txtNombreEmpresa.getText().toString().isEmpty()){
             Toast toast = Toast.makeText(getApplicationContext(),"Debe ingresar un Nombre", Toast.LENGTH_SHORT);
@@ -173,7 +169,7 @@ public class registro_empresa extends AppCompatActivity {
         usr.setEmail(txtEmailEmpresa.getText().toString());
         usr.setContra(txtContraEmpresa.getText().toString());
         usr.setTelefono(txtTelefonoEmpresa.getText().toString());
-        ciu.setIdCiudad(((Ciudades) spCiudad.getSelectedItem()).getIdCiudad());
+        ciu.setIdCiudad(((Ciudad) spCiudad.getSelectedItem()).getIdCiudad());
         emp.setNombreComercial(txtNombreComercial.getText().toString());
         emp.setRazonSocial(txtRazonSocial.getText().toString());
         emp.setCuit(txtCuit.getText().toString());

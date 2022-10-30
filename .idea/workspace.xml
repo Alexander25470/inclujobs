@@ -12,13 +12,30 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="73971db8-9de6-4cfa-b1d7-1d5cae1c732f" name="Changes" comment="" />
+    <list default="true" id="73971db8-9de6-4cfa-b1d7-1d5cae1c732f" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/inclujobs/conexion/DataLogin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/inclujobs/activitys/RegistroUsuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/inclujobs/activitys/RegistroUsuario.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/inclujobs/activitys/registro_empresa.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/inclujobs/activitys/registro_empresa.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/inclujobs/conexion/DataInsertEmpresa.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/inclujobs/conexion/DataInsertEmpresa.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/inclujobs/conexion/DataInsertUsuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/inclujobs/conexion/DataInsertUsuario.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/inclujobs/conexion/DataObtenerProvincias.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/inclujobs/conexion/DataObtenerProvincias.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/inclujobs/conexion/DataObtenerSectores.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/inclujobs/conexion/DataObtenerSectores.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/inclujobs/conexion/DataObtenerTiposDiscapacidades.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/inclujobs/conexion/DataObtenerTiposDiscapacidades.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/inclujobs/entidades/CVS.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/inclujobs/entidades/CV.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/inclujobs/entidades/Ciudades.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/inclujobs/entidades/Ciudad.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/inclujobs/entidades/Empresas.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/inclujobs/entidades/Empresa.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/inclujobs/entidades/Ofertas.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/inclujobs/entidades/Oferta.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/inclujobs/entidades/Provincias.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/inclujobs/entidades/Provincia.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/inclujobs/entidades/Sectores.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/inclujobs/entidades/Sector.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/inclujobs/entidades/Usuarios.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/inclujobs/entidades/Usuario.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[C:\Users\alexb\.android\avd\Pixel_2_API_33.avd]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[C:\Users\Usuario\.android\avd\Pixel_2_API_31.avd]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -86,8 +103,8 @@
     </key>
   </component>
   <component name="RunManager">
-    <configuration name="app" type="AndroidRunConfigurationType" factoryName="Android App">
-      <module name="inclujobs.app.main" />
+    <configuration name="app" type="AndroidRunConfigurationType" factoryName="Android App" activateToolWindowBeforeRun="false">
+      <module name="inclujobs.app" />
       <option name="DEPLOY" value="true" />
       <option name="DEPLOY_APK_FROM_BUNDLE" value="false" />
       <option name="DEPLOY_AS_INSTANT" value="false" />
