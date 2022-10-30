@@ -16,6 +16,7 @@ import com.example.inclujobs.conexion.DataInsertEmpresa;
 import com.example.inclujobs.conexion.DataLogin;
 import com.example.inclujobs.entidades.Usuario;
 import com.example.inclujobs.helpers.ICallBack;
+import com.example.inclujobs.helpers.UserHelper;
 import com.google.gson.Gson;
 
 public class login extends AppCompatActivity {
@@ -33,11 +34,14 @@ public class login extends AppCompatActivity {
 
     public void openRegistroEmpresa(View v){
         Intent intent = new Intent(this, registro_empresa.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
+        finish();
     }
 
     public void openRegistroUsuario(View v){
         Intent intent = new Intent(this, RegistroUsuario.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
     }
 
@@ -69,12 +73,7 @@ public class login extends AppCompatActivity {
                 }
                 Usuario user = (Usuario) obj;
 
-                SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor = sharedPref.edit();
-                Gson gson = new Gson();
-                String userJson = gson.toJson(user);
-                editor.putString(getString(R.string.logged_user_key), userJson);
-                editor.apply();
+                UserHelper.saveUser(user, ctx);
 
                 Toast toast = Toast.makeText(ctx,"Sesion iniciada", Toast.LENGTH_SHORT);
                 toast.show();
