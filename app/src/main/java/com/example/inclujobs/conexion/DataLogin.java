@@ -3,6 +3,7 @@ package com.example.inclujobs.conexion;
 import android.os.AsyncTask;
 
 import com.example.inclujobs.entidades.Sector;
+import com.example.inclujobs.entidades.TipoDiscapacidad;
 import com.example.inclujobs.entidades.Usuario;
 import com.example.inclujobs.helpers.ICallBack;
 
@@ -41,13 +42,20 @@ public class DataLogin extends AsyncTask<String, Void, String> {
             PreparedStatement ps = con.prepareStatement(query);
 
             ps.setString(1,email);
-            ps.setString(1,pass);
+            ps.setString(2,pass);
 
             ResultSet rs = ps.executeQuery();
 
             if(rs.next()) {
                 usuario = new Usuario();
                 usuario.setIdUsuario(rs.getInt("Id"));
+                usuario.setEmail(rs.getString("Email"));
+                usuario.setNombre(rs.getString("Nombre"));
+                usuario.setContra(rs.getString("Contrasenia"));
+                usuario.setTelefono(rs.getString("Telefono"));
+                TipoDiscapacidad td = new TipoDiscapacidad();
+                td.setId(rs.getInt("IdTipoDiscapacidad"));
+                usuario.setTipoDiscapacidad(td);
             }
 
             response = "Conexion exitosa";
