@@ -10,12 +10,14 @@ import android.widget.Button;
 import com.example.inclujobs.activitys.RegistroUsuario;
 import com.example.inclujobs.activitys.login;
 import com.example.inclujobs.activitys.registro_empresa;
+import com.example.inclujobs.entidades.Usuario;
+import com.example.inclujobs.helpers.UserHelper;
 
 public class MainActivity extends AppCompatActivity {
     private Button btnRegistroEmpresa;
     private Button btnRegistroUsuario;
     private Button btnIniciarSesion;
-
+    private Usuario user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +47,15 @@ public class MainActivity extends AppCompatActivity {
                 openIniciarSesion();
             }
         });
+
+
+        user = UserHelper.getUser(this);
+
+        if(user == null){
+            btnIniciarSesion.setVisibility(View.GONE);
+            btnRegistroEmpresa.setVisibility(View.GONE);
+            btnRegistroUsuario.setVisibility(View.GONE);
+        }
     }
 
     private void openRegistroEmpresa(){
