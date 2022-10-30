@@ -73,7 +73,7 @@ public class login extends AppCompatActivity {
                 SharedPreferences.Editor editor = sharedPref.edit();
                 Gson gson = new Gson();
                 String userJson = gson.toJson(user);
-                editor.putString("user", userJson);
+                editor.putString(getString(R.string.logged_user_key), userJson);
                 editor.apply();
 
                 Toast toast = Toast.makeText(ctx,"Sesion iniciada", Toast.LENGTH_SHORT);
