@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.inclujobs.activitys.ListadoEmpresasActivity;
 import com.example.inclujobs.activitys.RegistroUsuario;
 import com.example.inclujobs.activitys.login;
 import com.example.inclujobs.activitys.registro_empresa;
@@ -17,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
     private Button btnRegistroEmpresa;
     private Button btnRegistroUsuario;
     private Button btnIniciarSesion;
+    private Button btnBuscarLugar;
     private Usuario user;
 
     @Override
@@ -48,6 +50,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        btnBuscarLugar = (Button) findViewById(R.id.btnBuscarLugar);
+        btnBuscarLugar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openBuscarLugar();
+            }
+        });
+
 
         user = UserHelper.getUser(this);
 
@@ -55,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
             btnIniciarSesion.setVisibility(View.GONE);
             btnRegistroEmpresa.setVisibility(View.GONE);
             btnRegistroUsuario.setVisibility(View.GONE);
+            btnBuscarLugar.setVisibility(View.GONE);
         }
     }
 
@@ -72,4 +83,10 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, login.class);
         startActivity(intent);
     }
+
+    private void openBuscarLugar(){
+        Intent intent = new Intent(this, ListadoEmpresasActivity.class);
+        startActivity(intent);
+    }
+
 }
