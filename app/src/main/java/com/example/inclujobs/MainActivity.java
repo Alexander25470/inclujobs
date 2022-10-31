@@ -27,36 +27,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         btnRegistroEmpresa = (Button) findViewById(R.id.btnRegistroEmpresa);
-        btnRegistroEmpresa.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openRegistroEmpresa();
-            }
-        });
-
         btnRegistroUsuario = (Button) findViewById(R.id.btnRegistrarse);
-        btnRegistroUsuario.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openRegistroUsuario();
-            }
-        });
-
         btnIniciarSesion = (Button) findViewById(R.id.btnIniciarSesion);
-        btnIniciarSesion.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openIniciarSesion();
-            }
-        });
-
         btnBuscarLugar = (Button) findViewById(R.id.btnBuscarLugar);
-        btnBuscarLugar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openBuscarLugar();
-            }
-        });
 
 
         user = UserHelper.getUser(this);
@@ -69,22 +42,22 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void openRegistroEmpresa(){
+    public void openRegistroEmpresa(View v){
         Intent intent = new Intent(this, registro_empresa.class);
         startActivity(intent);
     }
 
-    private void openRegistroUsuario(){
+    public void openRegistroUsuario(View v){
         Intent intent = new Intent(this, RegistroUsuario.class);
         startActivity(intent);
     }
 
-    private void openIniciarSesion(){
+    public void openIniciarSesion(View v){
         Intent intent = new Intent(this, login.class);
         startActivity(intent);
     }
 
-    private void openBuscarLugar(){
+    public void openBuscarLugar(View v){
         Intent intent = new Intent(this, ListadoEmpresasActivity.class);
         startActivity(intent);
     }
