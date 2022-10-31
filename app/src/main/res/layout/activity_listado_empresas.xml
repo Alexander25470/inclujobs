@@ -7,70 +7,71 @@
     tools:context=".activitys.ListadoEmpresasActivity">
 
 
-    <ScrollView
-        android:id="@+id/scrollView3"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="20dp"
+        android:paddingTop="10dp"
+        android:paddingRight="20dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:paddingLeft="20dp"
-            android:paddingTop="10dp"
-            android:paddingRight="20dp">
+            android:orientation="vertical">
 
-            <LinearLayout
-                android:layout_width="349dp"
-                android:layout_height="171dp"
-                android:orientation="vertical">
+            <EditText
+                android:id="@+id/EditTextEmpresa"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ems="10"
+                android:hint="Empresa"
+                android:inputType="textPersonName" />
 
-                <EditText
-                    android:id="@+id/EditTextEmpresa"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:ems="10"
-                    android:hint="Empresa"
-                    android:inputType="textPersonName" />
+            <EditText
+                android:id="@+id/EditTextLugar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ems="10"
+                android:hint="Lugar"
+                android:inputType="textPersonName" />
 
-                <EditText
-                    android:id="@+id/EditTextLugar"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:ems="10"
-                    android:hint="Lugar"
-                    android:inputType="textPersonName" />
-
-                <EditText
-                    android:id="@+id/EditTextArea"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:ems="10"
-                    android:hint="Área"
-                    android:inputType="textPersonName" />
-            </LinearLayout>
+            <EditText
+                android:id="@+id/EditTextArea"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ems="10"
+                android:hint="Área"
+                android:inputType="textPersonName" />
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:gravity="center"
             android:orientation="vertical">
 
             <Button
                 android:id="@+id/BtnBuscar"
-                android:layout_width="match_parent"
+                android:layout_width="215dp"
                 android:layout_height="wrap_content"
                 android:text="BUSCAR"></Button>
 
         </LinearLayout>
 
-        </LinearLayout>
-    </ScrollView>
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ListView
+                android:id="@+id/lvEmpresas"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </ScrollView>
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

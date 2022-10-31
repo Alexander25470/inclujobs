@@ -44,7 +44,7 @@ public class DataInsertEmpresa extends AsyncTask<String, Void, String> {
             query = "";
             query = "INSERT INTO `Empresas`(`IdUsuarioDuenio`, `NombreComercial`, `RazonSocial`, `CUIT`, `IdSector`, `Direccion`, `Descripcion`, `IdCiudad`) VALUES (%s,'%s','%s','%s', %s, '%s', '%s', %s)";
             query = String.format(query, idUsuario, empresa.getNombreComercial(), empresa.getRazonSocial(), empresa.getCuit(),
-                    empresa.getSector(), empresa.getDireccion(), empresa.getDescripcion(), empresa.getCiudad().getIdCiudad());
+                    empresa.getSector(), empresa.getDireccion(), empresa.getDescripcion(), empresa.getCiudad().getId());
             result = st.executeUpdate(query);
 
             response = "Conexion exitosa";

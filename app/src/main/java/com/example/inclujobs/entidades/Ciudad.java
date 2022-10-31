@@ -1,12 +1,12 @@
 package com.example.inclujobs.entidades;
 
 public class Ciudad {
-    public int getIdCiudad() {
-        return IdCiudad;
+    public int getId() {
+        return Id;
     }
 
-    public void setIdCiudad(int idCiudad) {
-        IdCiudad = idCiudad;
+    public void setId(int id) {
+        Id = id;
     }
 
     public com.example.inclujobs.entidades.Provincia getProvincia() {
@@ -25,7 +25,7 @@ public class Ciudad {
         Nombre = nombre;
     }
 
-    int IdCiudad;
+    int Id;
     com.example.inclujobs.entidades.Provincia Provincia;
     String Nombre;
 }

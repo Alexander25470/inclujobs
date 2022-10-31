@@ -169,7 +169,7 @@ public class registro_empresa extends AppCompatActivity {
         usr.setEmail(txtEmailEmpresa.getText().toString());
         usr.setContra(txtContraEmpresa.getText().toString());
         usr.setTelefono(txtTelefonoEmpresa.getText().toString());
-        ciu.setIdCiudad(((Ciudad) spCiudad.getSelectedItem()).getIdCiudad());
+        ciu.setId(((Ciudad) spCiudad.getSelectedItem()).getId());
         emp.setNombreComercial(txtNombreComercial.getText().toString());
         emp.setRazonSocial(txtRazonSocial.getText().toString());
         emp.setCuit(txtCuit.getText().toString());

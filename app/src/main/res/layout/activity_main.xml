@@ -70,6 +70,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="2dp"
                     android:layout_weight="1"
+                    android:onClick="seleccionarEmpleos"
                     android:text="EMPLEOS" />
 
                 <Button
@@ -78,6 +79,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="2dp"
                     android:layout_weight="1"
+                    android:onClick="seleccionarEmpresas"
                     android:text="EMPRESAS" />
             </LinearLayout>
 
@@ -99,7 +101,7 @@
                     android:id="@+id/btnBuscarLugar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:onClick="openBuscarLugar"
+                    android:onClick="openBuscar"
                     android:text="Buscar" />
             </LinearLayout>
 

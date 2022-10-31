@@ -1,12 +1,12 @@
 package com.example.inclujobs.entidades;
 
 public class Empresa {
-    public int getIdEmpresa() {
-        return IdEmpresa;
+    public int getId() {
+        return Id;
     }
 
-    public void setIdEmpresa(int idEmpresa) {
-        IdEmpresa = idEmpresa;
+    public void setId(int idEmpresa) {
+        Id = idEmpresa;
     }
 
     public Usuario getUsuarioDuenio() {
@@ -73,7 +73,7 @@ public class Empresa {
         Ciudad = ciudad;
     }
 
-    int IdEmpresa;
+    int Id;
     Usuario UsuarioDuenio;
     String NombreComercial;
     String RazonSocial;
