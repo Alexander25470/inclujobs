@@ -6,7 +6,9 @@ import com.example.inclujobs.conexion.DataListadoEmpresas;
 import com.example.inclujobs.entidades.Empresa;
 import com.example.inclujobs.helpers.ICallBack;
 
+import android.content.Context;
 import android.os.Bundle;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -20,15 +22,21 @@ public class ListadoEmpresasActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_listado_empresas);
 
+        cargarEmpresas();
+
         lvEmpresas = findViewById(R.id.lvEmpresas);
     }
 
     private void cargarEmpresas(){
+        Context ctx = this;
         DataListadoEmpresas task = new DataListadoEmpresas(new ICallBack() {
             @Override
             public void function(Object obj) {
                 listaEmpresas = (ArrayList<Empresa>)obj;
+                ArrayAdapter<Empresa> adapter = new ArrayAdapter<Empresa>(ctx, android.R.layout.simple_list_item_1,listaEmpresas);
+                lvEmpresas.setAdapter(adapter);
             }
         });
+        task.execute();
     }
 }

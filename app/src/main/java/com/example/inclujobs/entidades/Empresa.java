@@ -82,4 +82,19 @@ public class Empresa {
     String Direccion;
     String Descripcion;
     com.example.inclujobs.entidades.Ciudad Ciudad;
+
+    @Override
+    public String toString() {
+        return "Empresa{" +
+                "Id=" + Id +
+                ", UsuarioDuenio=" + UsuarioDuenio +
+                ", NombreComercial='" + NombreComercial + '\'' +
+                ", RazonSocial='" + RazonSocial + '\'' +
+                ", Cuit='" + Cuit + '\'' +
+                ", Sector=" + Sector +
+                ", Direccion='" + Direccion + '\'' +
+                ", Descripcion='" + Descripcion + '\'' +
+                ", Ciudad=" + Ciudad +
+                '}';
+    }
 }

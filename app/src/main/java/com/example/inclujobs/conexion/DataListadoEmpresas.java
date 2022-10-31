@@ -44,7 +44,7 @@ public class DataListadoEmpresas extends AsyncTask<String, Void, String> {
                 empresa.setRazonSocial(rs.getString("NombreComercial"));
                 empresa.setCuit(rs.getString("CUIT"));
                 empresa.setDireccion(rs.getString("Direccion"));
-                empresa.setDescripcion(rs.getString("Descripcion "));
+                empresa.setDescripcion(rs.getString("Descripcion"));
 
                 Ciudad ciudad = new Ciudad();
                 ciudad.setId(rs.getInt("IdCiudad"));
