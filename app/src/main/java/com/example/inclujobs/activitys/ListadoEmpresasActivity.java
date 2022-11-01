@@ -21,10 +21,10 @@ public class ListadoEmpresasActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_listado_empresas);
-
+        lvEmpresas = findViewById(R.id.lvEmpresas);
         cargarEmpresas();
 
-        lvEmpresas = findViewById(R.id.lvEmpresas);
+
     }
 
     private void cargarEmpresas(){

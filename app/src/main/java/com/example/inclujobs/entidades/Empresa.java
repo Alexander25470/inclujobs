@@ -1,6 +1,17 @@
 package com.example.inclujobs.entidades;
 
 public class Empresa {
+
+    private int Id;
+    private Usuario UsuarioDuenio;
+    private String NombreComercial;
+    private String RazonSocial;
+    private String Cuit;
+    private Sector Sector;
+    private String Direccion;
+    private String Descripcion;
+    private Ciudad Ciudad;
+
     public int getId() {
         return Id;
     }
@@ -73,15 +84,6 @@ public class Empresa {
         Ciudad = ciudad;
     }
 
-    int Id;
-    Usuario UsuarioDuenio;
-    String NombreComercial;
-    String RazonSocial;
-    String Cuit;
-    com.example.inclujobs.entidades.Sector Sector;
-    String Direccion;
-    String Descripcion;
-    com.example.inclujobs.entidades.Ciudad Ciudad;
 
     @Override
     public String toString() {
