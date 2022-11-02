@@ -79,6 +79,9 @@
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RecentsManager">
+    <key name="android.template.-65408943">
+      <recent name="com.example.inclujobs.activitys" />
+    </key>
     <key name="android.template.-689581158">
       <recent name="com.example.inclujobs" />
     </key>
@@ -191,11 +194,6 @@
           <url>file://$PROJECT_DIR$/app/src/main/java/com/example/inclujobs/conexion/DataLogin.java</url>
           <line>29</line>
           <option name="timeStamp" value="3" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/inclujobs/conexion/DataDeleteEmpresa.java</url>
-          <line>25</line>
-          <option name="timeStamp" value="8" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

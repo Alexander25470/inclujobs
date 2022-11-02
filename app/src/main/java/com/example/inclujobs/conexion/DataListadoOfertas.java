@@ -35,7 +35,8 @@ public class DataListadoOfertas extends AsyncTask<String, Void, String> {
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection(DataDB.urlMySQL, DataDB.user, DataDB.pass);
             Statement st = con.createStatement();
-            String query = "SELECT * FROM Ofertas";
+            String query = "SELECT A.Id, A.Titulo, A.Salario, A.Descripcion, A.IdEmpresa, B.NombreComercial FROM Ofertas A INNER JOIN Empresas B " +
+                    "ON A.IdEmpresa = B.Id";
 
             if(idEmpresa != -1){
                 query += " WHERE IdEmpresa = " + idEmpresa;
@@ -45,11 +46,17 @@ public class DataListadoOfertas extends AsyncTask<String, Void, String> {
 
             while(rs.next()) {
                 Oferta oferta = new Oferta();
+                Empresa empresa = new Empresa();
+
+                empresa.setId(rs.getInt("idEmpresa"));
+                empresa.setNombreComercial(rs.getString("NombreComercial"));
 
                 oferta.setId(rs.getInt("id"));
                 oferta.setTitulo(rs.getString("Titulo"));
                 oferta.setSalario(rs.getFloat("Salario"));
                 oferta.setDescripcion(rs.getString("Descripcion"));
+                oferta.setEmpresa(empresa);
+
                 listaOfertas.add(oferta);
             }
 

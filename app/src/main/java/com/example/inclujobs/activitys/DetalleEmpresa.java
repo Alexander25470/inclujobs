@@ -3,12 +3,9 @@ package com.example.inclujobs.activitys;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.inclujobs.R;
 import com.example.inclujobs.conexion.DataDeleteEmpresa;
-import com.example.inclujobs.conexion.DataListadoEmpresas;
 import com.example.inclujobs.conexion.DataListadoOfertas;
-import com.example.inclujobs.conexion.DataUpdateEmpresa;
 import com.example.inclujobs.entidades.Empresa;
 import com.example.inclujobs.entidades.Oferta;
-import com.example.inclujobs.entidades.Usuario;
 import com.example.inclujobs.helpers.ICallBack;
 import com.google.gson.Gson;
 
@@ -20,7 +17,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -37,9 +33,9 @@ public class DetalleEmpresa extends AppCompatActivity {
         Context ctx = this;
 
         lvOfertas = findViewById(R.id.lvOfertasDetalleEmpresa);
-        lblNombreEmpresaDetalle = findViewById(R.id.lblNombreEmpresaDetalle);
-        lblDireccionEmpresaDetalle = findViewById(R.id.lblDireccionEmpresaDetalle);
-        lblDescripcionEmpresaDetalle = findViewById(R.id.lblDescripcionEmpresaDetalle);
+        lblNombreEmpresaDetalle = findViewById(R.id.lblTituloOfertaDetalle);
+        lblDireccionEmpresaDetalle = findViewById(R.id.lblEmpresaOfertaDetalle);
+        lblDescripcionEmpresaDetalle = findViewById(R.id.lblDescripcionOfertaDetalle);
 
         Intent intent = getIntent();
         Gson gson = new Gson();
@@ -51,7 +47,7 @@ public class DetalleEmpresa extends AppCompatActivity {
 
         cargarOfertas(empresa.getId());
 
-        btnEditarEmpresaDetalle = findViewById(R.id.btnEditarEmpresaDetalle);
+        btnEditarEmpresaDetalle = findViewById(R.id.btnEditarOfertaDetalle);
         btnEditarEmpresaDetalle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -64,7 +60,7 @@ public class DetalleEmpresa extends AppCompatActivity {
             }
         });
 
-        btnEliminarEmpresaDetalle = findViewById(R.id.btnEliminarEmpresaDetalle);
+        btnEliminarEmpresaDetalle = findViewById(R.id.btnEliminarOfertaDetalle);
         btnEliminarEmpresaDetalle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

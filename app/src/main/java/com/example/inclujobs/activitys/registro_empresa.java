@@ -120,7 +120,7 @@ public class registro_empresa extends AppCompatActivity {
                 toast.show();
                 return;
             }else{
-                if( txtContraEmpresa.getText().toString() != txtRepetirContraEmpresa.getText().toString()){
+                if( !txtContraEmpresa.getText().toString().equals(txtRepetirContraEmpresa.getText().toString())){
                     Toast toast = Toast.makeText(getApplicationContext(),"Las contraseñas no coinciden", Toast.LENGTH_SHORT);
                     toast.show();
                     return;
