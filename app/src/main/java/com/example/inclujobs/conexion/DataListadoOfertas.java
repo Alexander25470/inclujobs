@@ -16,9 +16,11 @@ import java.util.ArrayList;
 public class DataListadoOfertas extends AsyncTask<String, Void, String> {
     private static ArrayList<Oferta> listaOfertas = new ArrayList<Oferta>();
     private ICallBack callBack;
+    private int idEmpresa;
 
-    public DataListadoOfertas(ICallBack callBack){
+    public DataListadoOfertas(ICallBack callBack, int idEmpresa){
         this.callBack = callBack;
+        this.idEmpresa = idEmpresa;
     }
 
     protected String doInBackground(String... urls) {
@@ -34,10 +36,14 @@ public class DataListadoOfertas extends AsyncTask<String, Void, String> {
             Connection con = DriverManager.getConnection(DataDB.urlMySQL, DataDB.user, DataDB.pass);
             Statement st = con.createStatement();
             String query = "SELECT * FROM Ofertas";
+
+            if(idEmpresa != -1){
+                query += " WHERE IdEmpresa = " + idEmpresa;
+            }
+
             ResultSet rs = st.executeQuery(query);
 
             while(rs.next()) {
-
                 Oferta oferta = new Oferta();
 
                 oferta.setId(rs.getInt("id"));

@@ -37,7 +37,7 @@ public class ListadoOfertasActivity extends AppCompatActivity {
                 ArrayAdapter<Oferta> adapter = new ArrayAdapter<Oferta>(ctx, android.R.layout.simple_list_item_1,listaOfertas);
                 lvOfertas.setAdapter(adapter);
             }
-        });
+        }, -1);
         task.execute();
     }
 

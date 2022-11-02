@@ -12,23 +12,13 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="73971db8-9de6-4cfa-b1d7-1d5cae1c732f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/inclujobs/conexion/DataListadoOfertas.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/inclujobs/activitys/ListadoEmpresasActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/inclujobs/activitys/ListadoEmpresasActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/inclujobs/activitys/ListadoOfertasActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/inclujobs/activitys/ListadoOfertasActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/inclujobs/entidades/Empresa.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/inclujobs/entidades/Empresa.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/inclujobs/entidades/Oferta.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/inclujobs/entidades/Oferta.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_listado_empresas2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_listado_ofertas.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_listado_ofertas.xml" afterDir="false" />
-    </list>
+    <list default="true" id="73971db8-9de6-4cfa-b1d7-1d5cae1c732f" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[C:\Users\josep\.android\avd\Pixel_2_API_28.avd]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[C:\Users\alexb\.android\avd\Pixel_2_API_33.avd]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -56,6 +46,7 @@
       <list>
         <option value="Interface" />
         <option value="Class" />
+        <option value="layoutResourceFile" />
       </list>
     </option>
   </component>
@@ -88,11 +79,17 @@
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RecentsManager">
+    <key name="android.template.-689581158">
+      <recent name="com.example.inclujobs" />
+    </key>
     <key name="android.template.-1910888226">
       <recent name="com.example.inclujobs" />
     </key>
     <key name="android.template.160232641">
       <recent name="com.example.inclujobs" />
+    </key>
+    <key name="android.template.-2079004157">
+      <recent name="com.example.inclujobs.activitys" />
     </key>
     <key name="android.template.-452943615">
       <recent name="com.example.inclujobs.activitys" />
@@ -104,7 +101,7 @@
   </component>
   <component name="RunManager">
     <configuration name="app" type="AndroidRunConfigurationType" factoryName="Android App" activateToolWindowBeforeRun="false">
-      <module name="inclujobs.app" />
+      <module name="inclujobs.app.main" />
       <option name="DEPLOY" value="true" />
       <option name="DEPLOY_APK_FROM_BUNDLE" value="false" />
       <option name="DEPLOY_AS_INSTANT" value="false" />
@@ -191,16 +188,6 @@
           <url>file://$PROJECT_DIR$/app/src/main/java/com/example/inclujobs/conexion/DataLogin.java</url>
           <line>29</line>
           <option name="timeStamp" value="3" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/inclujobs/activitys/ListadoEmpresasActivity.java</url>
-          <line>34</line>
-          <option name="timeStamp" value="6" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/inclujobs/conexion/DataListadoOfertas.java</url>
-          <line>26</line>
-          <option name="timeStamp" value="7" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
