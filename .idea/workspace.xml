@@ -45,8 +45,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
-        <option value="Class" />
         <option value="layoutResourceFile" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -81,6 +81,9 @@
   <component name="RecentsManager">
     <key name="android.template.-689581158">
       <recent name="com.example.inclujobs" />
+    </key>
+    <key name="android.template.1036211761">
+      <recent name="com.example.inclujobs.activitys" />
     </key>
     <key name="android.template.-1910888226">
       <recent name="com.example.inclujobs" />

@@ -17,6 +17,9 @@
         android:theme="@style/Theme.Inclujobs"
         tools:targetApi="31">
         <activity
+            android:name=".activitys.ModificarEmpresaActivity"
+            android:exported="false" />
+        <activity
             android:name=".activitys.DetalleEmpresa"
             android:exported="false" />
         <activity

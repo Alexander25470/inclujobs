@@ -81,11 +81,11 @@ public class MainActivity extends AppCompatActivity {
     public void seleccionarBusqueda(String tipoBusqueda){
         busquedaSeleccionada = tipoBusqueda;
         if(tipoBusqueda.contentEquals("empleos")){
-            btnBuscarEmpleos.getBackground().setAlpha(255);
-            btnBuscarEmpresas.getBackground().setAlpha(127);
-        } else {
             btnBuscarEmpleos.getBackground().setAlpha(127);
             btnBuscarEmpresas.getBackground().setAlpha(255);
+        } else {
+            btnBuscarEmpleos.getBackground().setAlpha(255);
+            btnBuscarEmpresas.getBackground().setAlpha(127);
         }
     }
 }

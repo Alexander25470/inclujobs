@@ -13,7 +13,9 @@ import com.google.gson.Gson;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -23,11 +25,13 @@ public class DetalleEmpresa extends AppCompatActivity {
     private TextView lblNombreEmpresaDetalle, lblDireccionEmpresaDetalle, lblDescripcionEmpresaDetalle;
     private ListView lvOfertas;
     private ArrayList<Oferta> listaOferta = new ArrayList<Oferta>();
+    private Button btnEditarEmpresaDetalle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detalle_empresa);
+        Context ctx = this;
 
         lvOfertas = findViewById(R.id.lvOfertasDetalleEmpresa);
         lblNombreEmpresaDetalle = findViewById(R.id.lblNombreEmpresaDetalle);
@@ -40,9 +44,22 @@ public class DetalleEmpresa extends AppCompatActivity {
 
         lblNombreEmpresaDetalle.setText(empresa.getNombreComercial());
         lblDireccionEmpresaDetalle.setText(empresa.getDireccion());
-        lblDescripcionEmpresaDetalle.setText(empresa.getNombreComercial());
+        lblDescripcionEmpresaDetalle.setText(empresa.getDescripcion());
 
         cargarOfertas(empresa.getId());
+
+        btnEditarEmpresaDetalle = findViewById(R.id.btnEditarEmpresaDetalle);
+        btnEditarEmpresaDetalle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Gson gson = new Gson();
+                String empresaJson = gson.toJson(empresa);
+
+                Intent intent = new Intent(ctx, ModificarEmpresaActivity.class);
+                intent.putExtra("empresa", empresaJson);
+                startActivity(intent);
+            }
+        });
     }
 
     private void cargarOfertas(int idEmpresa){
