@@ -8,6 +8,7 @@ import com.google.gson.Gson;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -17,6 +18,7 @@ import java.util.ArrayList;
 public class DetalleOfertaActivity extends AppCompatActivity {
     private TextView lblTituloOfertaDetalle, lblEmpresaOfertaDetalle, lblDescripcionOfertaDetalle, lblSalarioOfertaDetalle;
     private Button btnEditarOfertaDetalle, btnEliminarOfertaDetalle, btnVerCvOfertaDetalle, btnAdjuntarCvOfertaDetalle;
+    private Oferta oferta;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,11 +32,22 @@ public class DetalleOfertaActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         Gson gson = new Gson();
-        Oferta oferta = gson.fromJson(intent.getStringExtra("oferta"), Oferta.class);
+        oferta = gson.fromJson(intent.getStringExtra("oferta"), Oferta.class);
 
         lblTituloOfertaDetalle.setText(oferta.getTitulo());
         lblEmpresaOfertaDetalle.setText(oferta.getEmpresa().getNombreComercial());
         lblDescripcionOfertaDetalle.setText(oferta.getDescripcion());
         lblSalarioOfertaDetalle.setText("Salario: $" + oferta.getSalario().toString());
+    }
+
+    public void modificarOferta(View v){
+        Gson gson = new Gson();
+        String ofertaJson = gson.toJson(oferta);
+
+        Intent intent = new Intent(this, EditarOfertaActivity.class);
+        intent.putExtra("oferta", ofertaJson);
+        startActivity(intent);
+
+
     }
 }
