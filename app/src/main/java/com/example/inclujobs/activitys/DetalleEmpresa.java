@@ -2,8 +2,10 @@ package com.example.inclujobs.activitys;
 
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.inclujobs.R;
+import com.example.inclujobs.conexion.DataDeleteEmpresa;
 import com.example.inclujobs.conexion.DataListadoEmpresas;
 import com.example.inclujobs.conexion.DataListadoOfertas;
+import com.example.inclujobs.conexion.DataUpdateEmpresa;
 import com.example.inclujobs.entidades.Empresa;
 import com.example.inclujobs.entidades.Oferta;
 import com.example.inclujobs.entidades.Usuario;
@@ -18,6 +20,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -25,7 +28,7 @@ public class DetalleEmpresa extends AppCompatActivity {
     private TextView lblNombreEmpresaDetalle, lblDireccionEmpresaDetalle, lblDescripcionEmpresaDetalle;
     private ListView lvOfertas;
     private ArrayList<Oferta> listaOferta = new ArrayList<Oferta>();
-    private Button btnEditarEmpresaDetalle;
+    private Button btnEditarEmpresaDetalle, btnEliminarEmpresaDetalle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +63,14 @@ public class DetalleEmpresa extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        btnEliminarEmpresaDetalle = findViewById(R.id.btnEliminarEmpresaDetalle);
+        btnEliminarEmpresaDetalle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                eliminarEmpresa(empresa.getId());
+            }
+        });
     }
 
     private void cargarOfertas(int idEmpresa){
@@ -72,6 +83,15 @@ public class DetalleEmpresa extends AppCompatActivity {
                 lvOfertas.setAdapter(adapter);
             }
         }, idEmpresa);
+        task.execute();
+    }
+
+    private void eliminarEmpresa(int idEmpresa){
+        Empresa empresa = new Empresa();
+
+        empresa.setId(idEmpresa);
+
+        DataDeleteEmpresa task = new DataDeleteEmpresa(empresa, getApplicationContext());
         task.execute();
     }
 }
