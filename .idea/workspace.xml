@@ -12,17 +12,13 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="73971db8-9de6-4cfa-b1d7-1d5cae1c732f" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/inclujobs/activitys/EditarOfertaActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/inclujobs/activitys/EditarOfertaActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/inclujobs/entidades/Oferta.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/inclujobs/entidades/Oferta.java" afterDir="false" />
-    </list>
+    <list default="true" id="73971db8-9de6-4cfa-b1d7-1d5cae1c732f" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[C:\Users\GamerGroup\.android\avd\Pixel_2_API_30.avd]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[C:\Users\alexb\.android\avd\Pixel_2_API_33.avd]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -78,6 +74,9 @@
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RecentsManager">
+    <key name="android.template.1837281777">
+      <recent name="com.example.inclujobs.activitys" />
+    </key>
     <key name="android.template.-65408943">
       <recent name="com.example.inclujobs.activitys" />
     </key>
@@ -109,7 +108,7 @@
   </component>
   <component name="RunManager">
     <configuration name="app" type="AndroidRunConfigurationType" factoryName="Android App" activateToolWindowBeforeRun="false">
-      <module name="inclujobs.app" />
+      <module name="inclujobs.app.main" />
       <option name="DEPLOY" value="true" />
       <option name="DEPLOY_APK_FROM_BUNDLE" value="false" />
       <option name="DEPLOY_AS_INSTANT" value="false" />
@@ -196,6 +195,12 @@
           <url>file://$PROJECT_DIR$/app/src/main/java/com/example/inclujobs/conexion/DataLogin.java</url>
           <line>29</line>
           <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-method">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/inclujobs/activitys/DetalleOfertaActivity.java</url>
+          <line>79</line>
+          <properties class="com.example.inclujobs.activitys.DetalleOfertaActivity" method="readFile" />
+          <option name="timeStamp" value="8" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

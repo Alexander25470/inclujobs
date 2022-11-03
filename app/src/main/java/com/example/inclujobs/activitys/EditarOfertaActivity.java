@@ -7,7 +7,7 @@ import com.example.inclujobs.entidades.Oferta;
 import com.example.inclujobs.entidades.TipoDiscapacidad;
 import com.example.inclujobs.entidades.Usuario;
 import com.google.gson.Gson;
-import com.example.inclujobs.conexion.DataInsertOferta;
+//import com.example.inclujobs.conexion.DataInsertOferta;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -60,11 +60,11 @@ private TextView tvTituloModificar, tvDescripcionModificar, tvSalarioModificar;
 
         oferta.setTitulo(tvTituloModificar.getText().toString());
         oferta.setDescripcion(tvDescripcionModificar.getText().toString());
-        oferta.setSalario(((float) tvSalarioModificar.getText()));
+        //oferta.setSalario(((float) tvSalarioModificar.getText()));
 
 
-        DataInsertOferta task = new DataInsertOferta(oferta, getApplicationContext());
-        task.execute();
+        //DataInsertOferta task = new DataInsertOferta(oferta, getApplicationContext());
+        //task.execute();
 
     }
 
