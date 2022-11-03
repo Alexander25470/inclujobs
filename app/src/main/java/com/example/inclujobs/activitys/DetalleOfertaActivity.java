@@ -3,23 +3,34 @@ package com.example.inclujobs.activitys;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.inclujobs.R;
-import com.example.inclujobs.conexion.DataDeleteOferta;
+import com.example.inclujobs.entidades.Empresa;
 import com.example.inclujobs.entidades.Oferta;
 import com.google.gson.Gson;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.FileUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.BufferedReader;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
 
 public class DetalleOfertaActivity extends AppCompatActivity {
     private TextView lblTituloOfertaDetalle, lblEmpresaOfertaDetalle, lblDescripcionOfertaDetalle, lblSalarioOfertaDetalle;
@@ -70,26 +81,51 @@ public class DetalleOfertaActivity extends AppCompatActivity {
 
         if(resultCode == RESULT_OK){
             if(requestCode == 1){
-                readFile(data.getData());
+                readFile3(data.getData());
             }
         }
     }
 
-    private void readFile(Uri uri){
-        Bitmap bitmap = null;
-        InputStream inputStream = null;
 
-        try{
-            FileInputStream fis = new FileInputStream (new File(uri.getPath()));
-            bitmap = BitmapFactory.decodeStream(fis);
-        }catch (Exception ex){
-            Toast toast = Toast.makeText(this,ex.toString(), Toast.LENGTH_SHORT);
-            toast.show();
+    private void readFile3(Uri uri){
+        FileOutputStream os;
+        try {
+            InputStream is = getContentResolver().openInputStream(uri);
+            BufferedInputStream bis = new BufferedInputStream(is);
+            byte[] bytes = getArrayFromInputStream(bis);
+
+            os = openFileOutput("newFileName", Context.MODE_PRIVATE);
+            try(BufferedOutputStream salida = new BufferedOutputStream(os)){
+                salida.write(bytes);
+                salida.flush();
+            }
+
+            } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
-    private void eliminarEmpresa(){
-        DataDeleteOferta task = new DataDeleteOferta(oferta, getApplicationContext());
-        task.execute();
+    // https://stackoverflow.com/questions/52539316/generate-a-pdf-using-streams
+    private static byte[] getArrayFromInputStream(InputStream inputStream) throws IOException {
+        byte[] bytes;
+        byte[] buffer = new byte[1024];
+        try(BufferedInputStream is = new BufferedInputStream(inputStream)){
+            ByteArrayOutputStream bos = new ByteArrayOutputStream();
+            int length;
+            while ((length = is.read(buffer)) > -1 ) {
+                bos.write(buffer, 0, length);
+            }
+            bos.flush();
+            bytes = bos.toByteArray();
+        }
+        return bytes;
+    }
+
+    private static void writeContent(byte[] content, String fileToWriteTo) throws IOException {
+        FileOutputStream os = new FileOutputStream(fileToWriteTo);
+        try(BufferedOutputStream salida = new BufferedOutputStream(os)){
+            salida.write(content);
+            salida.flush();
+        }
     }
 }
