@@ -2,21 +2,19 @@ package com.example.inclujobs.activitys;
 
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.inclujobs.R;
-import com.example.inclujobs.conexion.DataInsertUsuario;
+import com.example.inclujobs.conexion.DataUpdateOferta;
 import com.example.inclujobs.entidades.Oferta;
-import com.example.inclujobs.entidades.TipoDiscapacidad;
-import com.example.inclujobs.entidades.Usuario;
 import com.google.gson.Gson;
-//import com.example.inclujobs.conexion.DataInsertOferta;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class EditarOfertaActivity extends AppCompatActivity {
-private Oferta oferta;
-private TextView tvTituloModificar, tvDescripcionModificar, tvSalarioModificar;
+    private Oferta oferta;
+    private TextView tvTituloModificar, tvDescripcionModificar, tvSalarioModificar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,8 +35,7 @@ private TextView tvTituloModificar, tvDescripcionModificar, tvSalarioModificar;
 
     }
 
-    public void modificarOferta(){
-        Oferta oferta = new Oferta();
+    public void modificarOferta(View view){
 
         if( tvTituloModificar.getText().toString() == null || tvTituloModificar.getText().toString().isEmpty()){
             Toast toast = Toast.makeText(getApplicationContext(),"Debe ingresar un Titulo", Toast.LENGTH_SHORT);
@@ -60,11 +57,10 @@ private TextView tvTituloModificar, tvDescripcionModificar, tvSalarioModificar;
 
         oferta.setTitulo(tvTituloModificar.getText().toString());
         oferta.setDescripcion(tvDescripcionModificar.getText().toString());
-        //oferta.setSalario(((float) tvSalarioModificar.getText()));
+        oferta.setSalario((Float.parseFloat(tvSalarioModificar.getText().toString())));
 
-
-        //DataInsertOferta task = new DataInsertOferta(oferta, getApplicationContext());
-        //task.execute();
+        DataUpdateOferta task = new DataUpdateOferta(oferta, getApplicationContext());
+        task.execute();
 
     }
 
