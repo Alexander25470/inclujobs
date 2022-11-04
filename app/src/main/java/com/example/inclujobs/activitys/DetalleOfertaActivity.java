@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.inclujobs.R;
 import com.example.inclujobs.entidades.Empresa;
 import com.example.inclujobs.entidades.Oferta;
+import com.example.inclujobs.entidades.Usuario;
+import com.example.inclujobs.helpers.UserHelper;
 import com.google.gson.Gson;
 
 import android.content.Context;
@@ -36,6 +38,7 @@ public class DetalleOfertaActivity extends AppCompatActivity {
     private TextView lblTituloOfertaDetalle, lblEmpresaOfertaDetalle, lblDescripcionOfertaDetalle, lblSalarioOfertaDetalle;
     private Button btnEditarOfertaDetalle, btnEliminarOfertaDetalle, btnVerCvOfertaDetalle, btnAdjuntarCvOfertaDetalle;
     private Oferta oferta;
+    private Usuario usuario;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +58,9 @@ public class DetalleOfertaActivity extends AppCompatActivity {
         lblEmpresaOfertaDetalle.setText(oferta.getEmpresa().getNombreComercial());
         lblDescripcionOfertaDetalle.setText(oferta.getDescripcion());
         lblSalarioOfertaDetalle.setText("Salario: $" + oferta.getSalario().toString());
+
+        usuario = UserHelper.getUser(this);
+
     }
 
     public void modificarOferta(View v){
@@ -81,7 +87,17 @@ public class DetalleOfertaActivity extends AppCompatActivity {
 
         if(resultCode == RESULT_OK){
             if(requestCode == 1){
-                readFile3(data.getData());
+                //readFile3(data.getData());
+
+                try {
+                    InputStream is = getContentResolver().openInputStream(data.getData());
+                    BufferedInputStream bis = new BufferedInputStream(is);
+                    byte[] bytes = getArrayFromInputStream(bis);
+                    Toast toast = Toast.makeText(this,usuario.getEmail(), Toast.LENGTH_SHORT);
+                    toast.show();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         }
     }
