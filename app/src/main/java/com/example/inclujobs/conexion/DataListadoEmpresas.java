@@ -5,6 +5,7 @@ import android.os.AsyncTask;
 import com.example.inclujobs.entidades.Ciudad;
 import com.example.inclujobs.entidades.Empresa;
 import com.example.inclujobs.entidades.Sector;
+import com.example.inclujobs.entidades.Usuario;
 import com.example.inclujobs.helpers.ICallBack;
 
 import java.sql.Connection;
@@ -53,6 +54,9 @@ public class DataListadoEmpresas extends AsyncTask<String, Void, String> {
                 Sector sector = new Sector();
                 sector.setIdSector(rs.getInt("IdCiudad"));
                 empresa.setSector(sector);
+
+                Usuario usuario = new Usuario();
+                usuario.setIdUsuario(rs.getInt("IdUsuario"));
 
                 listaEmpresas.add(empresa);
             }

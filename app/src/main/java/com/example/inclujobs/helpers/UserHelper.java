@@ -20,9 +20,16 @@ public class UserHelper {
 
     public static Usuario getUser(Context ctx){
         SharedPreferences sharedPref = ctx.getSharedPreferences("inclujobsPreferences",Context.MODE_PRIVATE);
-        String userString = sharedPref.getString(ctx.getString(R.string.logged_user_key), "{}");
+        String userString = sharedPref.getString(ctx.getString(R.string.logged_user_key), null);
         Gson gson = new Gson();
         Usuario user = gson.fromJson(userString, Usuario.class);
         return user;
+    }
+
+    public static void removeUser(Context ctx){
+        SharedPreferences sharedPref = ctx.getSharedPreferences("inclujobsPreferences",Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.remove(ctx.getString(R.string.logged_user_key));
+        editor.apply();
     }
 }

@@ -6,6 +6,7 @@ import com.example.inclujobs.entidades.Ciudad;
 import com.example.inclujobs.entidades.Empresa;
 import com.example.inclujobs.entidades.Oferta;
 import com.example.inclujobs.entidades.Sector;
+import com.example.inclujobs.entidades.Usuario;
 import com.example.inclujobs.helpers.ICallBack;
 
 import java.sql.Connection;
@@ -35,7 +36,7 @@ public class DataListadoOfertas extends AsyncTask<String, Void, String> {
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection(DataDB.urlMySQL, DataDB.user, DataDB.pass);
             Statement st = con.createStatement();
-            String query = "SELECT A.Id, A.Titulo, A.Salario, A.Descripcion, A.IdEmpresa, B.NombreComercial FROM Ofertas A INNER JOIN Empresas B " +
+            String query = "SELECT A.Id, A.Titulo, A.Salario, A.Descripcion, A.IdEmpresa, B.NombreComercial, B.IdUsuarioDuenio FROM Ofertas A INNER JOIN Empresas B " +
                     "ON A.IdEmpresa = B.Id";
 
             if(idEmpresa != -1){
@@ -47,6 +48,7 @@ public class DataListadoOfertas extends AsyncTask<String, Void, String> {
             while(rs.next()) {
                 Oferta oferta = new Oferta();
                 Empresa empresa = new Empresa();
+                Usuario usuario = new Usuario();
 
                 empresa.setId(rs.getInt("idEmpresa"));
                 empresa.setNombreComercial(rs.getString("NombreComercial"));
@@ -55,7 +57,12 @@ public class DataListadoOfertas extends AsyncTask<String, Void, String> {
                 oferta.setTitulo(rs.getString("Titulo"));
                 oferta.setSalario(rs.getFloat("Salario"));
                 oferta.setDescripcion(rs.getString("Descripcion"));
+                usuario.setIdUsuario(rs.getInt("IdUsuarioDuenio"));
+
+                empresa.setUsuarioDuenio(usuario);
+
                 oferta.setEmpresa(empresa);
+
 
                 listaOfertas.add(oferta);
             }

@@ -97,7 +97,7 @@ public class RegistroUsuario extends AppCompatActivity {
                 toast.show();
                 return;
             }else{
-                if( txtContra.getText().toString() != txtRepetirContra.getText().toString()){
+                if( !txtContra.getText().toString().equals(txtRepetirContra.getText().toString())){
                     Toast toast = Toast.makeText(getApplicationContext(),"Las contraseñas no coinciden", Toast.LENGTH_SHORT);
                     toast.show();
                     return;

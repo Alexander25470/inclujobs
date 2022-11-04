@@ -41,11 +41,10 @@ public class MainActivity extends AppCompatActivity {
 
         user = UserHelper.getUser(this);
 
-        if(user == null){
-            btnIniciarSesion.setVisibility(View.GONE);
+        if(user != null){
             btnRegistroEmpresa.setVisibility(View.GONE);
             btnRegistroUsuario.setVisibility(View.GONE);
-            btnBuscarLugar.setVisibility(View.GONE);
+            btnIniciarSesion.setText("Cerrar sesion");
         }
     }
 
@@ -60,8 +59,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void openIniciarSesion(View v){
-        Intent intent = new Intent(this, login.class);
-        startActivity(intent);
+        if(user == null){
+            Intent intent = new Intent(this, login.class);
+            startActivity(intent);
+        } else {
+            UserHelper.removeUser(this);
+            btnRegistroEmpresa.setVisibility(View.VISIBLE);
+            btnRegistroUsuario.setVisibility(View.VISIBLE);
+            btnIniciarSesion.setText("Iniciar sesion");
+        }
+
     }
 
     public void openBuscar(View v){
