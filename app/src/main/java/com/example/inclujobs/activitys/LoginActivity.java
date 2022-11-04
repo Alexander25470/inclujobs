@@ -19,7 +19,8 @@ import com.example.inclujobs.helpers.ICallBack;
 import com.example.inclujobs.helpers.UserHelper;
 import com.google.gson.Gson;
 
-public class login extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity {
+    public static final int RESULT_OK = 1;
     private EditText etEmail;
     private EditText etPass;
 
@@ -77,6 +78,10 @@ public class login extends AppCompatActivity {
 
                 Toast toast = Toast.makeText(ctx,"Sesion iniciada", Toast.LENGTH_SHORT);
                 toast.show();
+
+                Intent returnIntent = new Intent();
+                setResult(RESULT_OK, returnIntent);
+                finish();
                 return;
             }
         });

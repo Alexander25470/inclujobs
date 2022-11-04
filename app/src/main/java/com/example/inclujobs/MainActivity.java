@@ -10,7 +10,7 @@ import android.widget.Button;
 import com.example.inclujobs.activitys.ListadoEmpresasActivity;
 import com.example.inclujobs.activitys.ListadoOfertasActivity;
 import com.example.inclujobs.activitys.RegistroUsuario;
-import com.example.inclujobs.activitys.login;
+import com.example.inclujobs.activitys.LoginActivity;
 import com.example.inclujobs.activitys.registro_empresa;
 import com.example.inclujobs.entidades.Usuario;
 import com.example.inclujobs.helpers.UserHelper;
@@ -24,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
     private Button btnBuscarEmpresas;
     private Usuario user;
     private String busquedaSeleccionada;
+    private final int LOGINRESULT = 5;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,10 +61,11 @@ public class MainActivity extends AppCompatActivity {
 
     public void openIniciarSesion(View v){
         if(user == null){
-            Intent intent = new Intent(this, login.class);
-            startActivity(intent);
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivityForResult(intent, LOGINRESULT);
         } else {
             UserHelper.removeUser(this);
+            user = null;
             btnRegistroEmpresa.setVisibility(View.VISIBLE);
             btnRegistroUsuario.setVisibility(View.VISIBLE);
             btnIniciarSesion.setText("Iniciar sesion");
@@ -93,6 +95,22 @@ public class MainActivity extends AppCompatActivity {
         } else {
             btnBuscarEmpleos.getBackground().setAlpha(255);
             btnBuscarEmpresas.getBackground().setAlpha(127);
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(resultCode == LoginActivity.RESULT_OK)
+        {
+            user = UserHelper.getUser(this);
+
+            if(user != null){
+                btnRegistroEmpresa.setVisibility(View.GONE);
+                btnRegistroUsuario.setVisibility(View.GONE);
+                btnIniciarSesion.setText("Cerrar sesion");
+            }
         }
     }
 }
