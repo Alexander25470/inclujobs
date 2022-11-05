@@ -41,7 +41,7 @@ import java.util.ArrayList;
 
 public class DetalleOfertaActivity extends AppCompatActivity {
     private TextView lblTituloOfertaDetalle, lblEmpresaOfertaDetalle, lblDescripcionOfertaDetalle, lblSalarioOfertaDetalle;
-    private Button btnEditar, btnEliminar, btnVerCv, btnAdjuntarCv;
+    private Button btnEditar, btnEliminar, btnVerCvs, btnAdjuntarCv;
     private Oferta oferta;
     private Usuario usuario;
 
@@ -56,6 +56,9 @@ public class DetalleOfertaActivity extends AppCompatActivity {
         lblSalarioOfertaDetalle = findViewById(R.id.lblSalarioOfertaDetalle);
         btnEditar = findViewById(R.id.btnEditarOfertaDetalle);
         btnEliminar = findViewById(R.id.btnEliminarOfertaDetalle);
+        btnVerCvs = findViewById(R.id.btnVerCvOfertaDetalle);
+        btnAdjuntarCv = findViewById(R.id.btnAdjuntarCvOfertaDetalle);
+
 
         Intent intent = getIntent();
         Gson gson = new Gson();
@@ -68,10 +71,16 @@ public class DetalleOfertaActivity extends AppCompatActivity {
 
         usuario = UserHelper.getUser(this);
 
-        if(usuario.getIdUsuario() != oferta.getEmpresa().getUsuarioDuenio().getIdUsuario())
+        if(usuario == null){
+            btnEditar.setVisibility(View.GONE);
+            btnEliminar.setVisibility(View.GONE);
+            btnAdjuntarCv.setVisibility(View.GONE);
+            btnVerCvs.setVisibility(View.GONE);
+        } else if(usuario.getIdUsuario() != oferta.getEmpresa().getUsuarioDuenio().getIdUsuario())
         {
             btnEditar.setVisibility(View.GONE);
             btnEliminar.setVisibility(View.GONE);
+            btnVerCvs.setVisibility(View.GONE);
         }
 
     }
