@@ -34,12 +34,13 @@ public class DataInsertCV extends AsyncTask<String, Void, String> {
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection(DataDB.urlMySQL, DataDB.user, DataDB.pass);
             Statement st = con.createStatement();
-            String query = "INSERT INTO `CVs`(`IdUsuario`, `IdOferta`, `Archivo`) VALUES (?,?,?);";
+            String query = "INSERT INTO `CVs`(`IdUsuario`, `IdOferta`, `Archivo`, `NombreArchivo`) VALUES (?,?,?,?);";
             PreparedStatement ps = con.prepareStatement(query);
 
             ps.setInt(1, cv.getIdUsuario());
             ps.setInt(2, cv.getIdOferta());
             ps.setBytes(3, cv.getArchivo());
+            ps.setString(3, cv.getNombreArchivo());
 
 
             result = ps.executeUpdate();

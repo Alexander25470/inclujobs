@@ -16,11 +16,14 @@ import com.google.gson.Gson;
 
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.FileUtils;
+import android.os.ParcelFileDescriptor;
+import android.provider.OpenableColumns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -31,6 +34,7 @@ import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileDescriptor;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -109,17 +113,17 @@ public class DetalleOfertaActivity extends AppCompatActivity {
 
         if(resultCode == RESULT_OK){
             if(requestCode == 1){
-                //readFile3(data.getData());
 
                 try {
-                    InputStream is = getContentResolver().openInputStream(data.getData());
+                    Uri returnUri = data.getData();
+                    InputStream is = getContentResolver().openInputStream(returnUri);
                     BufferedInputStream bis = new BufferedInputStream(is);
                     byte[] bytes = getArrayFromInputStream(bis);
 
-                    guardarCV(bytes, "test.pdf");
+                    String nombreArchivo = getFileName(returnUri);
 
-                    //Toast toast = Toast.makeText(this,usuario.getEmail(), Toast.LENGTH_SHORT);
-                    //toast.show();
+                    guardarCV(bytes, nombreArchivo);
+
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -127,11 +131,21 @@ public class DetalleOfertaActivity extends AppCompatActivity {
         }
     }
 
+    private String getFileName(Uri uri){
+        Cursor returnCursor =
+                getContentResolver().query(uri, null, null, null, null);
+        int nameIndex = returnCursor.getColumnIndex(OpenableColumns.DISPLAY_NAME);
+        returnCursor.moveToFirst();
+
+        return returnCursor.getString(nameIndex);
+    }
+
     private void guardarCV(byte[] bytes, String nombreArchivo){
         CVDTO cv = new CVDTO();
         cv.setIdOferta(oferta.getId());
         cv.setIdUsuario(usuario.getIdUsuario());
         cv.setArchivo(bytes);
+        cv.setNombreArchivo(nombreArchivo);
         Context ctx = this;
         DataInsertCV task = new DataInsertCV(cv, new ICallBack() {
             @Override
