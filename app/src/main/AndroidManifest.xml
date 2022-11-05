@@ -36,7 +36,7 @@
             android:name=".activitys.ListadoEmpresasActivity"
             android:exported="false" />
         <activity
-            android:name=".activitys.login"
+            android:name=".activitys.LoginActivity"
             android:exported="false" />
         <activity
             android:name=".activitys.registro_empresa"
