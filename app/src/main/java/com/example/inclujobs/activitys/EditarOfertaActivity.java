@@ -9,6 +9,7 @@ import com.google.gson.Gson;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,6 +20,11 @@ public class EditarOfertaActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //ocultar action bar
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getSupportActionBar().hide();
+
+
         setContentView(R.layout.activity_editar_oferta);
 
         Intent intent = getIntent();
