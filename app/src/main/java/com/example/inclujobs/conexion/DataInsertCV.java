@@ -23,8 +23,8 @@ public class DataInsertCV extends AsyncTask<String, Void, String> {
     private static String result2;
 
     public DataInsertCV(CVDTO cv, ICallBack callBack){
-        cv = cv;
-        callBack = callBack;
+        this.cv = cv;
+        this.callBack = callBack;
     }
 
     protected String doInBackground(String... urls) {
@@ -34,9 +34,9 @@ public class DataInsertCV extends AsyncTask<String, Void, String> {
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection(DataDB.urlMySQL, DataDB.user, DataDB.pass);
             Statement st = con.createStatement();
-            String query = "INSERT INTO `CVs`(`IdUsuario`, `IdOferta`, `Archivo`) VALUES ('%s','%s','%s','%s', '%s');";
+            String query = "INSERT INTO `CVs`(`IdUsuario`, `IdOferta`, `Archivo`) VALUES (?,?,?);";
             PreparedStatement ps = con.prepareStatement(query);
-            
+
             ps.setInt(1, cv.getIdUsuario());
             ps.setInt(2, cv.getIdOferta());
             ps.setBytes(3, cv.getArchivo());

@@ -107,10 +107,10 @@ public class DetalleOfertaActivity extends AppCompatActivity {
                     BufferedInputStream bis = new BufferedInputStream(is);
                     byte[] bytes = getArrayFromInputStream(bis);
 
+                    guardarCV(bytes, "test.pdf");
 
-
-                    Toast toast = Toast.makeText(this,usuario.getEmail(), Toast.LENGTH_SHORT);
-                    toast.show();
+                    //Toast toast = Toast.makeText(this,usuario.getEmail(), Toast.LENGTH_SHORT);
+                    //toast.show();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
