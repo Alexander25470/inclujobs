@@ -36,10 +36,6 @@ public class registro_empresa extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //ocultar action bar
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        getSupportActionBar().hide();
-
         //setContentView(R.layout.activity_registro_empresa);
 
         binding = ActivityRegistroEmpresaBinding.inflate(getLayoutInflater());

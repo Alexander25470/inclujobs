@@ -28,10 +28,6 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //ocultar action bar
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        getSupportActionBar().hide();
-
         setContentView(R.layout.activity_login);
 
         etEmail = findViewById(R.id.etEmailLogin);

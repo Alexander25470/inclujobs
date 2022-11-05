@@ -23,10 +23,6 @@ public class ModificarEmpresaActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //ocultar action bar
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        getSupportActionBar().hide();
-
         setContentView(R.layout.activity_modificar_empresa);
 
         txtNombreComercialModificarEmpresa = findViewById(R.id.txtNombreComercialModificarEmpresa);

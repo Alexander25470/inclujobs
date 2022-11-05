@@ -30,10 +30,6 @@ public class RegistroUsuario extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //ocultar action bar
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        getSupportActionBar().hide();
-
         //setContentView(R.layout.activity_registro_usuario);
 
        //View v = inflater.inflate(R.layout.activity_registro_usuario, container, false);

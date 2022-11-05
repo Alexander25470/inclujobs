@@ -30,10 +30,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //ocultar action bar
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        getSupportActionBar().hide();
-
         setContentView(R.layout.activity_main);
 
         btnRegistroEmpresa = (Button) findViewById(R.id.btnRegistroEmpresa);
