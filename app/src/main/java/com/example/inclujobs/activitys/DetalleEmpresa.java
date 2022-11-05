@@ -2,6 +2,7 @@ package com.example.inclujobs.activitys;
 
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.inclujobs.R;
+import com.example.inclujobs.adapters.OfertaAdapter;
 import com.example.inclujobs.conexion.DataDeleteEmpresa;
 import com.example.inclujobs.conexion.DataListadoOfertas;
 import com.example.inclujobs.entidades.Empresa;
@@ -23,7 +24,7 @@ import java.util.ArrayList;
 public class DetalleEmpresa extends AppCompatActivity {
     private TextView lblNombreEmpresaDetalle, lblDireccionEmpresaDetalle, lblDescripcionEmpresaDetalle;
     private ListView lvOfertas;
-    private ArrayList<Oferta> listaOferta = new ArrayList<Oferta>();
+    private ArrayList<Oferta> listaOfertas = new ArrayList<Oferta>();
     private Button btnEditarEmpresaDetalle, btnEliminarEmpresaDetalle;
 
     @Override
@@ -74,8 +75,8 @@ public class DetalleEmpresa extends AppCompatActivity {
         DataListadoOfertas task = new DataListadoOfertas(new ICallBack() {
             @Override
             public void function(Object obj) {
-                listaOferta = (ArrayList<Oferta>)obj;
-                ArrayAdapter<Oferta> adapter = new ArrayAdapter<Oferta>(ctx, android.R.layout.simple_list_item_1,listaOferta);
+                listaOfertas = (ArrayList<Oferta>)obj;
+                OfertaAdapter adapter = new OfertaAdapter(ctx, listaOfertas);
                 lvOfertas.setAdapter(adapter);
             }
         }, idEmpresa);
