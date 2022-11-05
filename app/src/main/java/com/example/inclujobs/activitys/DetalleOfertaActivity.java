@@ -2,10 +2,15 @@ package com.example.inclujobs.activitys;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.inclujobs.DTOs.CVDTO;
 import com.example.inclujobs.R;
+import com.example.inclujobs.conexion.DataInsertCV;
+import com.example.inclujobs.conexion.DataLogin;
 import com.example.inclujobs.entidades.Empresa;
 import com.example.inclujobs.entidades.Oferta;
 import com.example.inclujobs.entidades.Usuario;
+import com.example.inclujobs.helpers.ICallBack;
 import com.example.inclujobs.helpers.UserHelper;
 import com.google.gson.Gson;
 
@@ -101,6 +106,9 @@ public class DetalleOfertaActivity extends AppCompatActivity {
                     InputStream is = getContentResolver().openInputStream(data.getData());
                     BufferedInputStream bis = new BufferedInputStream(is);
                     byte[] bytes = getArrayFromInputStream(bis);
+
+
+
                     Toast toast = Toast.makeText(this,usuario.getEmail(), Toast.LENGTH_SHORT);
                     toast.show();
                 } catch (IOException e) {
@@ -108,6 +116,22 @@ public class DetalleOfertaActivity extends AppCompatActivity {
                 }
             }
         }
+    }
+
+    private void guardarCV(byte[] bytes, String nombreArchivo){
+        CVDTO cv = new CVDTO();
+        cv.setIdOferta(oferta.getId());
+        cv.setIdUsuario(usuario.getIdUsuario());
+        cv.setArchivo(bytes);
+        Context ctx = this;
+        DataInsertCV task = new DataInsertCV(cv, new ICallBack() {
+            @Override
+            public void function(Object obj) {
+                Toast toast = Toast.makeText(ctx,"CV ENVIADO", Toast.LENGTH_SHORT);
+                toast.show();
+            }
+        });
+        task.execute();
     }
 
 
