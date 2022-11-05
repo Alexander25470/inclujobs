@@ -2,6 +2,7 @@ package com.example.inclujobs.activitys;
 
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.inclujobs.R;
+import com.example.inclujobs.adapters.OfertaAdapter;
 import com.example.inclujobs.conexion.DataListadoEmpresas;
 import com.example.inclujobs.conexion.DataListadoOfertas;
 import com.example.inclujobs.entidades.Empresa;
@@ -51,7 +52,9 @@ public class ListadoOfertasActivity extends AppCompatActivity {
             @Override
             public void function(Object obj) {
                 listaOfertas = (ArrayList<Oferta>)obj;
-                ArrayAdapter<Oferta> adapter = new ArrayAdapter<Oferta>(ctx, android.R.layout.simple_list_item_1,listaOfertas);
+                //ArrayAdapter<Oferta> adapter = new ArrayAdapter<Oferta>(ctx, android.R.layout.simple_list_item_1,listaOfertas);
+                OfertaAdapter adapter = new OfertaAdapter(ctx, listaOfertas);
+
                 lvOfertas.setAdapter(adapter);
             }
         }, -1);
