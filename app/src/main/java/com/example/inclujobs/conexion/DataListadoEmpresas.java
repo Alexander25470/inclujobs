@@ -56,7 +56,7 @@ public class DataListadoEmpresas extends AsyncTask<String, Void, String> {
                 empresa.setSector(sector);
 
                 Usuario usuario = new Usuario();
-                usuario.setIdUsuario(rs.getInt("IdUsuario"));
+                usuario.setIdUsuario(rs.getInt("IdUsuarioDuenio"));
 
                 listaEmpresas.add(empresa);
             }
