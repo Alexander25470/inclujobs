@@ -27,17 +27,13 @@ public class DataListadoOfertas extends AsyncTask<String, Void, String> {
     protected String doInBackground(String... urls) {
         String response = "";
 
-        if(!listaOfertas.isEmpty()){
-            return "Conexion exitosa";
-        }
-
         try {
 
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection(DataDB.urlMySQL, DataDB.user, DataDB.pass);
             Statement st = con.createStatement();
-            String query = "SELECT A.Id, A.Titulo, A.Salario, A.Descripcion, A.IdEmpresa, B.NombreComercial, B.IdUsuarioDuenio FROM Ofertas A INNER JOIN Empresas B " +
-                    "ON A.IdEmpresa = B.Id";
+            String query = "SELECT o.Id, o.Titulo, o.Salario, o.Descripcion, o.IdEmpresa, emp.NombreComercial, emp.IdUsuarioDuenio FROM Ofertas o INNER JOIN Empresas emp " +
+                    "ON o.IdEmpresa = emp.Id";
 
             if(idEmpresa != -1){
                 query += " WHERE IdEmpresa = " + idEmpresa;

@@ -4,6 +4,7 @@ import android.os.AsyncTask;
 
 import com.example.inclujobs.entidades.Ciudad;
 import com.example.inclujobs.entidades.Empresa;
+import com.example.inclujobs.entidades.Provincia;
 import com.example.inclujobs.entidades.Sector;
 import com.example.inclujobs.entidades.Usuario;
 import com.example.inclujobs.helpers.ICallBack;
@@ -25,16 +26,12 @@ public class DataListadoEmpresas extends AsyncTask<String, Void, String> {
     protected String doInBackground(String... urls) {
         String response = "";
 
-        if(!listaEmpresas.isEmpty()){
-            return "Conexion exitosa";
-        }
-
         try {
 
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection(DataDB.urlMySQL, DataDB.user, DataDB.pass);
             Statement st = con.createStatement();
-            String query = "SELECT * FROM Empresas";
+            String query = "SELECT emp.*, ciu.Nombre NombreCiudad, prov.Id IdProvincia, prov.Nombre NombreProvincia FROM Empresas emp INNER JOIN Ciudades ciu ON emp.IdCiudad = ciu.Id INNER JOIN Provincias prov ON ciu.IdProvincia = prov.Id";
             ResultSet rs = st.executeQuery(query);
 
             while(rs.next()) {
@@ -49,6 +46,13 @@ public class DataListadoEmpresas extends AsyncTask<String, Void, String> {
 
                 Ciudad ciudad = new Ciudad();
                 ciudad.setId(rs.getInt("IdCiudad"));
+                ciudad.setNombre(rs.getString("NombreCiudad"));
+
+                Provincia provincia = new Provincia();
+                provincia.setIdProvincia(rs.getInt("IdProvincia"));
+                provincia.setNombre(rs.getString("NombreProvincia"));
+
+                ciudad.setProvincia(provincia);
                 empresa.setCiudad(ciudad);
 
                 Sector sector = new Sector();
