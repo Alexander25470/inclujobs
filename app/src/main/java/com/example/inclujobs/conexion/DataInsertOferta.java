@@ -14,13 +14,15 @@ public class DataInsertOferta extends AsyncTask<String, Void, String> {
 
     private Oferta oferta;
     private ICallBack callBack;
+    private int idEmpresa;
 
     private int result;
     private static String result2;
 
-    public DataInsertOferta(Oferta oferta, ICallBack callBack){
+    public DataInsertOferta(Oferta oferta, int idEmpresa, ICallBack callBack){
         this.oferta = oferta;
         this.callBack = callBack;
+        this.idEmpresa = idEmpresa;
     }
 
     protected String doInBackground(String... urls) {
@@ -32,7 +34,7 @@ public class DataInsertOferta extends AsyncTask<String, Void, String> {
             String query = "INSERT INTO `Ofertas`(`idEmpresa`, `Titulo`, `Descripcion`, `Salario`) VALUES (?,?,?,?);";
             PreparedStatement ps = con.prepareStatement(query);
 
-            ps.setInt(1, oferta.getEmpresa().getId());
+            ps.setInt(1, idEmpresa);
             ps.setString(2,  oferta.getTitulo());
             ps.setString(3, oferta.getDescripcion());
             ps.setFloat(4, oferta.getSalario());

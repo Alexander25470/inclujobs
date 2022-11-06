@@ -5,7 +5,9 @@ import com.example.inclujobs.R;
 import com.example.inclujobs.conexion.DataInsertOferta;
 import com.example.inclujobs.conexion.DataUpdateOferta;
 import com.example.inclujobs.entidades.Oferta;
+import com.example.inclujobs.entidades.Usuario;
 import com.example.inclujobs.helpers.ICallBack;
+import com.example.inclujobs.helpers.UserHelper;
 import com.google.gson.Gson;
 
 import android.content.Intent;
@@ -17,12 +19,14 @@ import android.widget.Toast;
 public class CrearOfertaActivity extends AppCompatActivity {
     private Oferta oferta;
     private TextView tvTituloCrear, tvDescripcionCrear, tvSalarioCrear;
+    private Usuario user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_crear_oferta);
         oferta = new Oferta();
+        user = UserHelper.getUser(this);
 
         tvTituloCrear = findViewById(R.id.tvTituloCrear);
         tvDescripcionCrear = findViewById(R.id.tvDescripcionCrear);
@@ -54,7 +58,7 @@ public class CrearOfertaActivity extends AppCompatActivity {
         oferta.setDescripcion(tvDescripcionCrear.getText().toString());
         oferta.setSalario((Float.parseFloat(tvSalarioCrear.getText().toString())));
 
-        DataInsertOferta task = new DataInsertOferta(oferta, new ICallBack() {
+        DataInsertOferta task = new DataInsertOferta(oferta, (int)user.getIdEmpresa(), new ICallBack() {
             @Override
             public void function(Object obj) {
                 Toast toast = Toast.makeText(getApplicationContext(),"Se creo la oferta correctamente", Toast.LENGTH_SHORT);

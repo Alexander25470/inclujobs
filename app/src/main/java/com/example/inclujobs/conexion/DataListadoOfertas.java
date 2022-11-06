@@ -28,6 +28,7 @@ public class DataListadoOfertas extends AsyncTask<String, Void, String> {
         String response = "";
 
         try {
+            listaOfertas = new ArrayList<Oferta>();
 
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection(DataDB.urlMySQL, DataDB.user, DataDB.pass);
