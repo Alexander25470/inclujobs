@@ -46,6 +46,8 @@ public class DetalleEmpresa extends AppCompatActivity {
         lblNombreEmpresaDetalle = findViewById(R.id.lblTituloOfertaDetalle);
         lblDireccionEmpresaDetalle = findViewById(R.id.lblEmpresaOfertaDetalle);
         lblDescripcionEmpresaDetalle = findViewById(R.id.lblDescripcionOfertaDetalle);
+        tvUsuarioTB = findViewById(R.id.tvUsuarioTB); // ToolBar Listado
+        btnPublicarOfertaTB = findViewById(R.id.btnPublicarOfertaTB); // ToolBar
 
         Intent intent = getIntent();
         Gson gson = new Gson();

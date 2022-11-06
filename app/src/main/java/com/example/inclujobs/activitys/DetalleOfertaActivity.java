@@ -53,6 +53,8 @@ public class DetalleOfertaActivity extends AppCompatActivity {
         btnEliminar = findViewById(R.id.btnEliminarOfertaDetalle);
         btnVerCvs = findViewById(R.id.btnVerCvOfertaDetalle);
         btnAdjuntarCv = findViewById(R.id.btnAdjuntarCvOfertaDetalle);
+        tvUsuarioTB = findViewById(R.id.tvUsuarioTB); // ToolBar Listado
+        btnPublicarOfertaTB = findViewById(R.id.btnPublicarOfertaTB); // ToolBar
 
         user = UserHelper.getUser(this);
         validarBotonesToolBar();
