@@ -18,7 +18,7 @@
         android:theme="@style/Theme.Inclujobs"
         tools:targetApi="31">
         <activity
-            android:name=".VerCVsActivity"
+            android:name=".activitys.VerCVsActivity"
             android:exported="false" />
         <activity
             android:name=".activitys.CrearOfertaActivity"
