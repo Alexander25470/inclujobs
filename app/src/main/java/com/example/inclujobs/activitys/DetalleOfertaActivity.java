@@ -101,6 +101,12 @@ public class DetalleOfertaActivity extends AppCompatActivity {
 
     }
 
+    public void verCVs(View v){
+        Intent intent = new Intent(this, VerCVsActivity.class);
+        intent.putExtra("IdOferta", oferta.getId());
+        startActivity(intent);
+    }
+
     public void adjuntarCV(View view){
         Intent intentPDF = new Intent(Intent.ACTION_GET_CONTENT);
         intentPDF.setType("application/pdf");
