@@ -9,8 +9,6 @@ import android.widget.TextView;
 
 import com.example.inclujobs.DTOs.CVListadoDTO;
 import com.example.inclujobs.R;
-import com.example.inclujobs.entidades.Ciudad;
-import com.example.inclujobs.entidades.Empresa;
 
 import java.util.ArrayList;
 
