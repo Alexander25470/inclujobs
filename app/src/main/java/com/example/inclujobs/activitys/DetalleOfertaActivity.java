@@ -6,8 +6,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.inclujobs.DTOs.CVDTO;
 import com.example.inclujobs.R;
 import com.example.inclujobs.conexion.DataInsertCV;
-import com.example.inclujobs.conexion.DataLogin;
-import com.example.inclujobs.entidades.Empresa;
 import com.example.inclujobs.entidades.Oferta;
 import com.example.inclujobs.entidades.Usuario;
 import com.example.inclujobs.helpers.ICallBack;
@@ -17,38 +15,30 @@ import com.google.gson.Gson;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.FileUtils;
-import android.os.ParcelFileDescriptor;
 import android.provider.OpenableColumns;
 import android.view.View;
-import android.view.Window;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
-import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileDescriptor;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
 
 public class DetalleOfertaActivity extends AppCompatActivity {
     private TextView lblTituloOfertaDetalle, lblEmpresaOfertaDetalle, lblDescripcionOfertaDetalle, lblSalarioOfertaDetalle;
     private Button btnEditar, btnEliminar, btnVerCvs, btnAdjuntarCv;
     private Oferta oferta;
-    private Usuario usuario;
+    private Usuario user;
+    private TextView tvUsuarioTB; // ToolBar Listado Ofertas
+    private Button btnPublicarOfertaTB;
+    private final int REQUEST_LOGIN = 1;
+    private final int REQUEST_PUBLICAR_OFERTA = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +54,8 @@ public class DetalleOfertaActivity extends AppCompatActivity {
         btnVerCvs = findViewById(R.id.btnVerCvOfertaDetalle);
         btnAdjuntarCv = findViewById(R.id.btnAdjuntarCvOfertaDetalle);
 
+        user = UserHelper.getUser(this);
+        validarBotonesToolBar();
 
         Intent intent = getIntent();
         Gson gson = new Gson();
@@ -74,14 +66,14 @@ public class DetalleOfertaActivity extends AppCompatActivity {
         lblDescripcionOfertaDetalle.setText(oferta.getDescripcion());
         lblSalarioOfertaDetalle.setText("Salario: $" + oferta.getSalario().toString());
 
-        usuario = UserHelper.getUser(this);
+        user = UserHelper.getUser(this);
 
-        if(usuario == null){
+        if(user == null){
             btnEditar.setVisibility(View.GONE);
             btnEliminar.setVisibility(View.GONE);
             btnAdjuntarCv.setVisibility(View.GONE);
             btnVerCvs.setVisibility(View.GONE);
-        } else if(usuario.getIdUsuario() != oferta.getEmpresa().getUsuarioDuenio().getIdUsuario())
+        } else if(user.getIdUsuario() != oferta.getEmpresa().getUsuarioDuenio().getIdUsuario())
         {
             btnEditar.setVisibility(View.GONE);
             btnEliminar.setVisibility(View.GONE);
@@ -150,7 +142,7 @@ public class DetalleOfertaActivity extends AppCompatActivity {
     private void guardarCV(byte[] bytes, String nombreArchivo){
         CVDTO cv = new CVDTO();
         cv.setIdOferta(oferta.getId());
-        cv.setIdUsuario(usuario.getIdUsuario());
+        cv.setIdUsuario(user.getIdUsuario());
         cv.setArchivo(bytes);
         cv.setNombreArchivo(nombreArchivo);
         Context ctx = this;
@@ -206,4 +198,30 @@ public class DetalleOfertaActivity extends AppCompatActivity {
             salida.flush();
         }
     }
+
+    private void validarBotonesToolBar(){
+        if(user == null){
+            tvUsuarioTB.setText("");
+            btnPublicarOfertaTB.setText("Iniciar sesión");
+        } else {
+            tvUsuarioTB.setText("Bienvenido: "+ user.getNombre() + " " + user.getNombre());
+            if(user.getIdEmpresa() == null)
+            {
+                btnPublicarOfertaTB.setVisibility(View.GONE);
+            } else {
+                btnPublicarOfertaTB.setText("Publicar oferta");
+            }
+        }
+    }
+
+    public void clickPublicarOfertaOLogin(View v){
+        if(user == null){
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivityForResult(intent, REQUEST_LOGIN);
+        } else {
+            Intent intent = new Intent(this, CrearOfertaActivity.class);
+            startActivityForResult(intent, REQUEST_PUBLICAR_OFERTA);
+        }
+    }
+
 }

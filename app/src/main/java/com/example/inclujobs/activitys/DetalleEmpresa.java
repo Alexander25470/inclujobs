@@ -7,7 +7,9 @@ import com.example.inclujobs.conexion.DataDeleteEmpresa;
 import com.example.inclujobs.conexion.DataListadoOfertas;
 import com.example.inclujobs.entidades.Empresa;
 import com.example.inclujobs.entidades.Oferta;
+import com.example.inclujobs.entidades.Usuario;
 import com.example.inclujobs.helpers.ICallBack;
+import com.example.inclujobs.helpers.UserHelper;
 import com.google.gson.Gson;
 
 import android.content.Context;
@@ -27,6 +29,12 @@ public class DetalleEmpresa extends AppCompatActivity {
     private ListView lvOfertas;
     private ArrayList<Oferta> listaOfertas = new ArrayList<Oferta>();
     private Button btnEditarEmpresaDetalle, btnEliminarEmpresaDetalle;
+    private Usuario user;
+    private TextView tvUsuarioTB; // ToolBar Listado Ofertas
+    private Button btnPublicarOfertaTB;
+    private final int REQUEST_LOGIN = 1;
+    private final int REQUEST_PUBLICAR_OFERTA = 2;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +50,9 @@ public class DetalleEmpresa extends AppCompatActivity {
         Intent intent = getIntent();
         Gson gson = new Gson();
         Empresa empresa = gson.fromJson(intent.getStringExtra("empresa"), Empresa.class);
+
+        user = UserHelper.getUser(this);
+        validarBotonesToolBar();
 
         lblNombreEmpresaDetalle.setText(empresa.getNombreComercial());
         lblDireccionEmpresaDetalle.setText(empresa.getDireccion());
@@ -91,5 +102,30 @@ public class DetalleEmpresa extends AppCompatActivity {
 
         DataDeleteEmpresa task = new DataDeleteEmpresa(empresa, getApplicationContext());
         task.execute();
+    }
+
+    private void validarBotonesToolBar(){
+        if(user == null){
+            tvUsuarioTB.setText("");
+            btnPublicarOfertaTB.setText("Iniciar sesión");
+        } else {
+            tvUsuarioTB.setText("Bienvenido: "+ user.getNombre() + " " + user.getNombre());
+            if(user.getIdEmpresa() == null)
+            {
+                btnPublicarOfertaTB.setVisibility(View.GONE);
+            } else {
+                btnPublicarOfertaTB.setText("Publicar oferta");
+            }
+        }
+    }
+
+    public void clickPublicarOfertaOLogin(View v){
+        if(user == null){
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivityForResult(intent, REQUEST_LOGIN);
+        } else {
+            Intent intent = new Intent(this, CrearOfertaActivity.class);
+            startActivityForResult(intent, REQUEST_PUBLICAR_OFERTA);
+        }
     }
 }
