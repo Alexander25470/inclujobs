@@ -2,6 +2,7 @@ package com.example.inclujobs.conexion;
 
 import android.os.AsyncTask;
 
+import com.example.inclujobs.entidades.Empresa;
 import com.example.inclujobs.entidades.Sector;
 import com.example.inclujobs.entidades.TipoDiscapacidad;
 import com.example.inclujobs.entidades.Usuario;
@@ -29,16 +30,12 @@ public class DataLogin extends AsyncTask<String, Void, String> {
     protected String doInBackground(String... urls) {
         String response = "";
 
-        if(usuario != null){
-            return "Conexion exitosa";
-        }
-
         try {
 
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection(DataDB.urlMySQL, DataDB.user, DataDB.pass);
 
-            String query = "SELECT * FROM Usuarios WHERE Email = ? AND Contrasenia = ? ";
+            String query = "SELECT U.*, E.Id IdEmpresa FROM Usuarios U LEFT JOIN Empresas E ON U.Id = E.IdUsuarioDuenio WHERE Email = ? AND Contrasenia = ? ";
             PreparedStatement ps = con.prepareStatement(query);
 
             ps.setString(1,email);
@@ -55,6 +52,11 @@ public class DataLogin extends AsyncTask<String, Void, String> {
                 usuario.setTelefono(rs.getString("Telefono"));
                 TipoDiscapacidad td = new TipoDiscapacidad();
                 td.setId(rs.getInt("IdTipoDiscapacidad"));
+                if(rs.getObject("IdEmpresa") != null){
+                    usuario.setIdEmpresa(rs.getInt("IdEmpresa"));
+                }
+
+
                 usuario.setTipoDiscapacidad(td);
             }
 

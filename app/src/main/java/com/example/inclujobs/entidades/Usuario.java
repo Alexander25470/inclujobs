@@ -1,22 +1,22 @@
 package com.example.inclujobs.entidades;
 
 public class Usuario {
-    int IdUsuario;
-    String Nombre;
-    String Apellido;
-    String Email;
-    String Contra;
-    String Telefono;
+    private int IdUsuario;
+    private String Nombre;
+    private String Apellido;
+    private String Email;
+    private String Contra;
+    private String Telefono;
+    private Integer IdEmpresa;
+    private TipoDiscapacidad TipoDiscapacidad;
 
-    public com.example.inclujobs.entidades.TipoDiscapacidad getTipoDiscapacidad() {
+    public TipoDiscapacidad getTipoDiscapacidad() {
         return TipoDiscapacidad;
     }
 
-    public void setTipoDiscapacidad(com.example.inclujobs.entidades.TipoDiscapacidad tipoDiscapacidad) {
+    public void setTipoDiscapacidad(TipoDiscapacidad tipoDiscapacidad) {
         TipoDiscapacidad = tipoDiscapacidad;
     }
-
-    com.example.inclujobs.entidades.TipoDiscapacidad TipoDiscapacidad;
 
     public int getIdUsuario() {
         return IdUsuario;
@@ -58,5 +58,13 @@ public class Usuario {
     }
     public void setTelefono(String Telefono) {
         this.Telefono = Telefono;
+    }
+
+    public Integer getIdEmpresa() {
+        return IdEmpresa;
+    }
+
+    public void setIdEmpresa(Integer idEmpresa) {
+        IdEmpresa = idEmpresa;
     }
 }
