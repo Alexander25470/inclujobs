@@ -30,16 +30,23 @@ public class DataDeleteEmpresa extends AsyncTask<String, Void, String> {
             Connection con = DriverManager.getConnection(DataDB.urlMySQL, DataDB.user, DataDB.pass);
             Statement st = con.createStatement();
 
-            String query = "DELETE FROM `Ofertas` WHERE idEmpresa = %s";
+            String query = "DELETE FROM `CVs` WHERE IdOferta IN (SELECT B.Id AS IdOferta FROM `Empresas` A INNER JOIN `Ofertas` B ON A.Id = B.IdEmpresa WHERE A.Id = %s)";
             query = String.format(query, empresa.getId());
 
             result = st.executeUpdate(query);
 
             if(result == 1){
-                query = "DELETE FROM `Empresas` WHERE id = %s";
+                query = "DELETE FROM `Ofertas` WHERE idEmpresa = %s";
                 query = String.format(query, empresa.getId());
 
                 result = st.executeUpdate(query);
+
+                if(result == 1){
+                    query = "DELETE FROM `Empresas` WHERE id = %s";
+                    query = String.format(query, empresa.getId());
+
+                    result = st.executeUpdate(query);
+                }
             }
 
             response = "Conexion exitosa";
