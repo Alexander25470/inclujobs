@@ -6,6 +6,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
@@ -14,6 +15,7 @@ import android.widget.Toast;
 
 import com.example.inclujobs.R;
 import com.example.inclujobs.conexion.DataInsertEmpresa;
+import com.example.inclujobs.conexion.DataObtenerCiudades;
 import com.example.inclujobs.conexion.DataObtenerProvincias;
 import com.example.inclujobs.conexion.DataObtenerSectores;
 import com.example.inclujobs.databinding.ActivityRegistroEmpresaBinding;
@@ -63,10 +65,23 @@ public class registro_empresa extends AppCompatActivity {
                 ArrayList<Provincia> listaProvincias = (ArrayList<Provincia>)obj;
                 ArrayAdapter<Provincia> adapterProvincias = new ArrayAdapter<Provincia>(ctx, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, listaProvincias);
                 spProvincia.setAdapter(adapterProvincias);
+                cargarCiudades();
             }
         });
 
         task.execute();
+
+        spProvincia.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                cargarCiudades();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
 
         DataObtenerSectores task2 = new DataObtenerSectores(new ICallBack() {
             @Override
@@ -86,6 +101,20 @@ public class registro_empresa extends AppCompatActivity {
                 agregarEmpresa();
             }
         });
+    }
+
+    private void cargarCiudades(){
+        Provincia prov = (Provincia)spProvincia.getSelectedItem();
+        Context ctx = this;
+        DataObtenerCiudades task = new DataObtenerCiudades(prov.getId(), new ICallBack() {
+            @Override
+            public void function(Object obj) {
+                ArrayList<Ciudad> listaCiudades = (ArrayList<Ciudad>)obj;
+                ArrayAdapter<Ciudad> adapter = new ArrayAdapter<Ciudad>(ctx, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, listaCiudades);
+                spCiudad.setAdapter(adapter);
+            }
+        });
+        task.execute();
     }
 
     public void agregarEmpresa(){

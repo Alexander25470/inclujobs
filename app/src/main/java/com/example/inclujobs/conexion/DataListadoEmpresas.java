@@ -49,14 +49,14 @@ public class DataListadoEmpresas extends AsyncTask<String, Void, String> {
                 ciudad.setNombre(rs.getString("NombreCiudad"));
 
                 Provincia provincia = new Provincia();
-                provincia.setIdProvincia(rs.getInt("IdProvincia"));
+                provincia.setId(rs.getInt("IdProvincia"));
                 provincia.setNombre(rs.getString("NombreProvincia"));
 
                 ciudad.setProvincia(provincia);
                 empresa.setCiudad(ciudad);
 
                 Sector sector = new Sector();
-                sector.setIdSector(rs.getInt("IdCiudad"));
+                sector.setId(rs.getInt("IdCiudad"));
                 empresa.setSector(sector);
 
                 Usuario usuario = new Usuario();

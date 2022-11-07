@@ -57,9 +57,7 @@ public class DataListadoOfertas extends AsyncTask<String, Void, String> {
                 usuario.setIdUsuario(rs.getInt("IdUsuarioDuenio"));
 
                 empresa.setUsuarioDuenio(usuario);
-
                 oferta.setEmpresa(empresa);
-
 
                 listaOfertas.add(oferta);
             }

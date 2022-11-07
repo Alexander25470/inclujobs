@@ -28,4 +28,9 @@ public class Ciudad {
     int Id;
     com.example.inclujobs.entidades.Provincia Provincia;
     String Nombre;
+
+    @Override
+    public String toString() {
+        return Id +" - " + Nombre;
+    }
 }

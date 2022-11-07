@@ -37,7 +37,7 @@ public class DataObtenerProvincias extends AsyncTask<String, Void, String> {
             while(rs.next()) {
                 Provincia provincia = new Provincia();
 
-                provincia.setIdProvincia(rs.getInt("id"));
+                provincia.setId(rs.getInt("id"));
                 provincia.setNombre(rs.getString("nombre"));
 
                 listaProvincias.add(provincia);

@@ -1,15 +1,15 @@
 package com.example.inclujobs.entidades;
 
 public class Sector {
-    int IdSector;
+    int Id;
     String Nombre;
 
-    public int getIdSector() {
-        return IdSector;
+    public int getId() {
+        return Id;
     }
 
-    public void setIdSector(int idSector) {
-        IdSector = idSector;
+    public void setId(int id) {
+        Id = id;
     }
 
     public String getNombre() {
@@ -18,5 +18,10 @@ public class Sector {
 
     public void setNombre(String nombre) {
         Nombre = nombre;
+    }
+
+    @Override
+    public String toString() {
+        return Id +" - " + Nombre;
     }
 }
