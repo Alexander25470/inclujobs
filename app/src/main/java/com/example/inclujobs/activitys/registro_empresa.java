@@ -207,6 +207,7 @@ public class registro_empresa extends AppCompatActivity {
         emp.setDescripcion(txtDescripcion.getText().toString());
         emp.setUsuarioDuenio(usr);
         emp.setCiudad(ciu);
+        emp.setSector((Sector)spSector.getSelectedItem());
 
         DataInsertEmpresa task = new DataInsertEmpresa(emp, getApplicationContext());
         task.execute();

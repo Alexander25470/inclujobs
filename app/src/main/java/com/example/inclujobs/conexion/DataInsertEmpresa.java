@@ -31,20 +31,20 @@ public class DataInsertEmpresa extends AsyncTask<String, Void, String> {
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection(DataDB.urlMySQL, DataDB.user, DataDB.pass);
             Statement st = con.createStatement();
-            String query = "INSERT INTO `Usuarios`(`Nombre`, `Apellido`, `Email`, `Contrasenia`, `Telefono`) VALUES ('%s','%s','%s','%s', '%s');" +
-                    "SELECT last_insert_id();";
+            String query = "INSERT INTO `Usuarios`(`Nombre`, `Apellido`, `Email`, `Contrasenia`, `Telefono`) VALUES ('%s','%s','%s','%s', '%s');";
             query = String.format(query, empresa.getUsuarioDuenio().getNombre(), empresa.getUsuarioDuenio().getApellido(), empresa.getUsuarioDuenio().getEmail(), empresa.getUsuarioDuenio().getContra(),
                     empresa.getUsuarioDuenio().getTelefono());
-            ResultSet rs = st.executeQuery(query);
+            result = st.executeUpdate(query, Statement.RETURN_GENERATED_KEYS);
+            ResultSet rs = st.getGeneratedKeys();
 
-            while(rs.next()) {
-                idUsuario= rs.getInt("id");
+            if(rs.next()) {
+                idUsuario = rs.getInt(1);
             }
 
             query = "";
             query = "INSERT INTO `Empresas`(`IdUsuarioDuenio`, `NombreComercial`, `RazonSocial`, `CUIT`, `IdSector`, `Direccion`, `Descripcion`, `IdCiudad`) VALUES (%s,'%s','%s','%s', %s, '%s', '%s', %s)";
             query = String.format(query, idUsuario, empresa.getNombreComercial(), empresa.getRazonSocial(), empresa.getCuit(),
-                    empresa.getSector(), empresa.getDireccion(), empresa.getDescripcion(), empresa.getCiudad().getId());
+                    empresa.getSector().getId(), empresa.getDireccion(), empresa.getDescripcion(), empresa.getCiudad().getId());
             result = st.executeUpdate(query);
 
             response = "Conexion exitosa";
