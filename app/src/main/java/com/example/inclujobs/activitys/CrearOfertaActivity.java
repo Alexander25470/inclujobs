@@ -17,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class CrearOfertaActivity extends AppCompatActivity {
+    public static final int RESULT_OK = 1;
     private Oferta oferta;
     private TextView tvTituloCrear, tvDescripcionCrear, tvSalarioCrear;
     private Usuario user;
@@ -63,6 +64,9 @@ public class CrearOfertaActivity extends AppCompatActivity {
             public void function(Object obj) {
                 Toast toast = Toast.makeText(getApplicationContext(),"Se creo la oferta correctamente", Toast.LENGTH_SHORT);
                 toast.show();
+                Intent returnIntent = new Intent();
+                setResult(RESULT_OK, returnIntent);
+                finish();
             }
         });
         task.execute();
