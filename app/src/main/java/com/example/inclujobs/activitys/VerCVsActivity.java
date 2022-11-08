@@ -31,11 +31,16 @@ import java.util.ArrayList;
 public class VerCVsActivity extends AppCompatActivity {
     private ArrayList<CVListadoDTO> listaCVs = new ArrayList<CVListadoDTO>();
     private ListView lvCVs;
+    private int idOferta;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ver_cvs);
         lvCVs = findViewById(R.id.lvCVs);
+
+        Intent intent = getIntent();
+        idOferta = intent.getIntExtra("IdOferta", 0);
+
         cargarCVs();
 
         lvCVs.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -57,7 +62,7 @@ public class VerCVsActivity extends AppCompatActivity {
 
     private void cargarCVs(){
         Context ctx = this;
-        DataListadoCVs task = new DataListadoCVs(new ICallBack() {
+        DataListadoCVs task = new DataListadoCVs(idOferta, new ICallBack() {
             @Override
             public void function(Object obj) {
                 listaCVs = (ArrayList<CVListadoDTO>)obj;
