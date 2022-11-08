@@ -1,6 +1,8 @@
 package com.example.inclujobs.activitys;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.inclujobs.MainActivity;
 import com.example.inclujobs.R;
 import com.example.inclujobs.conexion.DataInsertOferta;
 import com.example.inclujobs.conexion.DataUpdateOferta;
@@ -15,26 +17,32 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.Button;
+
 
 public class CrearOfertaActivity extends AppCompatActivity {
     public static final int RESULT_OK = 1;
     private Oferta oferta;
     private TextView tvTituloCrear, tvDescripcionCrear, tvSalarioCrear;
     private Usuario user;
-
+    private Button CancelarOferta;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_crear_oferta);
         oferta = new Oferta();
         user = UserHelper.getUser(this);
-
         tvTituloCrear = findViewById(R.id.tvTituloCrear);
         tvDescripcionCrear = findViewById(R.id.tvDescripcionCrear);
         tvSalarioCrear = findViewById(R.id.tvSalarioCrear);
-
+        CancelarOferta = findViewById(R.id.btnCancelarCrear);
     }
 
+    public void CancelarOferta(View v){
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+    }
     public void crearOferta(View view){
 
         if( tvTituloCrear.getText().toString() == null || tvTituloCrear.getText().toString().isEmpty()){
