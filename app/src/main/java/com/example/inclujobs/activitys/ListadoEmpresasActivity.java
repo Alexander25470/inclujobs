@@ -26,7 +26,7 @@ import java.util.ArrayList;
 public class ListadoEmpresasActivity extends AppCompatActivity {
     private ListView lvEmpresas;
     private ArrayList<Empresa> listaEmpresas = new ArrayList<Empresa>();
-    private TextView tvUsuarioTB; // ToolBar Listado Ofertas
+    private TextView tvUsuarioTB, txtEmpresa, txtLugar, txtArea; // ToolBar Listado Ofertas
     private Button btnPublicarOfertaTB;
     private Usuario user;
     private final int REQUEST_LOGIN = 1;
@@ -38,6 +38,9 @@ public class ListadoEmpresasActivity extends AppCompatActivity {
         setContentView(R.layout.activity_listado_empresas);
         lvEmpresas = findViewById(R.id.lvEmpresas);
         tvUsuarioTB = findViewById(R.id.tvUsuarioTB); // ToolBar Listado Ofertas
+        txtEmpresa = findViewById(R.id.txtNombreEmpresaFiltro);
+        txtLugar = findViewById(R.id.txtLugarFiltro);
+        txtArea = findViewById(R.id.txtAreaFiltro);
         btnPublicarOfertaTB = findViewById(R.id.btnPublicarOfertaTB); // ToolBar Listado Ofertas
 
         user = UserHelper.getUser(this);
@@ -96,7 +99,20 @@ public class ListadoEmpresasActivity extends AppCompatActivity {
                 EmpresaAdapter adapter = new EmpresaAdapter(ctx, listaEmpresas);
                 lvEmpresas.setAdapter(adapter);
             }
-        });
+        }, false, null, null, null);
+        task.execute();
+    }
+
+    public void filtrarEmpresas(View v){
+        Context ctx = this;
+        DataListadoEmpresas task = new DataListadoEmpresas(new ICallBack() {
+            @Override
+            public void function(Object obj) {
+                listaEmpresas = (ArrayList<Empresa>)obj;
+                EmpresaAdapter adapter = new EmpresaAdapter(ctx, listaEmpresas);
+                lvEmpresas.setAdapter(adapter);
+            }
+        }, true, txtEmpresa.getText().toString(), txtLugar.getText().toString(), txtArea.getText().toString());
         task.execute();
     }
 }
