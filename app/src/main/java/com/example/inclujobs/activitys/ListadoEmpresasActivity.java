@@ -99,7 +99,7 @@ public class ListadoEmpresasActivity extends AppCompatActivity {
                 EmpresaAdapter adapter = new EmpresaAdapter(ctx, listaEmpresas);
                 lvEmpresas.setAdapter(adapter);
             }
-        }, false, null, null, null);
+        }, null, null, null);
         task.execute();
     }
 
@@ -112,7 +112,7 @@ public class ListadoEmpresasActivity extends AppCompatActivity {
                 EmpresaAdapter adapter = new EmpresaAdapter(ctx, listaEmpresas);
                 lvEmpresas.setAdapter(adapter);
             }
-        }, true, txtEmpresa.getText().toString(), txtLugar.getText().toString(), txtArea.getText().toString());
+        }, txtEmpresa.getText().toString(), txtLugar.getText().toString(), txtArea.getText().toString());
         task.execute();
     }
 }

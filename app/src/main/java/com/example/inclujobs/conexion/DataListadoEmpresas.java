@@ -19,12 +19,10 @@ import java.util.ArrayList;
 public class DataListadoEmpresas extends AsyncTask<String, Void, String> {
     private static ArrayList<Empresa> listaEmpresas = new ArrayList<Empresa>();
     private ICallBack callBack;
-    private boolean filtro;
     private String nombreEmpresa, lugar, sector;
 
-    public DataListadoEmpresas(ICallBack callBack, boolean fil, String nombre, String lug, String sec){
+    public DataListadoEmpresas(ICallBack callBack, String nombre, String lug, String sec){
         this.callBack = callBack;
-        this.filtro = fil;
         this.nombreEmpresa = nombre;
         this.lugar = lug;
         this.sector = sec;
