@@ -5,7 +5,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.inclujobs.DTOs.CVDTO;
 import com.example.inclujobs.R;
+import com.example.inclujobs.adapters.OfertaAdapter;
 import com.example.inclujobs.conexion.DataInsertCV;
+import com.example.inclujobs.conexion.DataInsertOferta;
+import com.example.inclujobs.conexion.DataListadoOfertas;
+import com.example.inclujobs.conexion.DataVerificarCV;
 import com.example.inclujobs.entidades.Oferta;
 import com.example.inclujobs.entidades.Usuario;
 import com.example.inclujobs.helpers.ICallBack;
@@ -29,6 +33,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 
 public class DetalleOfertaActivity extends AppCompatActivity {
     private TextView lblTituloOfertaDetalle, lblEmpresaOfertaDetalle, lblDescripcionOfertaDetalle, lblSalarioOfertaDetalle;
@@ -44,6 +49,7 @@ public class DetalleOfertaActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detalle_oferta);
+        user = UserHelper.getUser(this);
 
         lblTituloOfertaDetalle = findViewById(R.id.lblTituloOfertaDetalle);
         lblEmpresaOfertaDetalle = findViewById(R.id.lblEmpresaOfertaDetalle);
@@ -56,7 +62,7 @@ public class DetalleOfertaActivity extends AppCompatActivity {
         tvUsuarioTB = findViewById(R.id.tvUsuarioTB); // ToolBar Listado
         btnPublicarOfertaTB = findViewById(R.id.btnPublicarOfertaTB); // ToolBar
 
-        user = UserHelper.getUser(this);
+
         validarBotonesToolBar();
 
         Intent intent = getIntent();
@@ -82,6 +88,7 @@ public class DetalleOfertaActivity extends AppCompatActivity {
             btnVerCvs.setVisibility(View.GONE);
         }
 
+        verificarCvEnviado(oferta.getId(), user.getIdUsuario());
     }
 
     public void modificarOferta(View v){
@@ -151,6 +158,7 @@ public class DetalleOfertaActivity extends AppCompatActivity {
         DataInsertCV task = new DataInsertCV(cv, new ICallBack() {
             @Override
             public void function(Object obj) {
+                btnAdjuntarCv.setEnabled(false);
                 Toast toast = Toast.makeText(ctx,"CV ENVIADO", Toast.LENGTH_SHORT);
                 toast.show();
             }
@@ -224,6 +232,21 @@ public class DetalleOfertaActivity extends AppCompatActivity {
             Intent intent = new Intent(this, CrearOfertaActivity.class);
             startActivityForResult(intent, REQUEST_PUBLICAR_OFERTA);
         }
+    }
+
+    private void verificarCvEnviado(int IdOferta, int IdUsuario){
+        DataVerificarCV task = new DataVerificarCV(new ICallBack() {
+            @Override
+            public void function(Object obj) {
+                boolean verificacion = (boolean)obj;
+                if(verificacion){
+                    btnAdjuntarCv.setEnabled(false);
+                }else{
+                    btnAdjuntarCv.setEnabled(true);
+                }
+            }
+        }, IdOferta, IdUsuario);
+        task.execute();
     }
 
 }
