@@ -11,6 +11,7 @@ import com.example.inclujobs.helpers.ICallBack;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -31,22 +32,33 @@ public class DataListadoEmpresas extends AsyncTask<String, Void, String> {
 
     protected String doInBackground(String... urls) {
         String response = "";
-
+        listaEmpresas = new ArrayList<Empresa>();
         try {
 
+            if(nombreEmpresa == null){
+                nombreEmpresa = "";
+            }
+            if(lugar == null){
+                lugar = "";
+            }
+            if(sector == null){
+                sector = "";
+            }
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection(DataDB.urlMySQL, DataDB.user, DataDB.pass);
-            Statement st = con.createStatement();
-            String query = "";
 
-            if(filtro){
-                query = "SELECT emp.*, ciu.Nombre NombreCiudad, prov.Id IdProvincia, prov.Nombre NombreProvincia FROM Empresas emp INNER JOIN Ciudades ciu ON emp.IdCiudad = ciu.Id INNER JOIN Provincias prov ON ciu.IdProvincia = prov.Id INNER JOIN Sectores sec ON emp.IdSector = sec.Id " +
-                        "WHERE emp.RazonSocial LIKE '%" + nombreEmpresa + "%' OR emp.NombreComercial LIKE '%" + nombreEmpresa + "%' OR ciu.Nombre LIKE '%" + lugar + "%' OR prov.Nombre LIKE '%" + lugar + "%' OR sec.Nombre LIKE '%" + sector + "%'"; // filtrado de empresas
-            }else{
-                query = "SELECT emp.*, ciu.Nombre NombreCiudad, prov.Id IdProvincia, prov.Nombre NombreProvincia FROM Empresas emp INNER JOIN Ciudades ciu ON emp.IdCiudad = ciu.Id INNER JOIN Provincias prov ON ciu.IdProvincia = prov.Id";
+            String query = "SELECT emp.*, ciu.Nombre NombreCiudad, prov.Id IdProvincia, prov.Nombre NombreProvincia FROM Empresas emp INNER JOIN " +
+                    "Ciudades ciu ON emp.IdCiudad = ciu.Id INNER JOIN Provincias prov ON ciu.IdProvincia = prov.Id INNER JOIN Sectores sec ON emp.IdSector = sec.Id";
+
+            if(!nombreEmpresa.isEmpty() || !lugar.isEmpty() || !sector.isEmpty() ){
+                query += " WHERE";
+                query += " ('"+nombreEmpresa+"' = '' OR emp.RazonSocial LIKE '%"+ nombreEmpresa + "%' OR emp.NombreComercial LIKE '%"+ nombreEmpresa + "%')";
+                query += " AND ('"+lugar+"' = '' OR ciu.Nombre LIKE '%"+ lugar + "%' OR prov.Nombre LIKE '%"+ lugar + "%')";
+                query += " AND ('"+sector+"' = '' OR sec.Nombre LIKE '%"+ sector + "%')";
             }
 
-            ResultSet rs = st.executeQuery(query);
+            PreparedStatement ps = con.prepareStatement(query);
+            ResultSet rs = ps.executeQuery();
 
             while(rs.next()) {
                 Empresa empresa = new Empresa();
