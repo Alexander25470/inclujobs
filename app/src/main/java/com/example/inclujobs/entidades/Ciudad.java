@@ -1,19 +1,23 @@
 package com.example.inclujobs.entidades;
 
 public class Ciudad {
-    public int getId() {
+    private Integer Id;
+    private Provincia Provincia;
+    private String Nombre;
+
+    public Integer getId() {
         return Id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         Id = id;
     }
 
-    public com.example.inclujobs.entidades.Provincia getProvincia() {
+    public Provincia getProvincia() {
         return Provincia;
     }
 
-    public void setProvincia(com.example.inclujobs.entidades.Provincia provincia) {
+    public void setProvincia(Provincia provincia) {
         Provincia = provincia;
     }
 
@@ -25,12 +29,17 @@ public class Ciudad {
         Nombre = nombre;
     }
 
-    int Id;
-    com.example.inclujobs.entidades.Provincia Provincia;
-    String Nombre;
-
     @Override
     public String toString() {
-        return Id +" - " + Nombre;
+        String str = "";
+        if(Id == null){
+            str = Nombre;
+        } else {
+            str = Id +" - " + Nombre;
+        }
+        if(Provincia != null){
+            str += Provincia.getNombre();
+        }
+        return str;
     }
 }

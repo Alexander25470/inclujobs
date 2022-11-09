@@ -93,7 +93,7 @@ public class DetalleEmpresa extends AppCompatActivity {
                 OfertaAdapter adapter = new OfertaAdapter(ctx, listaOfertas);
                 lvOfertas.setAdapter(adapter);
             }
-        }, idEmpresa);
+        }, idEmpresa, null, "");
         task.execute();
     }
 

@@ -2,8 +2,13 @@ package com.example.inclujobs.activitys;
 
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.inclujobs.R;
+import com.example.inclujobs.adapters.EmpresaAdapter;
 import com.example.inclujobs.adapters.OfertaAdapter;
+import com.example.inclujobs.conexion.DataListadoEmpresas;
 import com.example.inclujobs.conexion.DataListadoOfertas;
+import com.example.inclujobs.conexion.DataObtenerCiudades;
+import com.example.inclujobs.entidades.Ciudad;
+import com.example.inclujobs.entidades.Empresa;
 import com.example.inclujobs.entidades.Oferta;
 import com.example.inclujobs.entidades.Usuario;
 import com.example.inclujobs.helpers.ICallBack;
@@ -17,7 +22,9 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -26,8 +33,10 @@ public class ListadoOfertasActivity extends AppCompatActivity {
     private ListView lvOfertas;
     private ArrayList<Oferta> listaOfertas = new ArrayList<Oferta>();
     private TextView tvUsuarioTBLO; // ToolBar Listado Ofertas
+    private EditText etEmpleo;
     private Button btnPublicarOfertaTBLO;
     private Usuario user;
+    private Spinner spLugares;
     private final int REQUEST_LOGIN = 1;
     private final int REQUEST_PUBLICAR_OFERTA = 2;
     @Override
@@ -37,8 +46,12 @@ public class ListadoOfertasActivity extends AppCompatActivity {
         lvOfertas = findViewById(R.id.lvOfertas);
         tvUsuarioTBLO = findViewById(R.id.tvUsuarioTBLO); // ToolBar Listado Ofertas
         btnPublicarOfertaTBLO = findViewById(R.id.btnPublicarOfertaTBLO); // ToolBar Listado Ofertas
+        spLugares = findViewById(R.id.spLugaresof);
+        etEmpleo = findViewById(R.id.etEmpleo);
+
         user = UserHelper.getUser(this);
 
+        cargarLugares();
         validarBotonesToolBar();
         cargarOfertas();
 
@@ -55,6 +68,24 @@ public class ListadoOfertasActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    private void cargarLugares(){
+        Context ctx = this;
+        DataObtenerCiudades task = new DataObtenerCiudades(null, new ICallBack() {
+            @Override
+            public void function(Object obj) {
+                ArrayList<Ciudad> ciudades = new ArrayList<>();
+                Ciudad ciu = new Ciudad();
+                ciu.setId(null);
+                ciu.setNombre("Todas");
+                ciudades.add(ciu);
+                ciudades.addAll((ArrayList<Ciudad>)obj);
+                ArrayAdapter<Ciudad> adapter = new ArrayAdapter<Ciudad>(ctx, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, ciudades);
+                spLugares.setAdapter(adapter);
+            }
+        });
+        task.execute();
     }
 
     private void validarBotonesToolBar(){
@@ -82,6 +113,20 @@ public class ListadoOfertasActivity extends AppCompatActivity {
         }
     }
 
+    public void clickBuscarOfertas(View v){
+        Context ctx = this;
+        Ciudad ciu = (Ciudad)spLugares.getSelectedItem();
+        DataListadoOfertas task = new DataListadoOfertas(new ICallBack() {
+            @Override
+            public void function(Object obj) {
+                listaOfertas = (ArrayList<Oferta>)obj;
+                OfertaAdapter adapter = new OfertaAdapter(ctx, listaOfertas);
+                lvOfertas.setAdapter(adapter);
+            }
+        }, -1, ciu.getId(), etEmpleo.getText().toString());
+        task.execute();
+    }
+
     private void cargarOfertas(){
         Context ctx = this;
         DataListadoOfertas task = new DataListadoOfertas(new ICallBack() {
@@ -91,7 +136,7 @@ public class ListadoOfertasActivity extends AppCompatActivity {
                 OfertaAdapter adapter = new OfertaAdapter(ctx, listaOfertas);
                 lvOfertas.setAdapter(adapter);
             }
-        }, -1);
+        }, -1, null, "");
         task.execute();
     }
 

@@ -18,10 +18,14 @@ public class DataListadoOfertas extends AsyncTask<String, Void, String> {
     private static ArrayList<Oferta> listaOfertas = new ArrayList<Oferta>();
     private ICallBack callBack;
     private int idEmpresa;
+    private Integer idCiudad;
+    private String empleo;
 
-    public DataListadoOfertas(ICallBack callBack, int idEmpresa){
+    public DataListadoOfertas(ICallBack callBack, int idEmpresa, Integer idCiudad, String empleo){
         this.callBack = callBack;
         this.idEmpresa = idEmpresa;
+        this.idCiudad = idCiudad;
+        this.empleo = empleo;
     }
 
     protected String doInBackground(String... urls) {
@@ -33,12 +37,31 @@ public class DataListadoOfertas extends AsyncTask<String, Void, String> {
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection(DataDB.urlMySQL, DataDB.user, DataDB.pass);
             Statement st = con.createStatement();
-            String query = "SELECT o.Id, o.Titulo, o.Salario, o.Descripcion, o.IdEmpresa, emp.NombreComercial, emp.IdUsuarioDuenio FROM Ofertas o INNER JOIN Empresas emp " +
-                    "ON o.IdEmpresa = emp.Id";
+            String query = "SELECT o.Id, o.Titulo, o.Salario, o.Descripcion, o.IdEmpresa, emp.NombreComercial, emp.IdUsuarioDuenio FROM " +
+                    "Ofertas o INNER JOIN Empresas emp ON o.IdEmpresa = emp.Id";
 
-            if(idEmpresa != -1){
-                query += " WHERE IdEmpresa = " + idEmpresa;
+            if(idEmpresa != -1 || idCiudad != null || !empleo.isEmpty()){
+                query += " WHERE";
+                boolean aplicoUnFilto = false;
+                if(idEmpresa != -1){
+                    query += " IdEmpresa = " + idEmpresa;
+                    aplicoUnFilto = true;
+                }
+                if(idCiudad != null){
+                    if(aplicoUnFilto){
+                        query += " AND";
+                    }
+                    query += " emp.IdCiudad = " + idCiudad;
+                    aplicoUnFilto = true;
+                }
+                if(!empleo.isEmpty()){
+                    if(aplicoUnFilto){
+                        query += " AND";
+                    }
+                    query += " (o.Titulo like '%"+empleo+"%' OR o.Descripcion like '%"+empleo+"%')";
+                }
             }
+
 
             ResultSet rs = st.executeQuery(query);
 
