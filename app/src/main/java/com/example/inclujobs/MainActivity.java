@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.EditText;
 
 import com.example.inclujobs.activitys.ListadoEmpresasActivity;
 import com.example.inclujobs.activitys.ListadoOfertasActivity;
@@ -25,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
     private Button btnBuscarEmpresas;
     private Usuario user;
     private String busquedaSeleccionada;
+    private EditText etLugar;
     private final int LOGINRESULT = 5;
 
     @Override
@@ -38,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
         btnBuscarLugar = (Button) findViewById(R.id.btnBuscarLugar);
         btnBuscarEmpleos = (Button) findViewById(R.id.btnEmpleos);
         btnBuscarEmpresas = (Button) findViewById(R.id.btnEmpresas);
+        etLugar = findViewById(R.id.etLugar);
 
         seleccionarBusqueda("empleos");
 
@@ -77,6 +80,9 @@ public class MainActivity extends AppCompatActivity {
     public void openBuscar(View v){
         Class<?> viewToOpen = busquedaSeleccionada == "empleos"? ListadoOfertasActivity.class : ListadoEmpresasActivity.class;
         Intent intent = new Intent(this, viewToOpen);
+        String lugar = etLugar.getText().toString();
+        intent.putExtra("lugar", lugar);
+        etLugar.setText("");
         startActivity(intent);
     }
 

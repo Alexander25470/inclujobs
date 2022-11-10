@@ -5,6 +5,7 @@ import com.example.inclujobs.R;
 import com.example.inclujobs.adapters.EmpresaAdapter;
 import com.example.inclujobs.conexion.DataListadoEmpresas;
 import com.example.inclujobs.entidades.Empresa;
+import com.example.inclujobs.entidades.Oferta;
 import com.example.inclujobs.entidades.Usuario;
 import com.example.inclujobs.helpers.ICallBack;
 import com.example.inclujobs.helpers.UserHelper;
@@ -43,10 +44,14 @@ public class ListadoEmpresasActivity extends AppCompatActivity {
         txtArea = findViewById(R.id.txtAreaFiltro);
         btnPublicarOfertaTB = findViewById(R.id.btnPublicarOfertaTB); // ToolBar Listado Ofertas
 
+        Intent intent = getIntent();
+        String lugarInicial = intent.getStringExtra("lugar");
+        txtLugar.setText(lugarInicial);
+
         user = UserHelper.getUser(this);
 
         validarBotonesToolBar();
-        cargarEmpresas();
+        cargarEmpresas(lugarInicial);
         Context ctx = this;
         lvEmpresas.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -88,7 +93,7 @@ public class ListadoEmpresasActivity extends AppCompatActivity {
         }
     }
 
-    private void cargarEmpresas(){
+    private void cargarEmpresas(String lugar){
         Context ctx = this;
         DataListadoEmpresas task = new DataListadoEmpresas(new ICallBack() {
             @Override
@@ -99,7 +104,7 @@ public class ListadoEmpresasActivity extends AppCompatActivity {
                 EmpresaAdapter adapter = new EmpresaAdapter(ctx, listaEmpresas);
                 lvEmpresas.setAdapter(adapter);
             }
-        }, null, null, null);
+        }, null, lugar, null);
         task.execute();
     }
 
