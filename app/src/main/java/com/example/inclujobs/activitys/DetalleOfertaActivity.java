@@ -88,7 +88,9 @@ public class DetalleOfertaActivity extends AppCompatActivity {
             btnVerCvs.setVisibility(View.GONE);
         }
 
-        verificarCvEnviado(oferta.getId(), user.getIdUsuario());
+        if(user != null){
+            verificarCvEnviado(oferta.getId());
+        }
     }
 
     public void modificarOferta(View v){
@@ -234,7 +236,8 @@ public class DetalleOfertaActivity extends AppCompatActivity {
         }
     }
 
-    private void verificarCvEnviado(int IdOferta, int IdUsuario){
+    private void verificarCvEnviado(int IdOferta){
+        int idUsuario = user.getIdUsuario();
         DataVerificarCV task = new DataVerificarCV(new ICallBack() {
             @Override
             public void function(Object obj) {
@@ -245,7 +248,7 @@ public class DetalleOfertaActivity extends AppCompatActivity {
                     btnAdjuntarCv.setEnabled(true);
                 }
             }
-        }, IdOferta, IdUsuario);
+        }, IdOferta, idUsuario);
         task.execute();
     }
 
