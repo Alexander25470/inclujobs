@@ -38,7 +38,7 @@ public class DataListadoCVs extends AsyncTask<String, Void, String> {
             Connection con = DriverManager.getConnection(DataDB.urlMySQL, DataDB.user, DataDB.pass);
 
             String query = "SELECT cv.*, td.Nombre NombreTipoDiscapacidad FROM CVs cv INNER JOIN " +
-                    "Usuarios usu ON cv.IdUsuario = usu.Id INNER JOIN" +
+                    "Usuarios usu ON cv.IdUsuario = usu.Id LEFT JOIN" +
                     " TiposDiscapacidades td on usu.IdTipoDiscapacidad = td.id " +
                     "WHERE cv.IdOferta = ?";
             PreparedStatement pst = con.prepareStatement(query);
