@@ -75,11 +75,14 @@
                     android:hint="Empleo"
                     android:inputType="textPersonName" />
 
-                <Spinner
-                    android:id="@+id/spLugaresof"
+                <EditText
+                    android:id="@+id/etLugarOf"
                     android:layout_width="match_parent"
-                    android:layout_height="46dp"
-                    android:layout_weight="1" />
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:hint="Lugar"
+                    android:inputType="textPersonName" />
 
             </LinearLayout>
 

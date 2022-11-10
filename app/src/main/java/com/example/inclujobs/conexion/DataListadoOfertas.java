@@ -18,13 +18,13 @@ public class DataListadoOfertas extends AsyncTask<String, Void, String> {
     private static ArrayList<Oferta> listaOfertas = new ArrayList<Oferta>();
     private ICallBack callBack;
     private int idEmpresa;
-    private Integer idCiudad;
+    private String lugar;
     private String empleo;
 
-    public DataListadoOfertas(ICallBack callBack, int idEmpresa, Integer idCiudad, String empleo){
+    public DataListadoOfertas(ICallBack callBack, int idEmpresa, String lugar, String empleo){
         this.callBack = callBack;
         this.idEmpresa = idEmpresa;
-        this.idCiudad = idCiudad;
+        this.lugar = lugar == null? "": lugar;
         this.empleo = empleo;
     }
 
@@ -40,18 +40,25 @@ public class DataListadoOfertas extends AsyncTask<String, Void, String> {
             String query = "SELECT o.Id, o.Titulo, o.Salario, o.Descripcion, o.IdEmpresa, emp.NombreComercial, emp.IdUsuarioDuenio FROM " +
                     "Ofertas o INNER JOIN Empresas emp ON o.IdEmpresa = emp.Id";
 
-            if(idEmpresa != -1 || idCiudad != null || !empleo.isEmpty()){
+            if(idEmpresa != -1 || !lugar.isEmpty() || !empleo.isEmpty()){
                 query += " WHERE";
                 boolean aplicoUnFilto = false;
                 if(idEmpresa != -1){
                     query += " IdEmpresa = " + idEmpresa;
                     aplicoUnFilto = true;
                 }
-                if(idCiudad != null){
+                /*if(idCiudad != null){
                     if(aplicoUnFilto){
                         query += " AND";
                     }
                     query += " emp.IdCiudad = " + idCiudad;
+                    aplicoUnFilto = true;
+                }*/
+                if(!empleo.isEmpty()){
+                    if(aplicoUnFilto){
+                        query += " AND";
+                    }
+                    query += " emp.Nombre LIKE '%"+lugar+"%'";
                     aplicoUnFilto = true;
                 }
                 if(!empleo.isEmpty()){

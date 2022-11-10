@@ -36,7 +36,8 @@ public class ListadoOfertasActivity extends AppCompatActivity {
     private EditText etEmpleo;
     private Button btnPublicarOfertaTBLO;
     private Usuario user;
-    private Spinner spLugares;
+    //private Spinner spLugares;
+    private EditText etLugares;
     private final int REQUEST_LOGIN = 1;
     private final int REQUEST_PUBLICAR_OFERTA = 2;
     @Override
@@ -46,12 +47,17 @@ public class ListadoOfertasActivity extends AppCompatActivity {
         lvOfertas = findViewById(R.id.lvOfertas);
         tvUsuarioTBLO = findViewById(R.id.tvUsuarioTBLO); // ToolBar Listado Ofertas
         btnPublicarOfertaTBLO = findViewById(R.id.btnPublicarOfertaTBLO); // ToolBar Listado Ofertas
-        spLugares = findViewById(R.id.spLugaresof);
+        //spLugares = findViewById(R.id.spLugaresof);
         etEmpleo = findViewById(R.id.etEmpleo);
+        etLugares = findViewById(R.id.etLugarOf);
+
+        Intent intent = getIntent();
+        String lugarInicial = intent.getStringExtra("lugar");
+        etLugares.setText(lugarInicial);
 
         user = UserHelper.getUser(this);
 
-        cargarLugares();
+        //cargarLugares();
         validarBotonesToolBar();
         cargarOfertas();
 
@@ -70,7 +76,7 @@ public class ListadoOfertasActivity extends AppCompatActivity {
         });
     }
 
-    private void cargarLugares(){
+    /*private void cargarLugares(){
         Context ctx = this;
         DataObtenerCiudades task = new DataObtenerCiudades(null, new ICallBack() {
             @Override
@@ -86,7 +92,7 @@ public class ListadoOfertasActivity extends AppCompatActivity {
             }
         });
         task.execute();
-    }
+    }*/
 
     private void validarBotonesToolBar(){
         if(user == null){
@@ -115,7 +121,7 @@ public class ListadoOfertasActivity extends AppCompatActivity {
 
     public void clickBuscarOfertas(View v){
         Context ctx = this;
-        Ciudad ciu = (Ciudad)spLugares.getSelectedItem();
+        //Ciudad ciu = (Ciudad)spLugares.getSelectedItem();
         DataListadoOfertas task = new DataListadoOfertas(new ICallBack() {
             @Override
             public void function(Object obj) {
@@ -123,7 +129,7 @@ public class ListadoOfertasActivity extends AppCompatActivity {
                 OfertaAdapter adapter = new OfertaAdapter(ctx, listaOfertas);
                 lvOfertas.setAdapter(adapter);
             }
-        }, -1, ciu.getId(), etEmpleo.getText().toString());
+        }, -1, etLugares.getText().toString(), etEmpleo.getText().toString());
         task.execute();
     }
 
