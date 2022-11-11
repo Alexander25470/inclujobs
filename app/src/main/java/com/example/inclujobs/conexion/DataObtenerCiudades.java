@@ -24,11 +24,9 @@ public class DataObtenerCiudades extends AsyncTask<String, Void, String> {
 
     protected String doInBackground(String... urls) {
         String response = "";
-
         listaCiudades = new ArrayList<Ciudad>();
 
         try {
-
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection(DataDB.urlMySQL, DataDB.user, DataDB.pass);
             Statement st = con.createStatement();
