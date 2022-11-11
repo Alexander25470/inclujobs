@@ -3,6 +3,7 @@ package com.example.inclujobs.activitys;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -12,6 +13,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.inclujobs.MainActivity;
 import com.example.inclujobs.R;
 import com.example.inclujobs.conexion.DataInsertUsuario;
 import com.example.inclujobs.conexion.DataObtenerTiposDiscapacidades;
@@ -61,55 +63,65 @@ public class RegistroUsuario extends AppCompatActivity {
         btnRegistrarseUsuario.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                agregarUsuario();
-            }
+                if(agregarUsuario()){AbrirMain(btnRegistrarseUsuario);};}
         });
     }
 
-    public void agregarUsuario(){
+    public boolean agregarUsuario() {
         Usuario usr = new Usuario();
         TipoDiscapacidad tipoDiscapacidad = new TipoDiscapacidad();
 
-        if( txtNombre.getText().toString() == null || txtNombre.getText().toString().isEmpty()){
-            Toast toast = Toast.makeText(getApplicationContext(),"Debe ingresar un Nombre", Toast.LENGTH_SHORT);
+        if(txtNombre.length()<3){
+            Toast toast = Toast.makeText(getApplicationContext(), "Debe ingresar un Nombre valido", Toast.LENGTH_SHORT);
             toast.show();
-            return;
+            return false;
+        }
+        if(txtApellido.length()<3){
+            Toast toast = Toast.makeText(getApplicationContext(), "Debe ingresar un Apellido valido", Toast.LENGTH_SHORT);
+            toast.show();
+            return false;
         }
 
-        if( txtApellido.getText().toString() == null || txtApellido.getText().toString().isEmpty()){
-            Toast toast = Toast.makeText(getApplicationContext(),"Debe ingresar un Apellido", Toast.LENGTH_SHORT);
+        if (txtNombre.getText().toString() == null || txtNombre.getText().toString().isEmpty()) {
+            Toast toast = Toast.makeText(getApplicationContext(), "Debe ingresar un Nombre", Toast.LENGTH_SHORT);
             toast.show();
-            return;
+            return false;
         }
 
-        if( txtEmail.getText().toString() == null || txtEmail.getText().toString().isEmpty()){
-            Toast toast = Toast.makeText(getApplicationContext(),"Debe ingresar un Email", Toast.LENGTH_SHORT);
+        if (txtApellido.getText().toString() == null || txtApellido.getText().toString().isEmpty()) {
+            Toast toast = Toast.makeText(getApplicationContext(), "Debe ingresar un Apellido", Toast.LENGTH_SHORT);
             toast.show();
-            return;
+            return false;
         }
 
-        if( txtContra.getText().toString() == null || txtContra.getText().toString().isEmpty()){
-            Toast toast = Toast.makeText(getApplicationContext(),"Debe ingresar una Contraseña", Toast.LENGTH_SHORT);
+        if (txtEmail.getText().toString() == null || txtEmail.getText().toString().isEmpty()) {
+            Toast toast = Toast.makeText(getApplicationContext(), "Debe ingresar un Email", Toast.LENGTH_SHORT);
             toast.show();
-            return;
-        }else{
-            if( txtRepetirContra.getText().toString() == null || txtRepetirContra.getText().toString().isEmpty()){
-                Toast toast = Toast.makeText(getApplicationContext(),"Debe repetir la Contraseña", Toast.LENGTH_SHORT);
+            return false;
+        }
+
+        if (txtContra.getText().toString() == null || txtContra.getText().toString().isEmpty()) {
+            Toast toast = Toast.makeText(getApplicationContext(), "Debe ingresar una Contraseña", Toast.LENGTH_SHORT);
+            toast.show();
+            return false;
+        } else {
+            if (txtRepetirContra.getText().toString() == null || txtRepetirContra.getText().toString().isEmpty()) {
+                Toast toast = Toast.makeText(getApplicationContext(), "Debe repetir la Contraseña", Toast.LENGTH_SHORT);
                 toast.show();
-                return;
-            }else{
-                if( !txtContra.getText().toString().equals(txtRepetirContra.getText().toString())){
-                    Toast toast = Toast.makeText(getApplicationContext(),"Las contraseñas no coinciden", Toast.LENGTH_SHORT);
+                return false;
+            } else {
+                if (!txtContra.getText().toString().equals(txtRepetirContra.getText().toString())) {
+                    Toast toast = Toast.makeText(getApplicationContext(), "Las contraseñas no coinciden", Toast.LENGTH_SHORT);
                     toast.show();
-                    return;
+                    return false;
                 }
             }
         }
 
-        if( txtTelefono.getText().toString() == null || txtTelefono.getText().toString().isEmpty()){
-            Toast toast = Toast.makeText(getApplicationContext(),"Debe ingresar un Teléfono", Toast.LENGTH_SHORT);
+        if (txtTelefono.getText().toString() == null || txtTelefono.getText().toString().isEmpty()) {
+            Toast toast = Toast.makeText(getApplicationContext(), "Debe ingresar un Teléfono", Toast.LENGTH_SHORT);
             toast.show();
-            return;
+            return false;
         }
 
         tipoDiscapacidad.setId(((TipoDiscapacidad) spTipoDiscapacidad.getSelectedItem()).getId());
@@ -122,6 +134,11 @@ public class RegistroUsuario extends AppCompatActivity {
 
         DataInsertUsuario task = new DataInsertUsuario(usr, getApplicationContext());
         task.execute();
+        return true;
+    }
 
+    public void  AbrirMain(View view){
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
     }
 }
