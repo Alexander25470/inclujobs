@@ -67,7 +67,7 @@ public class RegistroUsuario extends AppCompatActivity {
             };
         });
 
-        btnCancelarRegistrarseUsuario = findViewById(R.id.btnRegistrarseUsuario);
+        btnCancelarRegistrarseUsuario = findViewById(R.id.btnCancelarRegistrarseUsuario);
         btnCancelarRegistrarseUsuario.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
