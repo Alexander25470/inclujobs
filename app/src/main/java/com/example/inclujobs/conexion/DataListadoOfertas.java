@@ -38,7 +38,8 @@ public class DataListadoOfertas extends AsyncTask<String, Void, String> {
             Connection con = DriverManager.getConnection(DataDB.urlMySQL, DataDB.user, DataDB.pass);
             Statement st = con.createStatement();
             String query = "SELECT o.Id, o.Titulo, o.Salario, o.Descripcion, o.IdEmpresa, emp.NombreComercial, emp.IdUsuarioDuenio FROM " +
-                    "Ofertas o INNER JOIN Empresas emp ON o.IdEmpresa = emp.Id";
+                    "Ofertas o INNER JOIN Empresas emp ON o.IdEmpresa = emp.Id INNER JOIN Ciudades ciu ON emp.IdCiudad = ciu.id " +
+                    "INNER JOIN Provincias prov ON ciu.IdProvincia = prov.Id";
 
             if(idEmpresa != -1 || !lugar.isEmpty() || !empleo.isEmpty()){
                 query += " WHERE";
@@ -58,7 +59,7 @@ public class DataListadoOfertas extends AsyncTask<String, Void, String> {
                     if(aplicoUnFilto){
                         query += " AND";
                     }
-                    query += " emp.Nombre LIKE '%"+lugar+"%'";
+                    query += " ciu.Nombre LIKE '%"+lugar+"%' OR prov.Nombre LIKE '%"+lugar+"%'";
                     aplicoUnFilto = true;
                 }
                 if(!empleo.isEmpty()){
