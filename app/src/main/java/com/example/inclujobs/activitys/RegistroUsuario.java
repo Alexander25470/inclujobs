@@ -131,12 +131,25 @@ public class RegistroUsuario extends AppCompatActivity {
         usr.setContra(txtContra.getText().toString());
         usr.setTelefono(txtTelefono.getText().toString());
         usr.setTipoDiscapacidad(tipoDiscapacidad);
-        DataInsertUsuario task = new DataInsertUsuario(usr, getApplicationContext());
+
+        Context ctx = this;
+        DataInsertUsuario task = new DataInsertUsuario(usr, new ICallBack() {
+            @Override
+            public void function(Object obj) {
+                if((int)obj == 1){
+                    Toast toast = Toast.makeText(ctx,"Usuario registrado", Toast.LENGTH_SHORT);
+                    toast.show();
+
+                    finish();
+                } else {
+                    Toast toast = Toast.makeText(ctx,"Error al registrar Usuario", Toast.LENGTH_SHORT);
+                    toast.show();
+                }
+
+            }
+        });
         task.execute();
     }
 
-    public void  AbrirMain(View view){
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
-    }
+
 }

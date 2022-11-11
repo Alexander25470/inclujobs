@@ -5,6 +5,7 @@ import android.os.AsyncTask;
 import android.widget.Toast;
 
 import com.example.inclujobs.entidades.Usuario;
+import com.example.inclujobs.helpers.ICallBack;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -12,14 +13,14 @@ import java.sql.Statement;
 
 public class DataInsertUsuario extends AsyncTask<String, Void, String> {
     private Usuario usuario;
-    private Context context;
+    private ICallBack callBack;
 
     private int result;
     private static String result2;
 
-    public DataInsertUsuario(Usuario usr, Context ctx){
+    public DataInsertUsuario(Usuario usr, ICallBack callBack){
         usuario = usr;
-        context = ctx;
+        this.callBack = callBack;
     }
 
     protected String doInBackground(String... urls) {
@@ -45,13 +46,6 @@ public class DataInsertUsuario extends AsyncTask<String, Void, String> {
 
     @Override
     protected void onPostExecute(String response) {
-        String mensaje = "";
-        if(result == 1){
-            mensaje = "Usuario registrado";
-        } else {
-            mensaje = "Error al registrar Usuario";
-        }
-        Toast toast = Toast.makeText(context,mensaje, Toast.LENGTH_SHORT);
-        toast.show();
+        callBack.function(result);
     }
 }
