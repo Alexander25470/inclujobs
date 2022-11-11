@@ -209,7 +209,22 @@ public class registro_empresa extends AppCompatActivity {
         emp.setCiudad(ciu);
         emp.setSector((Sector)spSector.getSelectedItem());
 
-        DataInsertEmpresa task = new DataInsertEmpresa(emp, getApplicationContext());
+        Context ctx = this;
+        DataInsertEmpresa task = new DataInsertEmpresa(emp, new ICallBack() {
+            @Override
+            public void function(Object obj) {
+                if((int)obj == 1){
+                    Toast toast = Toast.makeText(ctx,"Empresa registrada", Toast.LENGTH_SHORT);
+                    toast.show();
+
+                    finish();
+                } else {
+                    Toast toast = Toast.makeText(ctx,"Error al registrar Empresa", Toast.LENGTH_SHORT);
+                    toast.show();
+                }
+
+            }
+        });
         task.execute();
 
     }
