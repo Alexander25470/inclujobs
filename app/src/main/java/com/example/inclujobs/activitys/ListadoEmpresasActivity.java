@@ -32,6 +32,7 @@ public class ListadoEmpresasActivity extends AppCompatActivity {
     private Usuario user;
     private final int REQUEST_LOGIN = 1;
     private final int REQUEST_PUBLICAR_OFERTA = 2;
+    private final int REQUEST_DETALLE = 3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,7 +63,7 @@ public class ListadoEmpresasActivity extends AppCompatActivity {
 
                 Intent intent = new Intent(ctx, DetalleEmpresa.class);
                 intent.putExtra("empresa", empresaJson);
-                startActivity(intent);
+                startActivityForResult(intent, REQUEST_DETALLE);
             }
         });
 
@@ -119,5 +120,28 @@ public class ListadoEmpresasActivity extends AppCompatActivity {
             }
         }, txtEmpresa.getText().toString(), txtLugar.getText().toString(), txtArea.getText().toString());
         task.execute();
+    }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        //if(requestCode == REQUEST_LOGIN)
+        //{
+        //if(resultCode == LoginActivity.RESULT_OK)
+        //{
+        user = UserHelper.getUser(this); // porque puede iniciar sesion desde el detalle
+        validarBotonesToolBar();
+        //}
+        //}
+        if (requestCode == REQUEST_PUBLICAR_OFERTA || (requestCode == REQUEST_DETALLE && resultCode == DetalleEmpresa.RESULT_ACTUALIZAR_LISTADO) )
+        {
+            Intent intent = getIntent();
+            String lugarInicial = intent.getStringExtra("lugar");
+            txtLugar.setText(lugarInicial);
+            cargarEmpresas(lugarInicial);
+        }
+
     }
 }

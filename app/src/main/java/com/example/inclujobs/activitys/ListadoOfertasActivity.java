@@ -39,6 +39,7 @@ public class ListadoOfertasActivity extends AppCompatActivity {
     //private Spinner spLugares;
     private EditText etLugares;
     private final int REQUEST_LOGIN = 1;
+    private final int REQUEST_DETALLE = 1;
     private final int REQUEST_PUBLICAR_OFERTA = 2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,7 +72,7 @@ public class ListadoOfertasActivity extends AppCompatActivity {
 
                 Intent intent = new Intent(ctx, DetalleOfertaActivity.class);
                 intent.putExtra("oferta", ofertaJson);
-                startActivity(intent);
+                startActivityForResult(intent, REQUEST_DETALLE);
             }
         });
     }
@@ -150,14 +151,15 @@ public class ListadoOfertasActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if(requestCode == REQUEST_LOGIN)
-        {
-            if(resultCode == LoginActivity.RESULT_OK)
-            {
-                user = UserHelper.getUser(this);
+        //if(requestCode == REQUEST_LOGIN)
+        //{
+            //if(resultCode == LoginActivity.RESULT_OK)
+            //{
+                user = UserHelper.getUser(this); // porque puede iniciar sesion desde el detalle
                 validarBotonesToolBar();
-            }
-        } else if (requestCode == REQUEST_PUBLICAR_OFERTA)
+            //}
+        //}
+        if (requestCode == REQUEST_PUBLICAR_OFERTA || (requestCode == REQUEST_DETALLE && resultCode == DetalleEmpresa.RESULT_ACTUALIZAR_LISTADO) )
         {
             cargarOfertas();
         }

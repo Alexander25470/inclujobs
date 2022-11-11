@@ -5,6 +5,7 @@ import android.os.AsyncTask;
 import android.widget.Toast;
 
 import com.example.inclujobs.entidades.Empresa;
+import com.example.inclujobs.helpers.ICallBack;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -12,14 +13,14 @@ import java.sql.Statement;
 
 public class DataDeleteEmpresa extends AsyncTask<String, Void, String> {
     private Empresa empresa;
-    private Context context;
+    private ICallBack callBack;
 
     private int result;
     private static String result2;
 
-    public DataDeleteEmpresa(Empresa emp, Context ctx){
+    public DataDeleteEmpresa(Empresa emp, ICallBack cbk){
         empresa = emp;
-        context = ctx;
+        callBack = cbk;
     }
 
     protected String doInBackground(String... urls) {
@@ -60,15 +61,6 @@ public class DataDeleteEmpresa extends AsyncTask<String, Void, String> {
 
     @Override
     protected void onPostExecute(String response) {
-        String mensaje = "";
-
-        if(result == 1){
-            mensaje = "Empresa eliminada";
-        } else {
-            mensaje = "Error al eliminar Empresa";
-        }
-
-        Toast toast = Toast.makeText(context,mensaje, Toast.LENGTH_SHORT);
-        toast.show();
+        callBack.function(result);
     }
 }

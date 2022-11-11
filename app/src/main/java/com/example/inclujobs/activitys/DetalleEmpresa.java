@@ -21,6 +21,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -34,6 +35,9 @@ public class DetalleEmpresa extends AppCompatActivity {
     private Button btnPublicarOfertaTB;
     private final int REQUEST_LOGIN = 1;
     private final int REQUEST_PUBLICAR_OFERTA = 2;
+    private final int REQUEST_MODIFICAR_EMPRESA = 3;
+    public static final int RESULT_ACTUALIZAR_LISTADO = 2;
+    private Empresa empresa;
 
 
     @Override
@@ -51,7 +55,7 @@ public class DetalleEmpresa extends AppCompatActivity {
 
         Intent intent = getIntent();
         Gson gson = new Gson();
-        Empresa empresa = gson.fromJson(intent.getStringExtra("empresa"), Empresa.class);
+        empresa = gson.fromJson(intent.getStringExtra("empresa"), Empresa.class);
 
         user = UserHelper.getUser(this);
         validarBotonesToolBar();
@@ -71,7 +75,7 @@ public class DetalleEmpresa extends AppCompatActivity {
 
                 Intent intent = new Intent(ctx, ModificarEmpresaActivity.class);
                 intent.putExtra("empresa", empresaJson);
-                startActivity(intent);
+                startActivityForResult(intent, REQUEST_MODIFICAR_EMPRESA);
             }
         });
 
@@ -101,8 +105,23 @@ public class DetalleEmpresa extends AppCompatActivity {
         Empresa empresa = new Empresa();
 
         empresa.setId(idEmpresa);
+        Context ctx = this;
+        DataDeleteEmpresa task = new DataDeleteEmpresa(empresa, new ICallBack() {
+            @Override
+            public void function(Object obj) {
+                if((int)obj == 1){
+                    Toast toast = Toast.makeText(ctx, "Empresa eliminada", Toast.LENGTH_SHORT);
+                    toast.show();
+                    Intent returnIntent = new Intent();
+                    setResult(RESULT_ACTUALIZAR_LISTADO, returnIntent);
+                    finish();
+                } else {
+                    Toast toast = Toast.makeText(ctx,  "Error al eliminar Empresa", Toast.LENGTH_SHORT);
+                    toast.show();
+                }
 
-        DataDeleteEmpresa task = new DataDeleteEmpresa(empresa, getApplicationContext());
+            }
+        });
         task.execute();
     }
 
@@ -129,5 +148,23 @@ public class DetalleEmpresa extends AppCompatActivity {
             Intent intent = new Intent(this, CrearOfertaActivity.class);
             startActivityForResult(intent, REQUEST_PUBLICAR_OFERTA);
         }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode == REQUEST_PUBLICAR_OFERTA){
+            cargarOfertas(empresa.getId());
+        }
+        Intent returnIntent = new Intent();
+        setResult(RESULT_ACTUALIZAR_LISTADO, returnIntent);
+
+    }
+    @Override
+    public void onBackPressed() {
+        Intent returnIntent = new Intent();
+        setResult(RESULT_ACTUALIZAR_LISTADO, returnIntent);
+        finish();
     }
 }
