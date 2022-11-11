@@ -39,6 +39,10 @@ public class EditarOfertaActivity extends AppCompatActivity {
 
     }
 
+    public void cancelar(View v){
+        finish();
+    }
+
     public void modificarOferta(View view){
 
         if( tvTituloModificar.getText().toString() == null || tvTituloModificar.getText().toString().isEmpty()){

@@ -47,6 +47,10 @@ public class ModificarEmpresaActivity extends AppCompatActivity {
         });
     }
 
+    public void cancelar(View v){
+        finish();
+    }
+
     private void modificarEmpresa(int idEmpresa){
         Empresa empresa = new Empresa();
 
