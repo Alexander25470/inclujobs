@@ -41,7 +41,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="textPersonName" />
+                android:inputType="textPersonName"
+                android:digits="qwertzuiopasdfghjklyxcvbnmQWERTYUIOPASDFGHJKLÑZXCVBNM "/>
 
             <TextView
                 android:id="@+id/lblRazonSocialModificarEmpresa"
@@ -55,7 +56,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="textPersonName" />
+                android:inputType="textPersonName"
+                android:digits="qwertzuiopasdfghjklyxcvbnmQWERTYUIOPASDFGHJKLÑZXCVBNM "/>
 
             <TextView
                 android:id="@+id/lblDescripcionModificarEmpresa"

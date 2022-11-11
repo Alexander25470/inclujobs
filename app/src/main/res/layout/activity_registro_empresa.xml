@@ -41,14 +41,15 @@
                 android:id="@+id/lblNombreEmpresa"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Nombre" />
+                android:text="Nombre"/>
 
             <EditText
                 android:id="@+id/txtNombreEmpresa"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="textPersonName" />
+                android:inputType="textPersonName"
+                android:digits="qwertzuiopasdfghjklyxcvbnmQWERTYUIOPASDFGHJKLÑZXCVBNM "/>
 
             <TextView
                 android:id="@+id/lblApellidoEmpresa"
@@ -62,7 +63,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="textPersonName" />
+                android:inputType="textPersonName"
+                android:digits="qwertzuiopasdfghjklyxcvbnmQWERTYUIOPASDFGHJKLÑZXCVBNM "/>
 
             <TextView
                 android:id="@+id/lblEmailEmpresa"
@@ -113,7 +115,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:text="Teléfono" />
+                android:text="Teléfono"/>
 
             <EditText
                 android:id="@+id/txtTelefonoEmpresa"
@@ -134,7 +136,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="textPersonName" />
+                android:inputType="textPersonName"
+                android:digits="qwertzuiopasdfghjklyxcvbnmQWERTYUIOPASDFGHJKLÑZXCVBNM "/>
 
             <TextView
                 android:id="@+id/lblRazonSocial"
@@ -148,7 +151,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="textPersonName" />
+                android:inputType="textPersonName"
+                android:digits="qwertzuiopasdfghjklyxcvbnmQWERTYUIOPASDFGHJKLÑZXCVBNM "/>
 
             <TextView
                 android:id="@+id/lblCuit"
@@ -162,7 +166,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="textPersonName" />
+                android:inputType="textPersonName"
+                android:digits="0123456789-"/>
 
             <TextView
                 android:id="@+id/lblProvincia"
@@ -200,7 +205,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="textPersonName" />
+                android:inputType="textPersonName"
+                android:digits="qwertzuiopasdfghjklyxcvbnmQWERTYUIOPASDFGHJKLÑZXCVBNM 0123456789"/>
 
             <TextView
                 android:id="@+id/lblSector"
