@@ -53,12 +53,15 @@ public class DetalleEmpresa extends AppCompatActivity {
         lblDescripcionEmpresaDetalle = findViewById(R.id.lblDescripcionOfertaDetalle);
         tvUsuarioTB = findViewById(R.id.tvUsuarioTB); // ToolBar Listado
         btnPublicarOfertaTB = findViewById(R.id.btnPublicarOfertaTB); // ToolBar
+        btnEditarEmpresaDetalle = findViewById(R.id.btnEditarOfertaDetalle);
+        btnEliminarEmpresaDetalle = findViewById(R.id.btnEliminarOfertaDetalle);
 
         Intent intent = getIntent();
         Gson gson = new Gson();
         empresa = gson.fromJson(intent.getStringExtra("empresa"), Empresa.class);
 
         user = UserHelper.getUser(this);
+        validarBotones();
         validarBotonesToolBar();
 
         lblNombreEmpresaDetalle.setText(empresa.getNombreComercial());
@@ -67,7 +70,7 @@ public class DetalleEmpresa extends AppCompatActivity {
 
         cargarOfertas(empresa.getId());
 
-        btnEditarEmpresaDetalle = findViewById(R.id.btnEditarOfertaDetalle);
+
         btnEditarEmpresaDetalle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -80,13 +83,20 @@ public class DetalleEmpresa extends AppCompatActivity {
             }
         });
 
-        btnEliminarEmpresaDetalle = findViewById(R.id.btnEliminarOfertaDetalle);
+
         btnEliminarEmpresaDetalle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 eliminarEmpresa(empresa.getId());
             }
         });
+    }
+
+    private void validarBotones(){
+        if(user == null || user.getIdEmpresa() != empresa.getId()){
+            btnEditarEmpresaDetalle.setVisibility(View.GONE);
+            btnEliminarEmpresaDetalle.setVisibility(View.GONE);
+        }
     }
 
     private void cargarOfertas(int idEmpresa){

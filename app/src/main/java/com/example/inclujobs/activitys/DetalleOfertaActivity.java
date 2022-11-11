@@ -103,7 +103,6 @@ public class DetalleOfertaActivity extends AppCompatActivity {
         intent.putExtra("oferta", ofertaJson);
         startActivityForResult(intent,REQUEST_MODIFICAR_OFERTA);
 
-
     }
 
     private void obtenerOferta(){
