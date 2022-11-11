@@ -54,7 +54,7 @@ public class DataListadoOfertas extends AsyncTask<String, Void, String> {
                     query += " emp.IdCiudad = " + idCiudad;
                     aplicoUnFilto = true;
                 }*/
-                if(!empleo.isEmpty()){
+                if(!lugar.isEmpty()){
                     if(aplicoUnFilto){
                         query += " AND";
                     }
