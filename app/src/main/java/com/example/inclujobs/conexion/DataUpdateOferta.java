@@ -1,11 +1,16 @@
 package com.example.inclujobs.conexion;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.inclujobs.activitys.ModificarEmpresaActivity;
 import com.example.inclujobs.entidades.Empresa;
 import com.example.inclujobs.entidades.Oferta;
+import com.example.inclujobs.helpers.ICallBack;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -13,14 +18,14 @@ import java.sql.Statement;
 
 public class DataUpdateOferta extends AsyncTask<String, Void, String> {
     private Oferta oferta;
-    private Context context;
+    private ICallBack callBack;
 
     private int result;
     private static String result2;
 
-    public DataUpdateOferta(Oferta ofe, Context ctx){
+    public DataUpdateOferta(Oferta ofe, ICallBack callBack){
         oferta = ofe;
-        context = ctx;
+        this.callBack = callBack;
     }
 
     protected String doInBackground(String... urls) {
@@ -47,15 +52,6 @@ public class DataUpdateOferta extends AsyncTask<String, Void, String> {
 
     @Override
     protected void onPostExecute(String response) {
-        String mensaje = "";
-
-        if(result == 1){
-            mensaje = "Oferta actualizada";
-        } else {
-            mensaje = "Error al actualizar Oferta";
-        }
-
-        Toast toast = Toast.makeText(context,mensaje, Toast.LENGTH_SHORT);
-        toast.show();
+        callBack.function(result);
     }
 }

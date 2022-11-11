@@ -19,6 +19,7 @@ import android.widget.Toast;
 public class ModificarEmpresaActivity extends AppCompatActivity {
     private TextView txtNombreComercialModificarEmpresa, txtRazonSocialModificarEmpresa, txtDescripcionModificarEmpresa;
     private Button btnAceptarModificarEmpresa;
+    public static final int RESTULT_OK = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -9,6 +9,7 @@ import com.example.inclujobs.adapters.OfertaAdapter;
 import com.example.inclujobs.conexion.DataInsertCV;
 import com.example.inclujobs.conexion.DataInsertOferta;
 import com.example.inclujobs.conexion.DataListadoOfertas;
+import com.example.inclujobs.conexion.DataObtenerOferta;
 import com.example.inclujobs.conexion.DataVerificarCV;
 import com.example.inclujobs.entidades.Oferta;
 import com.example.inclujobs.entidades.Usuario;
@@ -42,8 +43,11 @@ public class DetalleOfertaActivity extends AppCompatActivity {
     private Usuario user;
     private TextView tvUsuarioTB; // ToolBar Listado Ofertas
     private Button btnPublicarOfertaTB;
+    private int idOferta;
     private final int REQUEST_LOGIN = 1;
     private final int REQUEST_PUBLICAR_OFERTA = 2;
+    private final int REQUEST_ADJUNTAR_CV = 3;
+    private final int REQUEST_MODIFICAR_OFERTA = 4;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,11 +72,9 @@ public class DetalleOfertaActivity extends AppCompatActivity {
         Intent intent = getIntent();
         Gson gson = new Gson();
         oferta = gson.fromJson(intent.getStringExtra("oferta"), Oferta.class);
+        idOferta = oferta.getId();
 
-        lblTituloOfertaDetalle.setText(oferta.getTitulo());
-        lblEmpresaOfertaDetalle.setText(oferta.getEmpresa().getNombreComercial());
-        lblDescripcionOfertaDetalle.setText(oferta.getDescripcion());
-        lblSalarioOfertaDetalle.setText("Salario: $" + oferta.getSalario().toString());
+        cargarOferta();
 
         user = UserHelper.getUser(this);
 
@@ -99,9 +101,27 @@ public class DetalleOfertaActivity extends AppCompatActivity {
 
         Intent intent = new Intent(this, EditarOfertaActivity.class);
         intent.putExtra("oferta", ofertaJson);
-        startActivity(intent);
+        startActivityForResult(intent,REQUEST_MODIFICAR_OFERTA);
 
 
+    }
+
+    private void obtenerOferta(){
+        DataObtenerOferta task = new DataObtenerOferta(idOferta, new ICallBack() {
+            @Override
+            public void function(Object obj) {
+                oferta = (Oferta)obj;
+                cargarOferta();
+            }
+        });
+        task.execute();
+    }
+
+    private void cargarOferta(){
+        lblTituloOfertaDetalle.setText(oferta.getTitulo());
+        lblEmpresaOfertaDetalle.setText(oferta.getEmpresa().getNombreComercial());
+        lblDescripcionOfertaDetalle.setText(oferta.getDescripcion());
+        lblSalarioOfertaDetalle.setText("Salario: $" + oferta.getSalario().toString());
     }
 
     public void verCVs(View v){
@@ -114,15 +134,15 @@ public class DetalleOfertaActivity extends AppCompatActivity {
         Intent intentPDF = new Intent(Intent.ACTION_GET_CONTENT);
         intentPDF.setType("application/pdf");
         intentPDF.addCategory(Intent.CATEGORY_OPENABLE);
-        startActivityForResult(Intent.createChooser(intentPDF , "Seleccionar Archivo"), 1);
+        startActivityForResult(Intent.createChooser(intentPDF , "Seleccionar Archivo"), REQUEST_ADJUNTAR_CV);
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if(resultCode == RESULT_OK){
-            if(requestCode == 1){
+        if(requestCode == REQUEST_ADJUNTAR_CV){
+            if(resultCode == RESULT_OK){
 
                 try {
                     Uri returnUri = data.getData();
@@ -138,6 +158,8 @@ public class DetalleOfertaActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
             }
+        } else if(requestCode == REQUEST_MODIFICAR_OFERTA){
+            obtenerOferta();
         }
     }
 
