@@ -29,7 +29,7 @@ import com.example.inclujobs.helpers.ICallBack;
 import java.util.ArrayList;
 
 public class registro_empresa extends AppCompatActivity {
-    private Button btnRegistrarseEmpresa;
+    private Button btnRegistrarseEmpresa, btnCancelarRegistrarseEmpresa;
     private TextView txtNombreEmpresa, txtApellidoEmpresa, txtEmailEmpresa, txtContraEmpresa, txtRepetirContraEmpresa, txtTelefonoEmpresa,
     txtNombreComercial, txtRazonSocial, txtCuit, txtDireccion, txtDescripcion;
     private Spinner spProvincia, spCiudad, spSector;
@@ -99,6 +99,14 @@ public class registro_empresa extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 agregarEmpresa();
+            }
+        });
+
+        btnCancelarRegistrarseEmpresa = findViewById(R.id.btnCancelarRegistrarseEmpresa);
+        btnCancelarRegistrarseEmpresa.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
             }
         });
     }

@@ -25,7 +25,7 @@ import com.example.inclujobs.helpers.ICallBack;
 import java.util.ArrayList;
 
 public class RegistroUsuario extends AppCompatActivity {
-    private Button btnRegistrarseUsuario;
+    private Button btnRegistrarseUsuario, btnCancelarRegistrarseUsuario;
     private TextView txtNombre, txtApellido, txtEmail, txtContra, txtRepetirContra, txtTelefono;
     private Spinner spTipoDiscapacidad;
     private ActivityRegistroUsuarioBinding binding;
@@ -65,6 +65,14 @@ public class RegistroUsuario extends AppCompatActivity {
             public void onClick(View view) {
                 agregarUsuario();
             };
+        });
+
+        btnCancelarRegistrarseUsuario = findViewById(R.id.btnRegistrarseUsuario);
+        btnCancelarRegistrarseUsuario.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
         });
     }
 
