@@ -1,6 +1,7 @@
 package com.example.inclujobs.conexion;
 
 import android.os.AsyncTask;
+import android.widget.Toast;
 
 import com.example.inclujobs.entidades.Empresa;
 import com.example.inclujobs.entidades.Sector;
@@ -48,6 +49,7 @@ public class DataLogin extends AsyncTask<String, Void, String> {
                 usuario.setIdUsuario(rs.getInt("Id"));
                 usuario.setEmail(rs.getString("Email"));
                 usuario.setNombre(rs.getString("Nombre"));
+                usuario.setApellido(rs.getString("Apellido"));
                 usuario.setContra(rs.getString("Contrasenia"));
                 usuario.setTelefono(rs.getString("Telefono"));
                 TipoDiscapacidad td = new TipoDiscapacidad();

@@ -23,6 +23,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.nio.file.attribute.UserPrincipal;
 import java.util.ArrayList;
 
 public class DetalleEmpresa extends AppCompatActivity {
@@ -130,7 +131,8 @@ public class DetalleEmpresa extends AppCompatActivity {
             tvUsuarioTB.setText("");
             btnPublicarOfertaTB.setText("Iniciar sesión");
         } else {
-            tvUsuarioTB.setText("Bienvenido: "+ user.getNombre() + " " + user.getNombre());
+            tvUsuarioTB.setText("Bienvenido: "+ user.getNombre()+ " " + user.getApellido());
+
             if(user.getIdEmpresa() == null)
             {
                 btnPublicarOfertaTB.setVisibility(View.GONE);

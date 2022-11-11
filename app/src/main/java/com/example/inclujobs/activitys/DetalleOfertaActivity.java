@@ -216,7 +216,7 @@ public class DetalleOfertaActivity extends AppCompatActivity {
             tvUsuarioTB.setText("");
             btnPublicarOfertaTB.setText("Iniciar sesión");
         } else {
-            tvUsuarioTB.setText("Bienvenido: "+ user.getNombre() + " " + user.getNombre());
+            tvUsuarioTB.setText("Bienvenido: "+ user.getNombre() + " " + user.getApellido());
             if(user.getIdEmpresa() == null)
             {
                 btnPublicarOfertaTB.setVisibility(View.GONE);

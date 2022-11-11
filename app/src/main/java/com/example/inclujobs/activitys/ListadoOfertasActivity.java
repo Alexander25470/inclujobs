@@ -100,7 +100,7 @@ public class ListadoOfertasActivity extends AppCompatActivity {
             tvUsuarioTBLO.setText("");
             btnPublicarOfertaTBLO.setText("Iniciar sesión");
         } else {
-            tvUsuarioTBLO.setText("Bienvenido: "+ user.getNombre() + " " + user.getNombre());
+            tvUsuarioTBLO.setText("Bienvenido: "+ user.getNombre() + " " + user.getApellido());
             if(user.getIdEmpresa() == null)
             {
                 btnPublicarOfertaTBLO.setVisibility(View.GONE);

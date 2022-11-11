@@ -21,6 +21,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -50,7 +51,6 @@ public class ListadoEmpresasActivity extends AppCompatActivity {
         txtLugar.setText(lugarInicial);
 
         user = UserHelper.getUser(this);
-
         validarBotonesToolBar();
         cargarEmpresas(lugarInicial);
         Context ctx = this;
@@ -73,8 +73,10 @@ public class ListadoEmpresasActivity extends AppCompatActivity {
         if(user == null){
             tvUsuarioTB.setText("");
             btnPublicarOfertaTB.setText("Iniciar sesión");
-        } else {
-            tvUsuarioTB.setText("Bienvenido: "+ user.getNombre() + " " + user.getNombre());
+        }
+
+        else {
+            tvUsuarioTB.setText("Bienvenido: "+ user.getNombre() + " " + user.getApellido());
             if(user.getIdEmpresa() == null)
             {
                 btnPublicarOfertaTB.setVisibility(View.GONE);
