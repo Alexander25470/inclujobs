@@ -159,7 +159,7 @@ public class ListadoOfertasActivity extends AppCompatActivity {
                 validarBotonesToolBar();
             //}
         //}
-        if (requestCode == REQUEST_PUBLICAR_OFERTA || (requestCode == REQUEST_DETALLE && resultCode == DetalleEmpresa.RESULT_ACTUALIZAR_LISTADO) )
+        if (requestCode == REQUEST_PUBLICAR_OFERTA || (requestCode == REQUEST_DETALLE && resultCode == DetalleOfertaActivity.RESULT_ACTUALIZAR_LISTADO) )
         {
             cargarOfertas();
         }

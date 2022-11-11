@@ -48,6 +48,7 @@ public class DetalleOfertaActivity extends AppCompatActivity {
     private final int REQUEST_PUBLICAR_OFERTA = 2;
     private final int REQUEST_ADJUNTAR_CV = 3;
     private final int REQUEST_MODIFICAR_OFERTA = 4;
+    public static final int RESULT_ACTUALIZAR_LISTADO = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -159,6 +160,8 @@ public class DetalleOfertaActivity extends AppCompatActivity {
             }
         } else if(requestCode == REQUEST_MODIFICAR_OFERTA){
             obtenerOferta();
+            Intent returnIntent = new Intent();
+            setResult(RESULT_OK, returnIntent);
         }
     }
 
@@ -271,6 +274,13 @@ public class DetalleOfertaActivity extends AppCompatActivity {
             }
         }, IdOferta, idUsuario);
         task.execute();
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent returnIntent = new Intent();
+        setResult(RESULT_ACTUALIZAR_LISTADO, returnIntent);
+        finish();
     }
 
 }

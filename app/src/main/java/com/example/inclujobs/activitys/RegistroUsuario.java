@@ -33,7 +33,6 @@ public class RegistroUsuario extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //setContentView(R.layout.activity_registro_usuario);
-
        //View v = inflater.inflate(R.layout.activity_registro_usuario, container, false);
 
         binding = ActivityRegistroUsuarioBinding.inflate(getLayoutInflater());
