@@ -5,6 +5,7 @@ import com.example.inclujobs.R;
 import com.example.inclujobs.adapters.OfertaAdapter;
 import com.example.inclujobs.conexion.DataDeleteEmpresa;
 import com.example.inclujobs.conexion.DataListadoOfertas;
+import com.example.inclujobs.conexion.DataObtenerEmpresa;
 import com.example.inclujobs.entidades.Empresa;
 import com.example.inclujobs.entidades.Oferta;
 import com.example.inclujobs.entidades.Usuario;
@@ -64,10 +65,7 @@ public class DetalleEmpresa extends AppCompatActivity {
         validarBotones();
         validarBotonesToolBar();
 
-        lblNombreEmpresaDetalle.setText(empresa.getNombreComercial());
-        lblDireccionEmpresaDetalle.setText(empresa.getDireccion());
-        lblDescripcionEmpresaDetalle.setText(empresa.getDescripcion());
-
+        cargarEmpresa();
         cargarOfertas(empresa.getId());
 
 
@@ -162,12 +160,33 @@ public class DetalleEmpresa extends AppCompatActivity {
         }
     }
 
+    private void obtenerEmpresa(int idOferta){
+        DataObtenerEmpresa task = new DataObtenerEmpresa(empresa.getId(), new ICallBack() {
+            @Override
+            public void function(Object obj) {
+                empresa = (Empresa) obj;
+                cargarEmpresa();
+            }
+        });
+        task.execute();
+    }
+
+    private void cargarEmpresa(){
+        lblNombreEmpresaDetalle.setText(empresa.getNombreComercial());
+        lblDireccionEmpresaDetalle.setText(empresa.getDireccion());
+        lblDescripcionEmpresaDetalle.setText(empresa.getDescripcion());
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
         if(requestCode == REQUEST_PUBLICAR_OFERTA){
             cargarOfertas(empresa.getId());
+        }
+        if(requestCode == REQUEST_MODIFICAR_EMPRESA){
+            cargarOfertas(empresa.getId());
+            obtenerEmpresa(empresa.getId());
         }
         Intent returnIntent = new Intent();
         setResult(RESULT_ACTUALIZAR_LISTADO, returnIntent);

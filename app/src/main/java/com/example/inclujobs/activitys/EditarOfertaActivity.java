@@ -90,4 +90,8 @@ public class EditarOfertaActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onBackPressed() {
+        finish();
+    }
 }

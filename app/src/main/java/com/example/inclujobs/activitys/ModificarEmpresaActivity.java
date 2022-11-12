@@ -6,8 +6,10 @@ import com.example.inclujobs.conexion.DataInsertUsuario;
 import com.example.inclujobs.conexion.DataUpdateEmpresa;
 import com.example.inclujobs.entidades.Empresa;
 import com.example.inclujobs.entidades.TipoDiscapacidad;
+import com.example.inclujobs.helpers.ICallBack;
 import com.google.gson.Gson;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -77,7 +79,28 @@ public class ModificarEmpresaActivity extends AppCompatActivity {
         empresa.setDescripcion(txtDescripcionModificarEmpresa.getText().toString());
         empresa.setId(idEmpresa);
 
-        DataUpdateEmpresa task = new DataUpdateEmpresa(empresa, getApplicationContext());
+        Context ctx = this;
+        DataUpdateEmpresa task = new DataUpdateEmpresa(empresa, new ICallBack() {
+            @Override
+            public void function(Object obj) {
+                if((int)obj == 1){
+                    Toast toast = Toast.makeText(ctx, "Empresa actualizada", Toast.LENGTH_SHORT);
+                    toast.show();
+                    Intent returnIntent = new Intent();
+                    setResult(RESULT_OK, returnIntent);
+                    finish();
+                } else {
+                    Toast toast = Toast.makeText(ctx, "Error al actualizar Empresa", Toast.LENGTH_SHORT);
+                    toast.show();
+                }
+
+            }
+        });
         task.execute();
+    }
+
+    @Override
+    public void onBackPressed() {
+        finish();
     }
 }

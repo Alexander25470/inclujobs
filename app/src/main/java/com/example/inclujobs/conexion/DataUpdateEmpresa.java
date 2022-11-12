@@ -5,6 +5,7 @@ import android.os.AsyncTask;
 import android.widget.Toast;
 
 import com.example.inclujobs.entidades.Empresa;
+import com.example.inclujobs.helpers.ICallBack;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -13,14 +14,14 @@ import java.sql.Statement;
 
 public class DataUpdateEmpresa extends AsyncTask<String, Void, String> {
     private Empresa empresa;
-    private Context context;
+    private ICallBack callback;
 
     private int result;
     private static String result2;
 
-    public DataUpdateEmpresa(Empresa emp, Context ctx){
+    public DataUpdateEmpresa(Empresa emp, ICallBack callback){
         empresa = emp;
-        context = ctx;
+        this.callback = callback;
     }
 
     protected String doInBackground(String... urls) {
@@ -47,15 +48,6 @@ public class DataUpdateEmpresa extends AsyncTask<String, Void, String> {
 
     @Override
     protected void onPostExecute(String response) {
-        String mensaje = "";
-
-        if(result == 1){
-            mensaje = "Empresa actualizada";
-        } else {
-            mensaje = "Error al actualizar Empresa";
-        }
-
-        Toast toast = Toast.makeText(context,mensaje, Toast.LENGTH_SHORT);
-        toast.show();
+        callback.function(result);
     }
 }
