@@ -39,9 +39,7 @@ public class CrearOfertaActivity extends AppCompatActivity {
     }
 
     public void CancelarOferta(View v){
-        Intent intent = new Intent(this, MainActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(intent);
+        finish();
     }
     public void crearOferta(View view){
 
