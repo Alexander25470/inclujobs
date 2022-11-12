@@ -121,6 +121,9 @@ public class DetalleEmpresa extends AppCompatActivity {
                 if((int)obj == 1){
                     Toast toast = Toast.makeText(ctx, "Empresa eliminada", Toast.LENGTH_SHORT);
                     toast.show();
+                    user.setIdEmpresa(null);
+                    UserHelper.removeUser(ctx);
+                    UserHelper.saveUser(user,ctx);
                     Intent returnIntent = new Intent();
                     setResult(RESULT_ACTUALIZAR_LISTADO, returnIntent);
                     finish();
@@ -184,7 +187,7 @@ public class DetalleEmpresa extends AppCompatActivity {
         if(requestCode == REQUEST_PUBLICAR_OFERTA){
             cargarOfertas(empresa.getId());
         }
-        if(requestCode == REQUEST_MODIFICAR_EMPRESA){
+        if(requestCode == REQUEST_MODIFICAR_EMPRESA || requestCode == REQUEST_PUBLICAR_OFERTA){
             cargarOfertas(empresa.getId());
             obtenerEmpresa(empresa.getId());
         }
