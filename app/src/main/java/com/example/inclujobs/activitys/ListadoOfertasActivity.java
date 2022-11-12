@@ -143,7 +143,7 @@ public class ListadoOfertasActivity extends AppCompatActivity {
                 OfertaAdapter adapter = new OfertaAdapter(ctx, listaOfertas);
                 lvOfertas.setAdapter(adapter);
             }
-        }, -1, null, "");
+        }, -1, etLugares.getText().toString(), "");
         task.execute();
     }
 
