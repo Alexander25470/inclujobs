@@ -5,21 +5,22 @@ import android.os.AsyncTask;
 import android.widget.Toast;
 
 import com.example.inclujobs.entidades.Oferta;
+import com.example.inclujobs.helpers.ICallBack;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
 
 public class DataDeleteOferta extends AsyncTask<String, Void, String> {
-    private Oferta oferta;
-    private Context context;
+    private ICallBack callBack;
+    private int idOferta;
 
     private int result;
     private static String result2;
 
-    public DataDeleteOferta(Oferta ofe, Context ctx){
-        oferta = ofe;
-        context = ctx;
+    public DataDeleteOferta(int idOferta, ICallBack callBack){
+        this.idOferta = idOferta;
+        this.callBack = callBack;
     }
 
     protected String doInBackground(String... urls) {
@@ -31,13 +32,13 @@ public class DataDeleteOferta extends AsyncTask<String, Void, String> {
             Statement st = con.createStatement();
 
             String query = "DELETE FROM `CVs` WHERE idOferta = %s";
-            query = String.format(query, oferta.getId());
+            query = String.format(query, idOferta);
 
             result = st.executeUpdate(query);
 
             if(result == 1){
                 query = "DELETE FROM `Ofertas` WHERE id = %s";
-                query = String.format(query, oferta.getId());
+                query = String.format(query, idOferta);
 
                 result = st.executeUpdate(query);
             }
@@ -53,15 +54,6 @@ public class DataDeleteOferta extends AsyncTask<String, Void, String> {
 
     @Override
     protected void onPostExecute(String response) {
-        String mensaje = "";
-
-        if(result == 1){
-            mensaje = "Oferta eliminada";
-        } else {
-            mensaje = "Error al eliminar Oferta";
-        }
-
-        Toast toast = Toast.makeText(context,mensaje, Toast.LENGTH_SHORT);
-        toast.show();
+        callBack.function(result);
     }
 }

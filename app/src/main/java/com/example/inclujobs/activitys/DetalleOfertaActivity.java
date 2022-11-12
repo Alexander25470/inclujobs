@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.inclujobs.DTOs.CVDTO;
 import com.example.inclujobs.R;
 import com.example.inclujobs.adapters.OfertaAdapter;
+import com.example.inclujobs.conexion.DataDeleteOferta;
 import com.example.inclujobs.conexion.DataInsertCV;
 import com.example.inclujobs.conexion.DataInsertOferta;
 import com.example.inclujobs.conexion.DataListadoOfertas;
@@ -273,6 +274,26 @@ public class DetalleOfertaActivity extends AppCompatActivity {
                 }
             }
         }, IdOferta, idUsuario);
+        task.execute();
+    }
+
+    public void eliminarOferta(View v){
+        Context ctx = this;
+        DataDeleteOferta task = new DataDeleteOferta(oferta.getId(), new ICallBack() {
+            @Override
+            public void function(Object obj) {
+                if((int)obj == 1){
+                    Toast toast = Toast.makeText(ctx,"Oferta eliminada", Toast.LENGTH_SHORT);
+                    toast.show();
+                    Intent returnIntent = new Intent();
+                    setResult(RESULT_ACTUALIZAR_LISTADO, returnIntent);
+                    finish();
+                } else {
+                    Toast toast = Toast.makeText(ctx,"Error al eliminar Oferta", Toast.LENGTH_SHORT);
+                    toast.show();
+                }
+            }
+        });
         task.execute();
     }
 

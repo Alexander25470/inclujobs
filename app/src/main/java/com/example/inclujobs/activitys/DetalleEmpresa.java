@@ -91,7 +91,7 @@ public class DetalleEmpresa extends AppCompatActivity {
     }
 
     private void validarBotones(){
-        if(user == null || user.getIdEmpresa() != empresa.getId()){
+        if(user == null || user.getIdEmpresa() == null || user.getIdEmpresa() != empresa.getId()){
             btnEditarEmpresaDetalle.setVisibility(View.GONE);
             btnEliminarEmpresaDetalle.setVisibility(View.GONE);
         }
