@@ -33,7 +33,7 @@ public class DataListadoCVs extends AsyncTask<String, Void, String> {
         String response = "";
 
         try {
-
+            CVs = new ArrayList<CVListadoDTO>();
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection(DataDB.urlMySQL, DataDB.user, DataDB.pass);
 
