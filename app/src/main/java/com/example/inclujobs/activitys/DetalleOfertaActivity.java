@@ -85,11 +85,16 @@ public class DetalleOfertaActivity extends AppCompatActivity {
             btnEliminar.setVisibility(View.GONE);
             btnAdjuntarCv.setVisibility(View.GONE);
             btnVerCvs.setVisibility(View.GONE);
-        } else if(user.getIdUsuario() != oferta.getEmpresa().getUsuarioDuenio().getIdUsuario())
-        {
-            btnEditar.setVisibility(View.GONE);
-            btnEliminar.setVisibility(View.GONE);
-            btnVerCvs.setVisibility(View.GONE);
+        } else {
+            if(user.getIdUsuario() != oferta.getEmpresa().getUsuarioDuenio().getIdUsuario())
+            {
+                btnEditar.setVisibility(View.GONE);
+                btnEliminar.setVisibility(View.GONE);
+                btnVerCvs.setVisibility(View.GONE);
+            }
+            if(user.getIdEmpresa() != null){
+                btnAdjuntarCv.setVisibility(View.GONE);
+            }
         }
 
         if(user != null){
