@@ -36,12 +36,12 @@ public class DataDeleteOferta extends AsyncTask<String, Void, String> {
 
             result = st.executeUpdate(query);
 
-            if(result == 1){
+            //if(result == 1){
                 query = "DELETE FROM `Ofertas` WHERE id = %s";
                 query = String.format(query, idOferta);
 
                 result = st.executeUpdate(query);
-            }
+            //}
 
             response = "Conexion exitosa";
         }
