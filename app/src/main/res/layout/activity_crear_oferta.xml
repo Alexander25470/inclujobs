@@ -71,6 +71,25 @@
                 android:ems="10"
                 android:inputType="numberDecimal" />
 
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="Discapacidades" />
+
+            <TextView
+                android:id="@+id/tvDiscapacidades"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:drawable/editbox_background"
+                android:drawableEnd="@android:drawable/arrow_down_float"
+                android:drawablePadding="16dp"
+                android:hint="Tipos de discapacidades"
+                android:padding="12dp"
+                android:text="TextView" />
+
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"

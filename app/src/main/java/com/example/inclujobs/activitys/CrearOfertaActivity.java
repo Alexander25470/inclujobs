@@ -1,23 +1,27 @@
 package com.example.inclujobs.activitys;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.inclujobs.MainActivity;
 import com.example.inclujobs.R;
 import com.example.inclujobs.conexion.DataInsertOferta;
-import com.example.inclujobs.conexion.DataUpdateOferta;
+import com.example.inclujobs.conexion.DataObtenerTiposDiscapacidades;
 import com.example.inclujobs.entidades.Oferta;
+import com.example.inclujobs.entidades.TipoDiscapacidad;
 import com.example.inclujobs.entidades.Usuario;
 import com.example.inclujobs.helpers.ICallBack;
 import com.example.inclujobs.helpers.UserHelper;
-import com.google.gson.Gson;
 
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.Button;
+
+import java.util.ArrayList;
 
 
 public class CrearOfertaActivity extends AppCompatActivity {
@@ -26,6 +30,10 @@ public class CrearOfertaActivity extends AppCompatActivity {
     private TextView tvTituloCrear, tvDescripcionCrear, tvSalarioCrear;
     private Usuario user;
     private Button CancelarOferta;
+    private boolean [] discapacidadesSeleccionadas;
+    private ArrayList<TipoDiscapacidad> discapacidades = new ArrayList<>();
+    private TextView tvDiscapacidades;
+    private ArrayList<Integer> indexDiscapacidadesSeleccionadas = new ArrayList<Integer>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +44,58 @@ public class CrearOfertaActivity extends AppCompatActivity {
         tvDescripcionCrear = findViewById(R.id.tvDescripcionCrear);
         tvSalarioCrear = findViewById(R.id.tvSalarioCrear);
         CancelarOferta = findViewById(R.id.btnCancelarCrear);
+        tvDiscapacidades = findViewById(R.id.tvDiscapacidades);
+
+        tvDiscapacidades.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(CrearOfertaActivity.this);
+                builder.setTitle("Seleccionar discapacidades");
+                builder.setCancelable(false);
+
+                String[] arr = new String[discapacidades.size()];
+                for(int i=0 ; i< discapacidades.size();i++){
+                    arr[i] = discapacidades.get(i).getNombre();
+                }
+                builder.setMultiChoiceItems(arr, discapacidadesSeleccionadas, new DialogInterface.OnMultiChoiceClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i, boolean b) {
+                        if(b){
+                            indexDiscapacidadesSeleccionadas.add(i);
+                        } else {
+                            indexDiscapacidadesSeleccionadas.remove((Integer) i);
+                        }
+                    }
+                });
+                builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        String test = "";
+                        for (int j = 0; j < indexDiscapacidadesSeleccionadas.size(); j++) {
+                            test += discapacidades.get(j).getNombre() + " - ";
+                        }
+                        Toast toast = Toast.makeText(getApplicationContext(),test, Toast.LENGTH_SHORT);
+                        toast.show();
+                    }
+                });
+                builder.show();
+            }
+        });
+
+        cargarDiscapacidades();
+    }
+
+    private void cargarDiscapacidades(){
+        Context ctx = this;
+        DataObtenerTiposDiscapacidades task = new DataObtenerTiposDiscapacidades(new ICallBack() {
+            @Override
+            public void function(Object obj) {
+                discapacidades = (ArrayList<TipoDiscapacidad>)obj;
+                discapacidadesSeleccionadas = new boolean[discapacidades.size()];
+            }
+        });
+
+        task.execute();
     }
 
     public void CancelarOferta(View v){
