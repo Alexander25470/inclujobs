@@ -131,6 +131,7 @@ public class registro_empresa extends AppCompatActivity {
         Usuario usr = new Usuario();
         Ciudad ciu = new Ciudad();
         String email = txtEmailEmpresa.getText().toString();
+        String cuit = txtCuit.getText().toString();
 
         if( txtNombreEmpresa.getText().toString() == null || txtNombreEmpresa.getText().toString().isEmpty()){
             Toast toast = Toast.makeText(getApplicationContext(),"Debe ingresar un Nombre", Toast.LENGTH_SHORT);
@@ -192,20 +193,26 @@ public class registro_empresa extends AppCompatActivity {
             return;
         }
 
-        if( txtCuit.getText().toString() == null || txtCuit.getText().toString().isEmpty()){
-            Toast toast = Toast.makeText(getApplicationContext(),"Debe ingresar un Teléfono", Toast.LENGTH_SHORT);
+        if( cuit == null || cuit.isEmpty()){
+            Toast toast = Toast.makeText(getApplicationContext(),"Debe ingresar un CUIT", Toast.LENGTH_SHORT);
+            toast.show();
+            return;
+        }
+
+        if(!REGEX.CUIT.matcher(cuit).matches()){
+            Toast toast = Toast.makeText(getApplicationContext(),"Debe ingresar un CUIT valido", Toast.LENGTH_SHORT);
             toast.show();
             return;
         }
 
         if( txtDireccion.getText().toString() == null || txtDireccion.getText().toString().isEmpty()){
-            Toast toast = Toast.makeText(getApplicationContext(),"Debe ingresar un Teléfono", Toast.LENGTH_SHORT);
+            Toast toast = Toast.makeText(getApplicationContext(),"Debe ingresar una dirección", Toast.LENGTH_SHORT);
             toast.show();
             return;
         }
 
         if( txtDescripcion.getText().toString() == null || txtDescripcion.getText().toString().isEmpty()){
-            Toast toast = Toast.makeText(getApplicationContext(),"Debe ingresar un Teléfono", Toast.LENGTH_SHORT);
+            Toast toast = Toast.makeText(getApplicationContext(),"Debe ingresar una descripción", Toast.LENGTH_SHORT);
             toast.show();
             return;
         }
@@ -218,7 +225,7 @@ public class registro_empresa extends AppCompatActivity {
         ciu.setId(((Ciudad) spCiudad.getSelectedItem()).getId());
         emp.setNombreComercial(txtNombreComercial.getText().toString());
         emp.setRazonSocial(txtRazonSocial.getText().toString());
-        emp.setCuit(txtCuit.getText().toString());
+        emp.setCuit(cuit);
         emp.setDireccion(txtDireccion.getText().toString());
         emp.setDescripcion(txtDescripcion.getText().toString());
         emp.setUsuarioDuenio(usr);
