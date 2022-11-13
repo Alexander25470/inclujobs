@@ -25,6 +25,7 @@ import com.example.inclujobs.entidades.Provincia;
 import com.example.inclujobs.entidades.Sector;
 import com.example.inclujobs.entidades.Usuario;
 import com.example.inclujobs.helpers.ICallBack;
+import com.example.inclujobs.helpers.REGEX;
 
 import java.util.ArrayList;
 
@@ -129,6 +130,7 @@ public class registro_empresa extends AppCompatActivity {
         Empresa emp = new Empresa();
         Usuario usr = new Usuario();
         Ciudad ciu = new Ciudad();
+        String email = txtEmailEmpresa.getText().toString();
 
         if( txtNombreEmpresa.getText().toString() == null || txtNombreEmpresa.getText().toString().isEmpty()){
             Toast toast = Toast.makeText(getApplicationContext(),"Debe ingresar un Nombre", Toast.LENGTH_SHORT);
@@ -142,8 +144,14 @@ public class registro_empresa extends AppCompatActivity {
             return;
         }
 
-        if( txtEmailEmpresa.getText().toString() == null || txtEmailEmpresa.getText().toString().isEmpty()){
+        if( email == null || email.isEmpty()){
             Toast toast = Toast.makeText(getApplicationContext(),"Debe ingresar un Email", Toast.LENGTH_SHORT);
+            toast.show();
+            return;
+        }
+
+        if(!REGEX.EMAIL.matcher(email).matches()){
+            Toast toast = Toast.makeText(this,"Debe ingresar un Email valido", Toast.LENGTH_SHORT);
             toast.show();
             return;
         }
@@ -204,7 +212,7 @@ public class registro_empresa extends AppCompatActivity {
 
         usr.setNombre(txtNombreEmpresa.getText().toString());
         usr.setApellido(txtApellidoEmpresa.getText().toString());
-        usr.setEmail(txtEmailEmpresa.getText().toString());
+        usr.setEmail(email);
         usr.setContra(txtContraEmpresa.getText().toString());
         usr.setTelefono(txtTelefonoEmpresa.getText().toString());
         ciu.setId(((Ciudad) spCiudad.getSelectedItem()).getId());

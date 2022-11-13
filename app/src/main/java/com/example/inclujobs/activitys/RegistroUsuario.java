@@ -21,6 +21,7 @@ import com.example.inclujobs.databinding.ActivityRegistroUsuarioBinding;
 import com.example.inclujobs.entidades.TipoDiscapacidad;
 import com.example.inclujobs.entidades.Usuario;
 import com.example.inclujobs.helpers.ICallBack;
+import com.example.inclujobs.helpers.REGEX;
 
 import java.util.ArrayList;
 
@@ -78,6 +79,7 @@ public class RegistroUsuario extends AppCompatActivity {
     public void agregarUsuario() {
         Usuario usr = new Usuario();
         TipoDiscapacidad tipoDiscapacidad = new TipoDiscapacidad();
+        String email = txtEmail.getText().toString();
 
         if(txtNombre.length()<3){
             Toast toast = Toast.makeText(getApplicationContext(), "Debe ingresar un Nombre valido", Toast.LENGTH_SHORT);
@@ -102,10 +104,16 @@ public class RegistroUsuario extends AppCompatActivity {
             return ;
         }
 
-        if (txtEmail.getText().toString() == null || txtEmail.getText().toString().isEmpty()) {
-            Toast toast = Toast.makeText(getApplicationContext(), "Debe ingresar un Email", Toast.LENGTH_SHORT);
+        if( email == null || email.isEmpty()){
+            Toast toast = Toast.makeText(getApplicationContext(),"Debe ingresar un Email", Toast.LENGTH_SHORT);
             toast.show();
-            return ;
+            return;
+        }
+
+        if(!REGEX.EMAIL.matcher(email).matches()){
+            Toast toast = Toast.makeText(this,"Debe ingresar un Email valido", Toast.LENGTH_SHORT);
+            toast.show();
+            return;
         }
 
         if (txtContra.getText().toString() == null || txtContra.getText().toString().isEmpty()) {
@@ -134,7 +142,7 @@ public class RegistroUsuario extends AppCompatActivity {
         tipoDiscapacidad.setId(((TipoDiscapacidad) spTipoDiscapacidad.getSelectedItem()).getId());
         usr.setNombre(txtNombre.getText().toString());
         usr.setApellido(txtApellido.getText().toString());
-        usr.setEmail(txtEmail.getText().toString());
+        usr.setEmail(email);
         usr.setContra(txtContra.getText().toString());
         usr.setTelefono(txtTelefono.getText().toString());
         usr.setTipoDiscapacidad(tipoDiscapacidad);
