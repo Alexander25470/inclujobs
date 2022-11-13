@@ -4,11 +4,14 @@ import android.os.AsyncTask;
 
 import com.example.inclujobs.DTOs.CVDTO;
 import com.example.inclujobs.entidades.Oferta;
+import com.example.inclujobs.entidades.TipoDiscapacidad;
 import com.example.inclujobs.helpers.ICallBack;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
 
 public class DataInsertOferta extends AsyncTask<String, Void, String> {
 
@@ -32,14 +35,35 @@ public class DataInsertOferta extends AsyncTask<String, Void, String> {
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection(DataDB.urlMySQL, DataDB.user, DataDB.pass);
             String query = "INSERT INTO `Ofertas`(`idEmpresa`, `Titulo`, `Descripcion`, `Salario`) VALUES (?,?,?,?);";
-            PreparedStatement ps = con.prepareStatement(query);
+            PreparedStatement ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
 
             ps.setInt(1, idEmpresa);
             ps.setString(2,  oferta.getTitulo());
             ps.setString(3, oferta.getDescripcion());
             ps.setFloat(4, oferta.getSalario());
 
-            result = ps.executeUpdate();
+            int resultOferta = ps.executeUpdate();
+            ResultSet rs = ps.getGeneratedKeys();
+
+
+
+            if(resultOferta == 1){
+                if(rs.next()) {
+                    int idInsertado = rs.getInt(1);
+                    for (int i = 0; i < oferta.getDiscapacidades().size(); i++) {
+                        TipoDiscapacidad td = oferta.getDiscapacidades().get(i);
+                        String queryDiscapacidad = "INSERT INTO `DiscapacidadesOferta`(`IdOferta`, `IdTipoDiscapacidad`) VALUES (?,?);";
+                        ps = con.prepareStatement(queryDiscapacidad);
+                        ps.setInt(1, idInsertado);
+                        ps.setInt(2,  td.getId());
+                        int resultDiscapacidad = ps.executeUpdate();
+                        if(resultDiscapacidad != 1){
+                            result = resultOferta;
+                        }
+                    }
+                }
+
+            }
 
             response = "Conexion exitosa";
         }
@@ -52,7 +76,7 @@ public class DataInsertOferta extends AsyncTask<String, Void, String> {
 
     @Override
     protected void onPostExecute(String response) {
-        callBack.function(result2);
+        callBack.function(result);
     }
 
 }

@@ -87,7 +87,7 @@
                 android:drawablePadding="16dp"
                 android:hint="Tipos de discapacidades"
                 android:padding="12dp"
-                android:text="TextView" />
+                android:text="Discapacidades" />
 
 
             <LinearLayout

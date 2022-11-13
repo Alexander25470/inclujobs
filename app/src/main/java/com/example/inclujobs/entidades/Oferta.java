@@ -1,11 +1,14 @@
 package com.example.inclujobs.entidades;
 
+import java.util.ArrayList;
+
 public class Oferta {
     private Empresa Empresa;
     private int Id;
     private String Titulo;
     private Float Salario;
     private String Descripcion;
+    private ArrayList<TipoDiscapacidad> discapacidades;
 
     public int getId() {
         return Id;
@@ -45,6 +48,14 @@ public class Oferta {
 
     public void setDescripcion(String descripcion) {
         Descripcion = descripcion;
+    }
+
+    public ArrayList<TipoDiscapacidad> getDiscapacidades() {
+        return discapacidades;
+    }
+
+    public void setDiscapacidades(ArrayList<TipoDiscapacidad> discapacidades) {
+        this.discapacidades = discapacidades;
     }
 
     @Override

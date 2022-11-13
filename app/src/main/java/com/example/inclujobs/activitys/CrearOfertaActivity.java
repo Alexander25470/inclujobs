@@ -49,44 +49,50 @@ public class CrearOfertaActivity extends AppCompatActivity {
         tvDiscapacidades.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(CrearOfertaActivity.this);
-                builder.setTitle("Seleccionar discapacidades");
-                builder.setCancelable(false);
-
-                String[] arr = new String[discapacidades.size()];
-                for(int i=0 ; i< discapacidades.size();i++){
-                    arr[i] = discapacidades.get(i).getNombre();
-                }
-                builder.setMultiChoiceItems(arr, discapacidadesSeleccionadas, new DialogInterface.OnMultiChoiceClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i, boolean b) {
-                        if(b){
-                            indexDiscapacidadesSeleccionadas.add(i);
-                        } else {
-                            indexDiscapacidadesSeleccionadas.remove((Integer) i);
-                        }
-                    }
-                });
-                builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        String test = "";
-                        for (int j = 0; j < indexDiscapacidadesSeleccionadas.size(); j++) {
-                            test += discapacidades.get(j).getNombre() + " - ";
-                        }
-                        Toast toast = Toast.makeText(getApplicationContext(),test, Toast.LENGTH_SHORT);
-                        toast.show();
-                    }
-                });
-                builder.show();
+                abrirSelectorDiscapacidades();
             }
         });
 
         cargarDiscapacidades();
     }
 
+    private void abrirSelectorDiscapacidades(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(CrearOfertaActivity.this);
+        builder.setTitle("Seleccionar discapacidades");
+        builder.setCancelable(false);
+
+        String[] arr = new String[discapacidades.size()];
+        for(int i=0 ; i< discapacidades.size();i++){
+            arr[i] = discapacidades.get(i).getNombre();
+        }
+        builder.setMultiChoiceItems(arr, discapacidadesSeleccionadas, new DialogInterface.OnMultiChoiceClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i, boolean b) {
+                if(b){
+                    indexDiscapacidadesSeleccionadas.add(i);
+                } else {
+                    indexDiscapacidadesSeleccionadas.remove((Integer) i);
+                }
+            }
+        });
+        builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                String test = "";
+                for (int j = 0; j < indexDiscapacidadesSeleccionadas.size(); j++) {
+                    if(j != 0) test += " - ";
+                    test += discapacidades.get(j).getNombre();
+                }
+                if(indexDiscapacidadesSeleccionadas.size() == 0){
+                    test = "Seleccionar";
+                }
+                tvDiscapacidades.setText(test);
+            }
+        });
+        builder.show();
+    }
+
     private void cargarDiscapacidades(){
-        Context ctx = this;
         DataObtenerTiposDiscapacidades task = new DataObtenerTiposDiscapacidades(new ICallBack() {
             @Override
             public void function(Object obj) {
@@ -120,6 +126,18 @@ public class CrearOfertaActivity extends AppCompatActivity {
             toast.show();
             return;
         }
+
+        if(indexDiscapacidadesSeleccionadas.size() == 0){
+            Toast toast = Toast.makeText(getApplicationContext(),"Debe seleccionar almenos una discapacidad", Toast.LENGTH_SHORT);
+            toast.show();
+            return;
+        }
+
+        ArrayList<TipoDiscapacidad> discapacidadesSel = new ArrayList<>();
+        for (int j = 0; j < indexDiscapacidadesSeleccionadas.size(); j++) {
+            discapacidadesSel.add(discapacidades.get(j));
+        }
+        oferta.setDiscapacidades(discapacidadesSel);
 
         oferta.setTitulo(tvTituloCrear.getText().toString());
         oferta.setDescripcion(tvDescripcionCrear.getText().toString());
