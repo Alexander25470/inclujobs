@@ -45,7 +45,7 @@ public class DataListadoEmpresas extends AsyncTask<String, Void, String> {
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection(DataDB.urlMySQL, DataDB.user, DataDB.pass);
 
-            String query = "SELECT emp.*, ciu.Nombre NombreCiudad, prov.Id IdProvincia, prov.Nombre NombreProvincia FROM Empresas emp INNER JOIN " +
+            String query = "SELECT emp.*, ciu.Nombre NombreCiudad, prov.Id IdProvincia, prov.Nombre NombreProvincia, sec.Nombre nombreSector FROM Empresas emp INNER JOIN " +
                     "Ciudades ciu ON emp.IdCiudad = ciu.Id INNER JOIN Provincias prov ON ciu.IdProvincia = prov.Id INNER JOIN Sectores sec ON emp.IdSector = sec.Id";
 
             if(!nombreEmpresa.isEmpty() || !lugar.isEmpty() || !sector.isEmpty() ){
@@ -80,7 +80,8 @@ public class DataListadoEmpresas extends AsyncTask<String, Void, String> {
                 empresa.setCiudad(ciudad);
 
                 Sector sector = new Sector();
-                sector.setId(rs.getInt("IdCiudad"));
+                sector.setId(rs.getInt("IdSector"));
+                sector.setNombre(rs.getString("nombreSector"));
                 empresa.setSector(sector);
 
                 Usuario usuario = new Usuario();

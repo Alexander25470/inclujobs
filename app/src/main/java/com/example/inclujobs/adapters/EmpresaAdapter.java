@@ -44,12 +44,14 @@ public class EmpresaAdapter extends BaseAdapter {
         view = LayoutInflater.from(context).inflate(R.layout.list_item_empresa, null);
         TextView tvTitulo = view.findViewById(R.id.tvTituloItemEmpresa),
                 tvUbicacion = view.findViewById(R.id.tvUbicacionItemEmpresa),
-                tvDescripcion = view.findViewById(R.id.tvDescripcionItemEmpresa);
+                tvDescripcion = view.findViewById(R.id.tvDescripcionItemEmpresa),
+                tvSector = view.findViewById(R.id.tvSector);
 
         tvTitulo.setText(empresa.getNombreComercial());
         tvDescripcion.setText(empresa.getDescripcion());
         Ciudad ciudad = empresa.getCiudad();
         tvUbicacion.setText(ciudad.getProvincia().getNombre() + ", " + ciudad.getNombre());
+        tvSector.setText(empresa.getSector().getNombre());
 
         return view;
     }
